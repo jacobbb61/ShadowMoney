@@ -9,6 +9,7 @@ public class LoadingScreenManager : MonoBehaviour
     GameManager GM;
     void Start()
     {
+        Time.timeScale = 1;
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         if (GM.LevelToLoad != null)
         {
