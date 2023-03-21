@@ -14560,14 +14560,16 @@ MonoBehaviour:
   HealthDrop: {fileID: 1660985183080485684, guid: 28dcb3537d4544749a7a5f7cefa4b96a,
     type: 3}
   Grounded: 0
-  TimeToAttack: 0.5
+  TimeToAttack: 1
   BulletPoint: {fileID: 577843630846592118}
-  CloseBulletType: {fileID: 5969615223017203397, guid: a2ad87cc4afb21841bc306f8b57762dd,
+  CloseBulletType: {fileID: 5969615223017203397, guid: 4b15f20bf49feff40aa50f61460c1432,
     type: 3}
-  FarBulletType: {fileID: 5969615223017203397, guid: 4b15f20bf49feff40aa50f61460c1432,
+  FarBulletType: {fileID: 5969615223017203397, guid: 6d0e20bdc8dca5b45bf4d1bb2a5f85a9,
+    type: 3}
+  Far2BulletType: {fileID: 5969615223017203397, guid: d6ac34eae4d3fe14a88b47ecd3fb21f7,
     type: 3}
   CloseRange: 5
-  FarRange: 15
+  FarRange: 30
   EffectType: 0
   TimeToBreakFreeze: 5
   FrozenParticles: {fileID: 164891184184383176}

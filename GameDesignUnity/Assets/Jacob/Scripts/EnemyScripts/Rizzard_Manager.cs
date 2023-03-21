@@ -31,11 +31,13 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     [Header("Attack")]
     private bool IsAttackingClose;
     private bool IsAttackingFar;
+    private bool IsAttackingFar2;
     public float TimeToAttack;
     private float AttackTime;
     public GameObject BulletPoint;
     public GameObject CloseBulletType;
     public GameObject FarBulletType;
+    public GameObject Far2BulletType;
     public float CloseRange;
     public float FarRange;
     public int EffectType;
@@ -99,12 +101,20 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
         {
             IsAttackingClose = true;
         }
-        else if (Vector3.Distance(transform.position, Player.transform.position) >= FarRange && Vector3.Distance(transform.position, Player.transform.position) <= FarRange+5  && CanAttack == true)
+        else if (Vector3.Distance(transform.position, Player.transform.position) > CloseRange && Vector3.Distance(transform.position, Player.transform.position) < FarRange && CanAttack == true)
         {
             IsAttackingFar = true;
-        } 
+        }
+        else if (Vector3.Distance(transform.position, Player.transform.position) > FarRange + 5 && CanAttack == true)
+        {
+            IsAttackingFar2 = true;
+        }
 
-
+        if (IsAttackingFar2)
+        {
+            Attack(Far2BulletType);
+            AttackTime += Time.deltaTime;
+        }
         if (IsAttackingFar)
         {
             Attack(FarBulletType);
@@ -147,6 +157,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
             AttackTime = 0;
             CanAttack = true;
             IsAttackingFar = false;
+            IsAttackingFar2 = false;
             IsAttackingClose = false;
         }
     }
