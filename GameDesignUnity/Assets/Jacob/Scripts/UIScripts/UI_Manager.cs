@@ -25,7 +25,6 @@ public class UI_Manager : MonoBehaviour
 
     [Header("Orb")]
     public GameObject OrbMain;
-    public GameObject ProjectileUI;
     public GameObject ElementUI;
 
     [Header("Pause Menus")]
@@ -65,19 +64,15 @@ public class UI_Manager : MonoBehaviour
     public GameObject YouDiedUI;
     public GameObject YouDiedHighlight;
 
-    [Header("Unlocked Projectiles")]
-    public GameObject UnlockedUIPopUp;
-    public TextMeshProUGUI UnlockedUIPopUpText;
-    public GameObject UnlockedProjectileType1;
-    public GameObject UnlockedProjectileType2;
-    public GameObject UnlockedProjectileType3;
-    public GameObject UnlockedProjectileType4;
 
-    [Header("Unlocked Elements")]
+    [Header("Unlocks")]
+    public GameObject UnlockedSuperPunch;
     public GameObject UnlockedFire;
     public GameObject UnlockedIce;
     public GameObject UnlockedAir;
     public GameObject UnlockedVoid;
+    public GameObject UnlockedUIPopUp;
+    public TextMeshProUGUI UnlockedUIPopUpText;
 
     private void Start()
     {
@@ -97,15 +92,13 @@ public class UI_Manager : MonoBehaviour
 
     public void UpdateUnlocked()
     {
-        if (GM.UnlockedProjectileType1) { UnlockedProjectileType1.SetActive(false); }
-        if (GM.UnlockedProjectileType2) { UnlockedProjectileType2.SetActive(false); }
-        if (GM.UnlockedProjectileType3) { UnlockedProjectileType3.SetActive(false); }
-        if (GM.UnlockedProjectileType4) { UnlockedProjectileType4.SetActive(false); }
+
 
         if (GM.UnlockedFire) { UnlockedFire.SetActive(false); }
         if (GM.UnlockedIce) { UnlockedIce.SetActive(false); }
         if (GM.UnlockedAir) { UnlockedAir.SetActive(false); }
         if (GM.UnlockedVoid) { UnlockedVoid.SetActive(false); }
+        if (GM.UnlockedSuperPunch) { UnlockedSuperPunch.SetActive(false); }
     }
 
 

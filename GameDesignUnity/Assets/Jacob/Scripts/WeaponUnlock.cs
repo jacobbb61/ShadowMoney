@@ -9,10 +9,7 @@ public class WeaponUnlock : MonoBehaviour
     PlayerCombat PC;
 
     [Header("New Unlock")]
-    public bool UnlockedProjectileType1;
-    public bool UnlockedProjectileType2;
-    public bool UnlockedProjectileType3;
-    public bool UnlockedProjectileType4;
+    public bool UnlockedSuperPunch;
     public bool UnlockedFire;
     public bool UnlockedIce;
     public bool UnlockedAir;
@@ -30,10 +27,7 @@ public class WeaponUnlock : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (UnlockedProjectileType1) { UM.UnlockedUIPopUpText.text = "Projectile 1 Unlocked"; GM.UnlockedProjectileType1 = true;  }
-        else if (UnlockedProjectileType2) { UM.UnlockedUIPopUpText.text = "Projectile 2 Unlocked"; GM.UnlockedProjectileType2 = true; }
-        else if (UnlockedProjectileType3) { UM.UnlockedUIPopUpText.text = "Projectile 3 Unlocked"; GM.UnlockedProjectileType3 = true; }
-        else if (UnlockedProjectileType4) { UM.UnlockedUIPopUpText.text = "Projectile 4 Unlocked"; GM.UnlockedProjectileType4 = true; }
+        if (UnlockedSuperPunch) { UM.UnlockedUIPopUpText.text = "Super Punch Unlocked"; GM.UnlockedProjectileType3 = true; }
         else if (UnlockedFire) { UM.UnlockedUIPopUpText.text = "Fire Element Unlocked"; GM.UnlockedFire = true; }
         else if (UnlockedIce) { UM.UnlockedUIPopUpText.text = "Ice Element Unlocked"; GM.UnlockedIce = true; }
         else if (UnlockedAir) { UM.UnlockedUIPopUpText.text = "Air Element Unlocked"; GM.UnlockedAir = true; }

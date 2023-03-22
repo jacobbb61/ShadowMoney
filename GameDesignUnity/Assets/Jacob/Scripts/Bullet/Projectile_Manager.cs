@@ -8,9 +8,6 @@ public class Projectile_Manager : MonoBehaviour
     Effects_Manager EM;
 
     [Header("Projectile Effect")]
-    public bool IsMoving;
-
-    [Header("Projectile Effect")]
     public GameObject FirePart;
     public GameObject IcePart;
     public GameObject VoidPart;
@@ -46,8 +43,7 @@ public class Projectile_Manager : MonoBehaviour
     void Update()
     {
         ApplyElement();
-        if (IsMoving)
-        {
+
             if (BM.BulletType1)
             {
                 Destroy(this.gameObject, Range_T1);
@@ -71,7 +67,7 @@ public class Projectile_Manager : MonoBehaviour
                 transform.localScale += new Vector3(0.1f * Time.deltaTime * 10, 0.1f * Time.deltaTime * 10, 0.1f * Time.deltaTime * 10);
             }
             else { return; }
-        }
+        
     }
 
     public void ApplyElement()

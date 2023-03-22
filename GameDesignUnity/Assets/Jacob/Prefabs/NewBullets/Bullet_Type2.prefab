@@ -96,7 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236d51c9de7f46e45a43d536a0c52ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsMoving: 0
   FirePart: {fileID: 3339888362625580444}
   IcePart: {fileID: 3636180462977804461}
   VoidPart: {fileID: 6522034758088992080}
@@ -164,7 +163,7 @@ SphereCollider:
   m_GameObject: {fileID: 5969615223017203397}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}

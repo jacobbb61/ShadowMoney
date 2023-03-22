@@ -12,23 +12,15 @@ public class PlayerCombat : MonoBehaviour
     GameManager GM;
 
     [Header("Bullets")]
-    public int ProjectileAmmoNum;
-    public int ElementAmmoNum;
-    public GameObject BulletV1;
-    public GameObject BulletV2;
-    public GameObject BulletV3;
-    public GameObject BulletV4;
-    public GameObject CurrentBullet;
-    public GameObject BulletHolder;
-    GameObject NewBullet;
+    public GameObject BulletV1; //sniper 
+    public GameObject BulletV2; //shotgun
+    public GameObject BulletHolder; 
+
 
     [Header("Elements")]
     public int CurrentElement;
-    public int InputOrder =1;
 
     [Header("Player state")]
-    public bool ChoosingProjectile;
-    public bool ChoosingElement;
     public bool CanInput;
 
     [Header("Player Applied Effects")]
@@ -50,41 +42,12 @@ public class PlayerCombat : MonoBehaviour
     public GameObject EnemyFireParticle;
     public GameObject EnemyIceParticle;
 
-    [Header("Projectile Cost")]
-    private int Type1ProjectileCost = 0;
-    private int Type2ProjectileCost = 20;
-    private int Type3ProjectileCost = 15;
-    private int Type4ProjectileCost = 40;
 
-    [Header("Element Cost")]
-    private int Type1ElementCost = 25;
-    private int Type2ElementCost = 20;
-    private int Type3ElementCost = 10;
-    private int Type4ElementCost = 15;
 
     [Header("Animation Times")]
-    public float Summon1;
-    public float Summon2;
-    public float Summon3;
-    public float Summon4;
-    public float ApplyFire;
-    public float ApplyIce;
-    public float ApplyVoid;
-    public float ApplyAir;
     public float Shoot1;
     public float Shoot2;
-    public float Shoot3;
-    public float Shoot4;
-    public float ApplyToSelfFire;
-    public float ApplyToSelfIce;
-    public float ApplyToSelfVoid;
-    public float ApplyToSelfAir;
-
-    [Header("Unlocked Projectiles")]
-    private bool UnlockedProjectileType1;
-    private bool UnlockedProjectileType2;
-    private bool UnlockedProjectileType3;
-    private bool UnlockedProjectileType4;
+    public float ApplyToSelf;
 
 
     [Header("Unlocked Elements")]
@@ -97,8 +60,6 @@ public class PlayerCombat : MonoBehaviour
     {
         Cam = GameObject.FindGameObjectWithTag("MainCamera");
         Anim = GetComponent<Animator>();
-        ChoosingProjectile = true;
-        ChoosingElement = false;
         CanInput = true;
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         UpdateUnlocked();
@@ -107,10 +68,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void UpdateUnlocked()
     {
-        if (GM.UnlockedProjectileType1) { UnlockedProjectileType1 = true; }
-        if (GM.UnlockedProjectileType2) { UnlockedProjectileType2 = true; }
-        if (GM.UnlockedProjectileType3) { UnlockedProjectileType3 = true; }
-        if (GM.UnlockedProjectileType4) { UnlockedProjectileType4 = true; }
+
 
         if (GM.UnlockedFire) { UnlockedFire = true; }
         if (GM.UnlockedIce) { UnlockedIce = true; }
@@ -118,153 +76,100 @@ public class PlayerCombat : MonoBehaviour
         if (GM.UnlockedVoid) { UnlockedVoid = true; }
     }
 
-    public void Abutton(InputAction.CallbackContext context)
+    public void Down(InputAction.CallbackContext context)
     {
         bool change = context.action.triggered;
         if (change&&CanInput==true)
         {     
-            if (ChoosingElement && ElementAmmoNum >= Type1ElementCost && UnlockedFire)
+            if (UnlockedFire)
             {
                 CanInput = false;
                 CurrentElement = 1;
-                Anim.Play("PlayerApply_Fire");
-                StartCoroutine(ApplyEffect(NewBullet, ApplyFire));
-                ElementAmmoNum -= Type1ElementCost;
             } 
-            if (ChoosingProjectile && ProjectileAmmoNum >= Type1ProjectileCost && UnlockedProjectileType1)
-            {
-                CanInput = false;
-                CurrentBullet = BulletV1;
-                Anim.Play("PlayerSummon_1");
-                StartCoroutine(ChosenProjectile(CurrentBullet, Summon1));
-                ProjectileAmmoNum -= Type1ProjectileCost;
-            }
- 
         }
     }
-    public void Bbutton(InputAction.CallbackContext context)
+    public void Left(InputAction.CallbackContext context)
     {
         bool change = context.action.triggered;
         if (change && CanInput == true)
         {
-            if (ChoosingElement && ElementAmmoNum >= Type2ElementCost && UnlockedIce)
+            if (UnlockedIce)
             {
                 CanInput = false;
                 CurrentElement = 2;
-                Anim.Play("PlayerApply_Ice");
-                StartCoroutine(ApplyEffect(NewBullet, ApplyIce));
-                ElementAmmoNum -= Type2ElementCost;
-            }
-            if (ChoosingProjectile && ProjectileAmmoNum >= Type2ProjectileCost && UnlockedProjectileType2)
-            {
-                CanInput = false;
-                CurrentBullet = BulletV2;
-                Anim.Play("PlayerSummon_2");
-                StartCoroutine(ChosenProjectile(CurrentBullet, Summon2));
-                ProjectileAmmoNum -= Type2ProjectileCost;
             }
 
         }
     }
-    public void Xbutton(InputAction.CallbackContext context)
+    public void Right(InputAction.CallbackContext context)
     {
         bool change = context.action.triggered;
         if (change && CanInput == true)
-        {     
-            if (ChoosingElement && ElementAmmoNum >= Type3ElementCost && UnlockedVoid)
+        {
+            if (UnlockedVoid)
             {
                 CanInput = false;
                 CurrentElement = 3;
-                Anim.Play("PlayerApply_Void");
-                StartCoroutine(ApplyEffect(NewBullet, ApplyVoid));
-                ElementAmmoNum -= Type3ElementCost;
-            }
-            if (ChoosingProjectile && ProjectileAmmoNum >= Type3ProjectileCost && UnlockedProjectileType3)
-            {
-                CanInput = false;
-                CurrentBullet = BulletV3;
-                Anim.Play("PlayerSummon_3");
-                StartCoroutine(ChosenProjectile(CurrentBullet, Summon3));
-                ProjectileAmmoNum -= Type3ProjectileCost;
             }
 
         }
     }
-    public void Ybutton(InputAction.CallbackContext context)
+    public void Up(InputAction.CallbackContext context)
     {
         bool change = context.action.triggered;
         if (change && CanInput == true)
-        {       
-            if (ChoosingElement && ElementAmmoNum >= Type4ElementCost && UnlockedAir)
+        {
+            if (UnlockedAir)
             {
                 CanInput = false;
                 CurrentElement = 4;
-                Anim.Play("PlayerApply_Air");
-                StartCoroutine(ApplyEffect(NewBullet, ApplyAir));
-                ElementAmmoNum -= Type4ElementCost;
-            }
-            if (ChoosingProjectile && ProjectileAmmoNum >= Type4ProjectileCost && UnlockedProjectileType4)
-            {
-                CanInput = false;
-                CurrentBullet = BulletV4;
-                Anim.Play("PlayerSummon_4");
-                StartCoroutine(ChosenProjectile(CurrentBullet, Summon4));
-                ProjectileAmmoNum -= Type4ProjectileCost;
             }
 
         }
     }
 
 
-    public void RightTrigger(InputAction.CallbackContext context)
+    public void RightTrigger(InputAction.CallbackContext context) //shotgun
     {
         bool shootR = context.action.triggered;
-        if (shootR&&ChoosingProjectile==false&&CanInput==true)
+        if (shootR && CanInput==true)
         {
-            if (CurrentBullet == BulletV1) { Anim.Play("PlayerShoot_1"); StartCoroutine(Shoot(NewBullet, Shoot1));}
-            if (CurrentBullet == BulletV2) { Anim.Play("PlayerShoot_2"); StartCoroutine(Shoot(NewBullet, Shoot2));}
-            if (CurrentBullet == BulletV3) { Anim.Play("PlayerShoot_3"); StartCoroutine(Shoot(NewBullet, Shoot3));}
-            if (CurrentBullet == BulletV4) { Anim.Play("PlayerShoot_4"); StartCoroutine(Shoot(NewBullet, Shoot4));}
-            
-            ChoosingElement = false;
-            ChoosingProjectile = true;
+            Anim.Play("PlayerShoot_1"); 
+            StartCoroutine(Shoot(BulletV2, Shoot1));
         }
     }
-    public void LeftTrigger(InputAction.CallbackContext context)
+    public void RightBumper(InputAction.CallbackContext context) //sniper
+    {
+        bool shootR = context.action.triggered;
+        if (shootR && CanInput == true)
+        {
+            Anim.Play("PlayerShoot_1");
+            StartCoroutine(Shoot(BulletV1, Shoot1));
+        }
+    }
+
+
+    public void LeftTrigger(InputAction.CallbackContext context) //apply to self
     {
         bool shootL = context.action.triggered;
-        if (shootL && ChoosingElement == false && ChoosingProjectile == false && SelfEffectTime==0f && CanInput == true)
+        if (shootL && CanInput == true)
         {
-            if (CurrentBullet == BulletV1) { Anim.Play("PlayerApplyToSelf_Fire"); StartCoroutine(ApplySelf(1,NewBullet, ApplyToSelfFire)); }
-            if (CurrentBullet == BulletV2) { Anim.Play("PlayerApplyToSelf_Ice"); StartCoroutine(ApplySelf(2,NewBullet, ApplyToSelfIce)); }
-            if (CurrentBullet == BulletV3) { Anim.Play("PlayerApplyToSelf_Void"); StartCoroutine(ApplySelf(3,NewBullet, ApplyToSelfVoid)); }
-            if (CurrentBullet == BulletV4) { Anim.Play("PlayerApplyToSelf_Air"); StartCoroutine(ApplySelf(4,NewBullet, ApplyToSelfAir)); }
-            ChoosingElement = false;
-            ChoosingProjectile = true;
+            ApplySelf(CurrentElement, ApplyToSelf);
+            
+        }
+    }
+    public void LeftBumper(InputAction.CallbackContext context)  //melee
+    {
+        bool shootR = context.action.triggered;
+        if (shootR && CanInput == true)
+        {
+
         }
     }
 
-
-  
-
-
-    IEnumerator ChosenProjectile(GameObject Bullet, float WaitTime)
+    public void ApplyEffect(GameObject Bullet, float WaitTime)
     {
-        CanInput = false;
-        yield return new WaitForSeconds(WaitTime);
-        NewBullet = Instantiate(Bullet, BulletHolder.transform.position, BulletHolder.transform.rotation);
-        NewBullet.GetComponent<Projectile_Manager>().IsMoving = false;        
-        NewBullet.transform.parent = BulletHolder.transform;
-        NewBullet.transform.tag = "PlayerBullet";
-        ChoosingProjectile = false;
-        ChoosingElement = true;
-        NewBullet.GetComponent<Effects_Manager>().None();
-        CanInput = true;
-    }
-
-    IEnumerator ApplyEffect(GameObject Bullet, float WaitTime)
-    {
-        yield return new WaitForSeconds(WaitTime);
+        
         Effects_Manager NBEM;
         NBEM = Bullet.GetComponent<Effects_Manager>();
         if (CurrentElement == 0) { NBEM.FireEffect = false; NBEM.IceEffect = false; NBEM.VoidEffect = false; NBEM.AirEffect = false; }
@@ -272,8 +177,7 @@ public class PlayerCombat : MonoBehaviour
         if (CurrentElement == 2) { NBEM.FireEffect = false; NBEM.IceEffect = true; NBEM.VoidEffect = false; NBEM.AirEffect = false; }
         if (CurrentElement == 3) { NBEM.FireEffect = false; NBEM.IceEffect = false; NBEM.VoidEffect = true; NBEM.AirEffect = false; }
         if (CurrentElement == 4) { NBEM.FireEffect = false; NBEM.IceEffect = false; NBEM.VoidEffect = false; NBEM.AirEffect = true; }
-        ChoosingProjectile = false;
-        ChoosingElement = false;
+
         CanInput = true;
     }
 
@@ -281,21 +185,25 @@ public class PlayerCombat : MonoBehaviour
     {
         CanInput = false;
         yield return new WaitForSeconds(WaitTime);
-        if (CurrentBullet == BulletV3) { Bullet.GetComponent<BoxCollider>().enabled = true; } else { Bullet.GetComponent<SphereCollider>().enabled = true; }
-        if (SelfFire == true) { Bullet.GetComponent<Bullet_Manager>().DamageBuff = FireDamageBuff; }
-        Bullet.GetComponent<Projectile_Manager>().IsMoving=true;
-        Bullet.transform.parent = null;
-        ChoosingElement = false;
-        ChoosingProjectile = true;
-        CurrentBullet = null;
+        GameObject BulletShot = Instantiate(Bullet);
+        if (SelfFire == true) { BulletShot.GetComponent<Bullet_Manager>().DamageBuff = FireDamageBuff; }
+        BulletShot.transform.parent = null;
+        BulletShot.transform.position = BulletHolder.transform.position;
+        BulletShot.transform.rotation = BulletHolder.transform.rotation;
+        BulletShot.transform.tag = "PlayerBullet";
+
+        if (CurrentElement == 1) { BulletShot.GetComponent<Effects_Manager>().FireEffect = true; }
+        else if (CurrentElement == 2) { BulletShot.GetComponent<Effects_Manager>().IceEffect = true; }
+        else if (CurrentElement == 3) { BulletShot.GetComponent<Effects_Manager>().VoidEffect = true; }
+        else if (CurrentElement == 4) { BulletShot.GetComponent<Effects_Manager>().AirEffect = true; }
+
         CanInput = true;
     }
 
-    IEnumerator ApplySelf(int Effect, GameObject Bullet, float WaitTime)
+    IEnumerator ApplySelf(int Effect, float WaitTime)
     {
         CanInput = false;
         yield return new WaitForSeconds(WaitTime);
-        Destroy(Bullet);
         if (CurrentElement == 1) { SelfFire = true; } 
         else if (CurrentElement == 2) { SelfIce = true; }
         else if (CurrentElement == 3) { SelfVoid = true; }

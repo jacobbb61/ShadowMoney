@@ -26,7 +26,7 @@ public class VoidPullExplosion : MonoBehaviour
             {
                 Vector3 direction = hit.transform.position - transform.position;
                 Vector3 explosiveForce = new Vector3(direction.x, direction.y, direction.z);
-                rb.AddForce((explosiveForce * Force * 1.5f)*-2, ForceMode.Impulse);
+                rb.AddForce((explosiveForce * Force * 1.5f)*-1, ForceMode.Impulse);
 
 
             }

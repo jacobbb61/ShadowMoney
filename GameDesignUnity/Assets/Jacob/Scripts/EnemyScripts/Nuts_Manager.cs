@@ -124,7 +124,6 @@ public class Nuts_Manager : MonoBehaviour
         GameObject NewBullet = Instantiate(Bullet, BulletPoint.transform.position, BulletPoint.transform.rotation);
         NewBullet.transform.tag = "EnemyBullet";
         ApplyBulletEffect(NewBullet);
-        NewBullet.GetComponent<Projectile_Manager>().IsMoving = true;
         if (NewBullet.GetComponent<Bullet_Manager>().BulletType3) { Bullet.GetComponent<BoxCollider>().enabled = true; } else { Bullet.GetComponent<SphereCollider>().enabled = true; }
     }
     public void ApplyBulletEffect(GameObject Bullet)

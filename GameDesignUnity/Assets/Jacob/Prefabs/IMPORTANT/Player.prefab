@@ -11011,12 +11011,6 @@ MonoBehaviour:
   Health: 100
   Paused: 0
   CloseTutorialUI: 0
-  a: {fileID: 589250381827756594}
-  b: {fileID: 4287858464785340106}
-  c: {fileID: 6458637506772994893}
-  d: {fileID: 7106180564949053053}
-  e: {fileID: 6787142070425004980}
-  f: {fileID: 6753964766857660962}
 --- !u!114 &4043922790906704514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11029,22 +11023,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967b70d88eb6ee048949e4191f72c0b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileAmmoNum: 100
-  ElementAmmoNum: 100
   BulletV1: {fileID: 5969615223017203397, guid: 6d0e20bdc8dca5b45bf4d1bb2a5f85a9,
     type: 3}
-  BulletV2: {fileID: 5969615223017203397, guid: d6ac34eae4d3fe14a88b47ecd3fb21f7,
+  BulletV2: {fileID: 5969615223017203397, guid: 4b15f20bf49feff40aa50f61460c1432,
     type: 3}
-  BulletV3: {fileID: 5969615223017203397, guid: 4b15f20bf49feff40aa50f61460c1432,
-    type: 3}
-  BulletV4: {fileID: 5969615223017203397, guid: a2ad87cc4afb21841bc306f8b57762dd,
-    type: 3}
-  CurrentBullet: {fileID: 0}
   BulletHolder: {fileID: 669387199697163958}
   CurrentElement: 0
-  InputOrder: 0
-  ChoosingProjectile: 0
-  ChoosingElement: 0
   CanInput: 0
   SelfFire: 0
   FireDamageBuff: 5
@@ -11061,22 +11045,9 @@ MonoBehaviour:
   SelfAirParticle: {fileID: 7788850810088065665}
   EnemyFireParticle: {fileID: 1995553336449100723}
   EnemyIceParticle: {fileID: 2170513510323781945}
-  Summon1: 0.25
-  Summon2: 1.5
-  Summon3: 0.75
-  Summon4: 2
-  ApplyFire: 0.25
-  ApplyIce: 0.25
-  ApplyVoid: 0.25
-  ApplyAir: 0.25
   Shoot1: 0.25
   Shoot2: 0.25
-  Shoot3: 0.25
-  Shoot4: 0.25
-  ApplyToSelfFire: 1
-  ApplyToSelfIce: 1
-  ApplyToSelfVoid: 1
-  ApplyToSelfAir: 1
+  ApplyToSelf: 0
 --- !u!114 &5432166676462643460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11189,7 +11160,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4043922790906704514}
         m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
-        m_MethodName: LeftTrigger
+        m_MethodName: RightTrigger
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11205,7 +11176,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4043922790906704514}
         m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
-        m_MethodName: RightTrigger
+        m_MethodName: RightBumper
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11219,25 +11190,9 @@ MonoBehaviour:
     m_ActionName: Player/ShootR[/Mouse/rightButton,/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4043922790906704514}
-        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
-        m_MethodName: Xbutton
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 180a551c-99eb-41a6-93ac-662991ff25f7
-    m_ActionName: Player/Xbutton[/XInputControllerWindows/buttonWest]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4043922790906704514}
-        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
-        m_MethodName: Ybutton
+      - m_Target: {fileID: 4043922790906704541}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: Interact
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11250,53 +11205,105 @@ MonoBehaviour:
     m_ActionId: 32b0454b-6ed5-4aa7-aa90-08c6f682afa0
     m_ActionName: Player/Ybutton[/XInputControllerWindows/buttonNorth]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4043922790906704514}
-        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
-        m_MethodName: Bbutton
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ee194231-6593-4f02-b9ce-de3d4510309e
-    m_ActionName: Player/Bbutton[/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4043922790906704514}
-        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
-        m_MethodName: Abutton
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: c81930a1-7029-40a0-ae9d-c7fa0202eb5f
-    m_ActionName: Player/Abutton[/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4043922790906704541}
-        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
-        m_MethodName: Pause
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 21474dff-ad0a-4721-9e52-1f1d234a3a23
     m_ActionName: Player/Pause[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4043922790906704514}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: LeftBumper
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 70734761-5323-4dcc-8396-f942061889c4
+    m_ActionName: Player/Melee[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4043922790906704514}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: LeftTrigger
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ee7a259b-59c1-4caf-a5e6-7c507d2a32ea
+    m_ActionName: Player/ApplyToSelf[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4043922790906704514}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: Up
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b5e08413-d949-4636-9610-f6af9ed0afe0
+    m_ActionName: Player/Up[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4043922790906704514}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: Right
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8fc1b66b-6160-4fdb-a08e-0f49162dba17
+    m_ActionName: Player/Right[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4043922790906704514}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: Down
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a93ebeb1-d7c5-4fac-9758-3cfa073746c9
+    m_ActionName: Player/Down[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4043922790906704514}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: Left
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bfbfa8b7-b11b-4155-89cc-9d988f20d0d6
+    m_ActionName: Player/Left[/Keyboard/4]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

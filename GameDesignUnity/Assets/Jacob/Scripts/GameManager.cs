@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public bool UnlockedIce;
     public bool UnlockedAir;
     public bool UnlockedVoid;
+    public bool UnlockedSuperPunch;
 
     [Header("Doors")]
     public bool L1_DoorA;

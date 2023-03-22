@@ -78,6 +78,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
         if (PC.SelfAir) { SelfAirEffect(); }
         if (EM.IsBurning) { EnemyFireEffect(); }
         if (EM.IsFrozen) { EnemyIceEffect(); }
+
+
     }
 
 
@@ -92,10 +94,12 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public void Dash(InputAction.CallbackContext context)
     {
         dash = context.action.triggered;
+        if (context.action.triggered) {  } //close UI
     }
-    public void RightTrigger(InputAction.CallbackContext context)
+
+    public void Interact(InputAction.CallbackContext context)
     {
-        if (context.action.triggered) { CloseTutorialUI = false; }
+
     }
 
 
@@ -109,10 +113,6 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         UM.PlayerHPSLider.value = Health;
         UM.PlayerDashSLider.value = dashT;
-        UM.ProjectileAmmo.text = PC.ProjectileAmmoNum.ToString();
-        UM.ElementAmmo.text = PC.ElementAmmoNum.ToString();
-        if (PC.ChoosingElement) { UM.ElementUI.SetActive(true); } else { UM.ElementUI.SetActive(false); }
-        if (PC.ChoosingProjectile) { UM.ProjectileUI.SetActive(true); } else { UM.ProjectileUI.SetActive(false); }
     }
     public void Gravity()
     {
@@ -230,18 +230,6 @@ public class PlayerManager : MonoBehaviour, IDamageable
             else if (BEM.VoidEffect) { EnemyVoidEffect(other.gameObject); }
             else if (BEM.AirEffect) { EnemyAirEffect(other.gameObject); }
             else { return; }
-        }
-        else if (other.CompareTag("ProjectileAmmo")) 
-        { 
-           if (PC.ProjectileAmmoNum <= 80) { PC.ProjectileAmmoNum += 20;  }
-           else if (PC.ProjectileAmmoNum > 80) { PC.ProjectileAmmoNum = 100; }
-            Destroy(other.gameObject);
-        }
-        else if (other.CompareTag("ElementAmmo") ) 
-        {
-            if (PC.ElementAmmoNum <= 80) { PC.ElementAmmoNum += 20; }
-            else if (PC.ElementAmmoNum > 80) { PC.ElementAmmoNum = 100; }
-            Destroy(other.gameObject);
         }
         else if (other.CompareTag("HealthDrop"))
         {
