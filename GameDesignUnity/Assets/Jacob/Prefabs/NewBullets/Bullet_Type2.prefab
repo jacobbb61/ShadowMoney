@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236d51c9de7f46e45a43d536a0c52ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllPart: {fileID: 6188077557863676061}
   FirePart: {fileID: 3339888362625580444}
   IcePart: {fileID: 3636180462977804461}
   VoidPart: {fileID: 6522034758088992080}
@@ -283,6 +284,12 @@ GameObject:
 --- !u!1 &3636180462977804461 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1783528871510023191, guid: b18c6b34e8a1fad4092d38ea3e1d59bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 3077665891664786618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6188077557863676061 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9175634618978929703, guid: b18c6b34e8a1fad4092d38ea3e1d59bb,
     type: 3}
   m_PrefabInstance: {fileID: 3077665891664786618}
   m_PrefabAsset: {fileID: 0}

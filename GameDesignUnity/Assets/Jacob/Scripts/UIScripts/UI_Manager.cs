@@ -88,6 +88,7 @@ public class UI_Manager : MonoBehaviour
         OpSensY.text = GM.SensY.ToString();
         DiedOrder = 1;
         UpdateUnlocked();
+        Time.timeScale = 1f;
     }
 
     public void UpdateUnlocked()
@@ -152,15 +153,21 @@ public class UI_Manager : MonoBehaviour
     }
     public void Abutton(InputAction.CallbackContext context)
     {
+        if (Paused)
+        {
             if (MainOrder == 1) { UnPause(); }//resume
             else if (MainOrder == 2) { OpenOptions(); }//options
-            else if (MainOrder == 3) { LoadScene("MainMenu"); }//exit  
+            else if (MainOrder == 3) { LoadScene("MainMenu"); }//exit
+        }
             if (EndOfLevelOn) { SelectEndOfLevel(); }
             if (YouDiedOn) { SelectYouDied(); }
     }
     public void Bbutton(InputAction.CallbackContext context)
     {
-        if (PauseState == 1) { CloseOptions(); }
+        if (Paused)
+        {
+            if (PauseState == 1) { CloseOptions(); }
+        }
     }
 
     public void Up(InputAction.CallbackContext context)

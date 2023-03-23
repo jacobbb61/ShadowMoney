@@ -42,8 +42,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private float BurnTickTime;
     private float TimeToStopBurn=5f;
     private float FreezeT;
-    private float TimeToBreakFreeze=5f;
-    private float FreezeSpeed=5f;
+    private float TimeToBreakFreeze=2.5f;
+    private float FreezeSpeed=6.5f;
 
     [Header("Game stats")]
     public bool Paused = false;
@@ -59,6 +59,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
         EM = GetComponent<Effects_Manager>();
         GM.RespawnPlayer();
         Health = 100;
+        Time.timeScale = 1;
+        
     }
 
     public void Update()
@@ -161,25 +163,25 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         //damage buff
         PC.SelfEffectTime += Time.deltaTime;
-        if (PC.SelfEffectTime >= 5f) { PC.SelfFire = false; PC.SelfFireParticle.SetActive(false); PC.SelfEffectTime = 0f; }
+        if (PC.SelfEffectTime >= 5f) { PC.SelfFire = false;  PC.SelfEffectTime = 0f; }
     }
     public void SelfIceEffect()
     {
         DamageReduction = PC.IceArmourBuff;
         PC.SelfEffectTime += Time.deltaTime;
-        if (PC.SelfEffectTime >= 5f) { PC.SelfIce = false;  PC.SelfIceParticle.SetActive(false); DamageReduction = 0; PC.SelfEffectTime = 0f; }
+        if (PC.SelfEffectTime >= 5f) { PC.SelfIce = false;   DamageReduction = 0; PC.SelfEffectTime = 0f; }
     }
     public void SelfVoidEffect()
     {
         jumpHeight = PC.VoidJumpBuff;
         PC.SelfEffectTime += Time.deltaTime;
-        if (PC.SelfEffectTime >= 5f) { PC.SelfVoid = false; PC.SelfVoidParticle.SetActive(false); jumpHeight = 6f; PC.SelfEffectTime = 0f; }
+        if (PC.SelfEffectTime >= 5f) { PC.SelfVoid = false; jumpHeight = 6f; PC.SelfEffectTime = 0f; }
     }
     public void SelfAirEffect()
     {
         gravityValue = PC.AirFallBuff;
         PC.SelfEffectTime += Time.deltaTime;
-        if (PC.SelfEffectTime >= 5f) { PC.SelfAir = false; gravityValue = -25f; PC.SelfAirParticle.SetActive(false); PC.SelfEffectTime = 0f; }
+        if (PC.SelfEffectTime >= 5f) { PC.SelfAir = false; gravityValue = -25f;  PC.SelfEffectTime = 0f; }
     }
 
 

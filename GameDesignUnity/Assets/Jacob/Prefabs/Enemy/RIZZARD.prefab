@@ -14566,9 +14566,9 @@ MonoBehaviour:
   BulletPoint: {fileID: 577843630846592118}
   CloseBulletType: {fileID: 5969615223017203397, guid: 4b15f20bf49feff40aa50f61460c1432,
     type: 3}
-  FarBulletType: {fileID: 5969615223017203397, guid: 6d0e20bdc8dca5b45bf4d1bb2a5f85a9,
+  FarBulletType: {fileID: 5969615223017203397, guid: fb7943934cdb53a47930a52e6d4e576b,
     type: 3}
-  Far2BulletType: {fileID: 5969615223017203397, guid: d6ac34eae4d3fe14a88b47ecd3fb21f7,
+  Far2BulletType: {fileID: 5969615223017203397, guid: e729f1c826d659b46bf61af4d4d236d4,
     type: 3}
   CloseRange: 5
   FarRange: 30
@@ -14611,7 +14611,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 2
   m_Acceleration: 3000
   avoidancePriority: 50
   m_AngularSpeed: 3000

@@ -18,8 +18,7 @@ public class Nuts_Manager : MonoBehaviour
     [Header("Stats & other")]
     public int Health;
     public int MaxHealth;
-    public GameObject ProjectileDrop;
-    public GameObject ElementDrop;
+    public GameObject SuperEnergyDrop;
     public GameObject HealthDrop;
     public GameObject GroundChecker;
     public bool Grounded;
@@ -181,14 +180,12 @@ public class Nuts_Manager : MonoBehaviour
     public void Death()
     {
         Agent.enabled = false;
-        GameObject A1 = Instantiate(ProjectileDrop);
+        GameObject A1 = Instantiate(HealthDrop);
         A1.transform.position = transform.position;
 
-        GameObject A3 = Instantiate(ElementDrop);
+        GameObject A3 = Instantiate(SuperEnergyDrop);
         A3.transform.position = transform.position;
 
-        GameObject A5 = Instantiate(HealthDrop);
-        A5.transform.position = transform.position;
 
         Destroy(this.gameObject);
     }

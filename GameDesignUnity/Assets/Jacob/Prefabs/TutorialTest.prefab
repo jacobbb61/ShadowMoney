@@ -97,7 +97,19 @@ MonoBehaviour:
     m_ActionId: f1034317-2775-42a5-88cc-f7a9c66496f7
     m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 825667641501449482}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ee0b1fcd-a27e-4439-b23e-2173f8038eaf
     m_ActionName: Player/Dash[/XInputControllerWindows/rightShoulder,/Keyboard/shift]
   - m_PersistentCalls:
@@ -129,19 +141,7 @@ MonoBehaviour:
     m_ActionId: c81930a1-7029-40a0-ae9d-c7fa0202eb5f
     m_ActionName: Player/Abutton[/XInputControllerWindows/buttonSouth,/Keyboard/4]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 825667641501449482}
-        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
-        m_MethodName: Pause
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 21474dff-ad0a-4721-9e52-1f1d234a3a23
     m_ActionName: Player/Pause[/Keyboard/p,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0

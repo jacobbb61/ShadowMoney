@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236d51c9de7f46e45a43d536a0c52ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllPart: {fileID: 192768157169101779}
   FirePart: {fileID: 8724884920773111506}
   IcePart: {fileID: 7294389401739869155}
   VoidPart: {fileID: 994805481001252382}
@@ -119,7 +120,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5969615223017203397}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -252,6 +253,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b18c6b34e8a1fad4092d38ea3e1d59bb, type: 3}
+--- !u!1 &192768157169101779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9175634618978929703, guid: b18c6b34e8a1fad4092d38ea3e1d59bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 9077777508917979124}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &994805481001252382 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8085365253575463402, guid: b18c6b34e8a1fad4092d38ea3e1d59bb,

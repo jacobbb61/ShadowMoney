@@ -10884,7 +10884,7 @@ MonoBehaviour:
   UM: {fileID: 0}
   playerSpeed: 10
   jumpHeight: 6
-  dashSpeed: 50
+  dashSpeed: 35
   groundedPlayer: 0
   dashT: 0
   Health: 100
@@ -10903,9 +10903,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 4043922791323374271}
-  BulletV1: {fileID: 5969615223017203397, guid: 6d0e20bdc8dca5b45bf4d1bb2a5f85a9,
+  BulletV1: {fileID: 5969615223017203397, guid: e9b8e096bc760664d85e5d2f44ae0ba5,
     type: 3}
-  BulletV2: {fileID: 5969615223017203397, guid: 4b15f20bf49feff40aa50f61460c1432,
+  BulletV2: {fileID: 5969615223017203397, guid: 0f4ba40009ceeb546ac293df28694848,
     type: 3}
   BulletHolder: {fileID: 669387199697163958}
   BaseMeleeDamage: 5
@@ -10922,16 +10922,16 @@ MonoBehaviour:
   SelfAir: 0
   AirFallBuff: -5
   SelfEffectTime: 0
-  SelfFireParticle: {fileID: 6619716641157867351}
-  SelfIceParticle: {fileID: 5184225013765976678}
-  SelfVoidParticle: {fileID: 3388593672182562715}
-  SelfAirParticle: {fileID: 7788850810088065665}
+  SelfFirePrefab: {fileID: 0}
+  SelfIcePrefab: {fileID: 0}
+  SelfVoidPrefab: {fileID: 0}
+  SelfAirPrefab: {fileID: 0}
   EnemyFireParticle: {fileID: 1995553336449100723}
   EnemyIceParticle: {fileID: 2170513510323781945}
   Shoot1AnimTime: 0.75
   Shoot2AnimTime: 1
   BaseMeleeAnimTime: 0.75
-  ApplyToSelfAnimTime: 0
+  ApplyToSelfAnimTime: 0.5
 --- !u!114 &5432166676462643460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17563,30 +17563,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc4a9a78785aae840977d97c5fed6933, type: 3}
---- !u!1 &3388593672182562715 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3409481095727190633, guid: fc4a9a78785aae840977d97c5fed6933,
-    type: 3}
-  m_PrefabInstance: {fileID: 24306919890578930}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5184225013765976678 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5162332630017793940, guid: fc4a9a78785aae840977d97c5fed6933,
-    type: 3}
-  m_PrefabInstance: {fileID: 24306919890578930}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6619716641157867351 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6596557624292772517, guid: fc4a9a78785aae840977d97c5fed6933,
-    type: 3}
-  m_PrefabInstance: {fileID: 24306919890578930}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7788850810088065665 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7800750812400543603, guid: fc4a9a78785aae840977d97c5fed6933,
-    type: 3}
-  m_PrefabInstance: {fileID: 24306919890578930}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8835510924657805482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8847410924972582232, guid: fc4a9a78785aae840977d97c5fed6933,

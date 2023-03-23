@@ -20,6 +20,7 @@ public class PlatformingReset : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Player.GetComponent<CharacterController>().enabled = false;
+            if(GM.PlatformingResetPos == null) { GM.PlatformingResetPos = ResetPos; }
             Teleport();
         }
         else

@@ -13,6 +13,9 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.transform.CompareTag("Player")) 
+        { 
+         Gm.LastCheckPoint = gameObject.transform.position; 
+        }
     }
 }

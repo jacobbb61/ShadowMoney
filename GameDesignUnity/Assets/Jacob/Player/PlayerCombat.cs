@@ -40,10 +40,10 @@ public class PlayerCombat : MonoBehaviour
     public bool SelfAir;
     public float AirFallBuff;
     public float SelfEffectTime;
-    public GameObject SelfFireParticle;
-    public GameObject SelfIceParticle;
-    public GameObject SelfVoidParticle;
-    public GameObject SelfAirParticle;
+    public GameObject SelfFirePrefab;
+    public GameObject SelfIcePrefab;
+    public GameObject SelfVoidPrefab;
+    public GameObject SelfAirPrefab;
 
     [Header("Enemy Applied Effects")]
     public GameObject EnemyFireParticle;
@@ -215,10 +215,12 @@ public class PlayerCombat : MonoBehaviour
         Anim.Play("PlayerApplyToSelf");
         CanInput = false;
         yield return new WaitForSeconds(WaitTime);
-        if (CurrentElement == 1) { SelfFire = true; } 
-        else if (CurrentElement == 2) { SelfIce = true; }
-        else if (CurrentElement == 3) { SelfVoid = true; }
-        else if (CurrentElement == 4) { SelfAir = true; }
+
+        if (CurrentElement == 1) { SelfFire = true; GameObject Prefab = Instantiate(SelfFirePrefab); Prefab.transform.position = transform.position; }
+        else if (CurrentElement == 2) { SelfIce = true; GameObject Prefab = Instantiate(SelfIcePrefab); Prefab.transform.position = transform.position; }
+        else if (CurrentElement == 3) { SelfVoid = true; GameObject Prefab = Instantiate(SelfVoidPrefab); Prefab.transform.position = transform.position; }
+        else if (CurrentElement == 4) { SelfAir = true; GameObject Prefab = Instantiate(SelfAirPrefab); Prefab.transform.position = transform.position; }
+        
         CanInput = true;
     }
 
@@ -288,14 +290,14 @@ public class PlayerCombat : MonoBehaviour
 
             if (hit.transform.CompareTag("Nuts") || hit.transform.CompareTag("Rizzard") || hit.transform.CompareTag("Footer") || hit.transform.CompareTag("Tank"))
             {
+                GameObject Enemy = hit.transform.gameObject;
+                Effects_Manager MEM = Enemy.transform.GetComponent<Effects_Manager>();
+                if (Enemy.transform.CompareTag("Nuts")) { Enemy.transform.GetComponent<Nuts_Manager>().Health -= 100; }
+                if (Enemy.transform.CompareTag("Rizzard")) { Enemy.transform.GetComponent<Rizzard_Manager>().Health -= 100; }
+                //if (Enemy.transform.CompareTag("Footer")) { Enemy.transform.GetComponent<Footer_Manager>().Health -= BaseMeleeDamage; }
+                // if (Enemy.transform.CompareTag("Tank")) { Enemy.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
 
-                Effects_Manager MEM = hit.transform.GetComponent<Effects_Manager>();
-                if (hit.transform.CompareTag("Nuts")) { hit.transform.GetComponent<Nuts_Manager>().Health -= 100; }
-                if (hit.transform.CompareTag("Rizzard")) { hit.transform.GetComponent<Rizzard_Manager>().Health -= 100; }
-                //if (hit.transform.CompareTag("Footer")) { hit.transform.GetComponent<Footer_Manager>().Health -= BaseMeleeDamage; }
-                // if (hit.transform.CompareTag("Tank")) { hit.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
 
-               
             }
 
         } 

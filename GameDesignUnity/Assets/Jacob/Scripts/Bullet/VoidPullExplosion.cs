@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class VoidPullExplosion : MonoBehaviour
 {
-    public float Range;
-    public float Force;
-    public float verticality;
     public Collider[] hitColliders;
 
 
@@ -16,7 +13,7 @@ public class VoidPullExplosion : MonoBehaviour
 
         Vector3 explosive = transform.position;
 
-        Collider[] colliders = Physics.OverlapSphere(explosive, Range*3);
+        Collider[] colliders = Physics.OverlapSphere(explosive, 10);//range
 
 
         foreach (Collider hit in colliders)
@@ -26,7 +23,7 @@ public class VoidPullExplosion : MonoBehaviour
             {
                 Vector3 direction = hit.transform.position - transform.position;
                 Vector3 explosiveForce = new Vector3(direction.x, direction.y, direction.z);
-                rb.AddForce((explosiveForce * Force * 1.5f)*-1, ForceMode.Impulse);
+                rb.AddForce((explosiveForce * 3 * 1.5f)*-1, ForceMode.Impulse);//force
 
 
             }

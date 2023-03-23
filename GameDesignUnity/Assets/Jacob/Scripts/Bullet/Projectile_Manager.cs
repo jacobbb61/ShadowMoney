@@ -8,6 +8,7 @@ public class Projectile_Manager : MonoBehaviour
     Effects_Manager EM;
 
     [Header("Projectile Effect")]
+    public GameObject AllPart;
     public GameObject FirePart;
     public GameObject IcePart;
     public GameObject VoidPart;
@@ -82,16 +83,12 @@ public class Projectile_Manager : MonoBehaviour
     {
       GameObject Explosion = Instantiate(AirPushExplosion);
                 Explosion.transform.position = transform.position;
-                Explosion.GetComponent<AirPushExplosion>().Range = BM.TickTime;
-                Explosion.GetComponent<AirPushExplosion>().Force = BM.Damage;
                 Explosion.GetComponent<AirPushExplosion>().Active();
     }
     public void CreateVoidPush()
     {
         GameObject Explosion = Instantiate(VoidPullExplosion);
         Explosion.transform.position = transform.position;
-        Explosion.GetComponent<VoidPullExplosion>().Range = BM.TickTime;
-        Explosion.GetComponent<VoidPullExplosion>().Force = BM.Damage;
         Explosion.GetComponent<VoidPullExplosion>().Active();
     }
     private void OnTriggerEnter(Collider other)
@@ -115,6 +112,8 @@ public class Projectile_Manager : MonoBehaviour
             
             if (other.CompareTag("Ground") || other.CompareTag("Wall") || other.CompareTag("Nuts") || other.CompareTag("Rizzard") || other.CompareTag("Footer") || other.CompareTag("Tank"))
             {
+                AllPart.transform.parent = null;
+                Destroy(AllPart,0.75f);
                 if (EM.AirEffect) { CreateAirPush(); }
                 if (EM.VoidEffect) { CreateVoidPush(); }
                 if (BM.BulletType1) { Destroy(this.gameObject); }

@@ -8,19 +8,16 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private void Awake()
     {
-        /*
         if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-        
+
         Time.timeScale = 1;
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        */
     }
-
     GameObject Player;
     GameObject UI;
     PlayerManager PM;
@@ -44,7 +41,8 @@ public class GameManager : MonoBehaviour
     public bool UnlockedVoid;
     public bool UnlockedSuperPunch;
 
-    [Header("Doors")]
+    [Header("CheckPoint and Doors")]
+    public Vector3 LastCheckPoint;
     public bool L1_DoorA;
     public bool L1_DoorB;
     public bool L2_DoorA;
@@ -80,15 +78,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Time.timeScale = 1;
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         Player = GameObject.FindGameObjectWithTag("Player");
         UI = GameObject.FindGameObjectWithTag("UI");
@@ -96,8 +85,8 @@ public class GameManager : MonoBehaviour
         PC = Player.GetComponent<PlayerCombat>();
         UM = UI.GetComponent<UI_Manager>();
         PCam = Player.GetComponentInChildren<PlayerCam>();
-
         Time.timeScale = 1f;
+       
         RespawnPlayer();
         if (SceneManager.GetActiveScene().name == "Level1") { LatestLevel = 1; }
         else if (SceneManager.GetActiveScene().name == "Level2") { LatestLevel = 2; }
@@ -111,6 +100,8 @@ public class GameManager : MonoBehaviour
         MusicState();
         PCam.UpdateSensX(SensX);
         PCam.UpdateSensY(SensY);
+        Player.transform.position = LastCheckPoint; 
+        Debug.Log("Spawn");
     }
 
     public void InCombat()
