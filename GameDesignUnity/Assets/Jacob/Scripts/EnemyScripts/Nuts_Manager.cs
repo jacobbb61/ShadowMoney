@@ -102,7 +102,7 @@ public class Nuts_Manager : MonoBehaviour
         if (Physics.Raycast(GroundChecker.transform.position, -Vector3.up, out hit,0.5f))
         {
             
-            if (hit.transform.tag == "Ground") { Grounded = true; } 
+            if (hit.transform.tag == "Ground" || hit.transform.tag == "Wall") { Grounded = true; } 
            
         } else { Grounded = false; }
 

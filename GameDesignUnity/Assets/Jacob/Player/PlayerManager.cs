@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public void Update()
     {
-
+        PC.SuperMeleeDamageCollider(PC.SuperMeleeCollider);
         HealthUpdate();
 
         UIUpdate();
@@ -100,7 +100,6 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public void Dash(InputAction.CallbackContext context)
     {
         dash = context.action.triggered;
-        if (context.action.triggered) {  } //close UI
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -130,6 +129,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
         if (jumped && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+        }
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.up, out hit, 3f))
+        {
+
+            if (hit.transform.CompareTag("Ground") || hit.transform.CompareTag("Wall")) { playerVelocity.y = -5f;  }
+
         }
     }
     public void Move()

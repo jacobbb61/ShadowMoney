@@ -21,7 +21,8 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Super Energy")]
     public int SuperEnergyCharges;
-    
+    public BoxCollider SuperMeleeCollider;
+    public int SuperMeleeDamage;
 
     [Header("Elements")]
     public int CurrentElement;
@@ -287,24 +288,18 @@ public class PlayerCombat : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(BulletHolder.transform.position, fwd, out hit, 10)) // void effect increases this range?
         {
-
             if (hit.transform.CompareTag("Nuts") || hit.transform.CompareTag("Rizzard") || hit.transform.CompareTag("Footer") || hit.transform.CompareTag("Tank"))
             {
                 GameObject Enemy = hit.transform.gameObject;
                 Effects_Manager MEM = Enemy.transform.GetComponent<Effects_Manager>();
-                if (Enemy.transform.CompareTag("Nuts")) { Enemy.transform.GetComponent<Nuts_Manager>().Health -= 100; }
-                if (Enemy.transform.CompareTag("Rizzard")) { Enemy.transform.GetComponent<Rizzard_Manager>().Health -= 100; }
-                //if (Enemy.transform.CompareTag("Footer")) { Enemy.transform.GetComponent<Footer_Manager>().Health -= BaseMeleeDamage; }
-                // if (Enemy.transform.CompareTag("Tank")) { Enemy.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
-
-
             }
+        }
 
-        } 
+        //Collider[] colliders = Physics.BoxCastAll(transform.position,1.5f);
+
         GetComponentInChildren<PlayerCam>().enabled = true;                
         MeleePull = false;             
         CanInput = true;
     }
-
 
 }
