@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    GameObject Player;
+    public GameObject Player;
     GameObject UI;
     PlayerManager PM;
     PlayerCombat PC;
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        Debug.Log("Start");
         Player = GameObject.FindGameObjectWithTag("Player");
         UI = GameObject.FindGameObjectWithTag("UI");
         PM = Player.GetComponent<PlayerManager>();
@@ -87,12 +88,26 @@ public class GameManager : MonoBehaviour
         PCam = Player.GetComponentInChildren<PlayerCam>();
         Time.timeScale = 1f;
        
-        RespawnPlayer();
+        
         if (SceneManager.GetActiveScene().name == "Level1") { LatestLevel = 1; }
         else if (SceneManager.GetActiveScene().name == "Level2") { LatestLevel = 2; }
         else if (SceneManager.GetActiveScene().name == "Level3") { LatestLevel = 3; }
     }
- 
+
+    public void Update()
+    {
+        if (!Player)
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            
+            if (Player)
+            {
+                RespawnPlayer();
+            }
+            
+        } 
+    }
+
     public void RespawnPlayer()
     {
         Debug.Log("A");
@@ -100,7 +115,9 @@ public class GameManager : MonoBehaviour
         MusicState();
         PCam.UpdateSensX(SensX);
         PCam.UpdateSensY(SensY);
+        Player.GetComponent<CharacterController>().enabled = false;
         Player.transform.position = LastCheckPoint; 
+        Player.GetComponent<CharacterController>().enabled = true;
         Debug.Log("Spawn");
     }
 
