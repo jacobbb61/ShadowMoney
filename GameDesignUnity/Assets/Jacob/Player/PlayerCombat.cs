@@ -169,8 +169,8 @@ public class PlayerCombat : MonoBehaviour
             { 
             StartCoroutine(BaseMeleeAttack());
             }
-            else
-            {
+            else if (SuperEnergyCharges >= 9)
+            {              
             StartCoroutine(SuperMeleeAttack());
             }
         }
@@ -279,6 +279,7 @@ public class PlayerCombat : MonoBehaviour
         GetComponentInChildren<PlayerCam>().enabled = false;
         Anim.Play("PlayerSuperMelee");
         yield return new WaitForSeconds(0.75f);
+        SuperEnergyCharges = 0;
         MeleePull = true;
         Vector3 fwd = BulletHolder.transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
