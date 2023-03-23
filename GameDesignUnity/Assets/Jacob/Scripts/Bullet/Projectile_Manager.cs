@@ -59,7 +59,7 @@ public class Projectile_Manager : MonoBehaviour
             {
                 Destroy(this.gameObject, Range_T3);
                 transform.position += Speed_T3 * Time.deltaTime * transform.TransformDirection(Vector3.forward);
-                transform.localScale = new Vector3(transform.localScale.x + (Time.deltaTime * 4), transform.localScale.y, transform.localScale.z);
+             //   transform.localScale = new Vector3(transform.localScale.x + (Time.deltaTime * 4), transform.localScale.y, transform.localScale.z);
             }
             else if (BM.BulletType4)
             {

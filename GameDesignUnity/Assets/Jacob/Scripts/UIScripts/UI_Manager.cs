@@ -27,6 +27,10 @@ public class UI_Manager : MonoBehaviour
     public GameObject ElementUI;
     public GameObject CurrentElementHightlight;
 
+    [Header("CrossHair")]
+    public GameObject CrossHairOverEnemy;
+    public GameObject CrossHairMeleeRange;
+
     [Header("Pause Menus")]
     public GameObject PauseMenu;
     public GameObject MainButtons;
@@ -66,7 +70,7 @@ public class UI_Manager : MonoBehaviour
 
 
     [Header("Unlocks")]
-    public GameObject UnlockedSuperPunch;
+    //public GameObject UnlockedSuperPunch;
     public GameObject UnlockedFire;
     public GameObject UnlockedIce;
     public GameObject UnlockedAir;
@@ -97,7 +101,7 @@ public class UI_Manager : MonoBehaviour
         if (GM.UnlockedIce) { UnlockedIce.SetActive(false); }
         if (GM.UnlockedAir) { UnlockedAir.SetActive(false); }
         if (GM.UnlockedVoid) { UnlockedVoid.SetActive(false); }
-        if (GM.UnlockedSuperPunch) { UnlockedSuperPunch.SetActive(false); }
+      //  if (GM.UnlockedSuperPunch) { UnlockedSuperPunch.SetActive(false); }
     }
 
 

@@ -21,8 +21,10 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Super Energy")]
     public int SuperEnergyCharges;
-    public BoxCollider SuperMeleeCollider;
-    public int SuperMeleeDamage;
+    public int SuperMeleeDamage; 
+    public GameObject MeleePullDestination;
+    public RaycastHit[] Hits;
+    public List<GameObject> BoxHits;
 
     [Header("Elements")]
     public int CurrentElement;
@@ -58,6 +60,16 @@ public class PlayerCombat : MonoBehaviour
     public float BaseMeleeAnimTime;
     public float ApplyToSelfAnimTime;
 
+    [Header("HandParticles")]
+    public GameObject RightHandFire;
+    public GameObject LeftHandFire;
+    public GameObject RightHandIce;
+    public GameObject LeftHandIce;
+    public GameObject RightHandVoid;
+    public GameObject LeftHandVoid;
+    public GameObject RightHandAir;
+    public GameObject LeftHandAir;
+
 
     [Header("Unlocked Elements")]
     private bool UnlockedIce;
@@ -71,7 +83,7 @@ public class PlayerCombat : MonoBehaviour
         CanInput = true;
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         UM = GameObject.FindGameObjectWithTag("UI").GetComponent<UI_Manager>();
-
+        UpdateHandParticle();
         UpdateUnlocked();
     }
 
@@ -88,8 +100,8 @@ public class PlayerCombat : MonoBehaviour
         bool change = context.action.triggered;
         if (change&&CanInput==true)
         {     
-                CurrentElement = 1;
-                UM.CurrentElementHightlight.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-120);
+                CurrentElement = 1; UpdateHandParticle();
+            UM.CurrentElementHightlight.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-120);
         }
     }
     public void Right(InputAction.CallbackContext context)
@@ -99,7 +111,7 @@ public class PlayerCombat : MonoBehaviour
         {
             if (UnlockedIce)
             {
-                CurrentElement = 2;
+                CurrentElement = 2; UpdateHandParticle();
                 UM.CurrentElementHightlight.GetComponent<RectTransform>().anchoredPosition = new Vector2(120, 0);
             }
 
@@ -112,7 +124,7 @@ public class PlayerCombat : MonoBehaviour
         {
             if (UnlockedVoid)
             {
-                CurrentElement = 3;
+                CurrentElement = 3; UpdateHandParticle();
                 UM.CurrentElementHightlight.GetComponent<RectTransform>().anchoredPosition = new Vector2(-120, 0);
             }
 
@@ -125,7 +137,7 @@ public class PlayerCombat : MonoBehaviour
         {
             if (UnlockedAir)
             {
-                CurrentElement = 4;
+                CurrentElement = 4; UpdateHandParticle();
                 UM.CurrentElementHightlight.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 120);
             }
 
@@ -165,15 +177,16 @@ public class PlayerCombat : MonoBehaviour
     {
         bool shootR = context.action.triggered;
         if (shootR && CanInput == true)
-        {
-            if (SuperEnergyCharges < 9) 
-            { 
-            StartCoroutine(BaseMeleeAttack());
-            }
-            else if (SuperEnergyCharges >= 9)
+        { 
+            if (SuperEnergyCharges >= 9 && GM.UnlockedSuperPunch)
             {              
             StartCoroutine(SuperMeleeAttack());
             }
+            else  
+            { 
+            StartCoroutine(BaseMeleeAttack());
+            }
+           
         }
     }
 
@@ -190,6 +203,16 @@ public class PlayerCombat : MonoBehaviour
 
         CanInput = true;
     }
+
+    public void UpdateHandParticle()
+    {
+        if (CurrentElement == 1) { RightHandFire.SetActive(true); LeftHandFire.SetActive(true); } else { RightHandFire.SetActive(false); LeftHandFire.SetActive(false); }
+        if (CurrentElement == 2) { RightHandIce.SetActive(true); LeftHandIce.SetActive(true); } else { RightHandIce.SetActive(false); LeftHandIce.SetActive(false); }
+        if (CurrentElement == 3) { RightHandVoid.SetActive(true); LeftHandVoid.SetActive(true); } else { RightHandVoid.SetActive(false); LeftHandVoid.SetActive(false); }
+        if (CurrentElement == 4) { RightHandAir.SetActive(true); LeftHandAir.SetActive(true); } else { RightHandAir.SetActive(false); LeftHandAir.SetActive(false); }
+    }
+
+
 
     IEnumerator Shoot(GameObject Bullet, float WaitTime)
     {
@@ -234,37 +257,41 @@ public class PlayerCombat : MonoBehaviour
         if (Physics.Raycast(BulletHolder.transform.position, fwd, out hit, 10)) // void effect increases this range?
         {
             if (hit.transform.CompareTag("Nuts") || hit.transform.CompareTag("Rizzard") || hit.transform.CompareTag("Footer") || hit.transform.CompareTag("Tank"))
-            {
+            { 
+                MeleePullDestination = hit.transform.gameObject;
                 MeleePull = true;
                 GetComponentInChildren<PlayerCam>().enabled = false;
                 Effects_Manager MEM = hit.transform.GetComponent<Effects_Manager>();
+                GameObject EnemyHit = hit.transform.gameObject;
 
-                hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                EnemyHit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
 
 
 
                 Anim.Play("PlayerBaseMelee");
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.5f);
+               
+                MeleePull = false;
 
-                if (hit.transform.CompareTag("Nuts")) { hit.transform.GetComponent<Nuts_Manager>().Health -= BaseMeleeDamage;  }
-                if (hit.transform.CompareTag("Rizzard")) { hit.transform.GetComponent<Rizzard_Manager>().Health -= BaseMeleeDamage; }
-                //if (hit.transform.CompareTag("Footer")) { hit.transform.GetComponent<Footer_Manager>().Health -= BaseMeleeDamage; }
-                // if (hit.transform.CompareTag("Tank")) { hit.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
+                if (EnemyHit.transform.CompareTag("Nuts")) { EnemyHit.transform.GetComponent<Nuts_Manager>().Health -= BaseMeleeDamage;  }
+                if (EnemyHit.transform.CompareTag("Rizzard")) { EnemyHit.transform.GetComponent<Rizzard_Manager>().Health -= BaseMeleeDamage; }
+                //if (EnemyHit.transform.CompareTag("Footer")) { EnemyHit.transform.GetComponent<Footer_Manager>().Health -= BaseMeleeDamage; }
+                // if (EnemyHit.transform.CompareTag("Tank")) { EnemyHit.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
 
                 if (CurrentElement == 1) { MEM.IsBurning = true; }
                 else if (CurrentElement == 2) { MEM.IsFrozen = true; }
                 // else if (CurrentElement == 3) { SelfVoid = true; }
                 // else if (CurrentElement == 4) { SelfAir = true; }
-                hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                EnemyHit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 GetComponentInChildren<PlayerCam>().enabled = true;
-                MeleePull = false;
+               
                 CanInput = true;
             }
             else
             {
                 Anim.Play("PlayerBaseMelee");
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.5f);
                 CanInput = true;
             }
 
@@ -272,7 +299,7 @@ public class PlayerCombat : MonoBehaviour
         else 
             {
                 Anim.Play("PlayerBaseMelee");
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.5f);
                 CanInput = true;
             }
     }
@@ -283,7 +310,8 @@ public class PlayerCombat : MonoBehaviour
         Anim.Play("PlayerSuperMelee");
         yield return new WaitForSeconds(0.75f);
         SuperEnergyCharges = 0;
-        MeleePull = true;
+
+        
         Vector3 fwd = BulletHolder.transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
         if (Physics.Raycast(BulletHolder.transform.position, fwd, out hit, 10)) // void effect increases this range?
@@ -292,10 +320,20 @@ public class PlayerCombat : MonoBehaviour
             {
                 GameObject Enemy = hit.transform.gameObject;
                 Effects_Manager MEM = Enemy.transform.GetComponent<Effects_Manager>();
+                MeleePullDestination = hit.transform.gameObject;
+                MeleePull = true;
             }
         }
 
-        //Collider[] colliders = Physics.BoxCastAll(transform.position,1.5f);
+        Hits = Physics.BoxCastAll(transform.position, transform.lossyScale / 2, transform.forward, transform.rotation, 20f, 1, QueryTriggerInteraction.Collide);
+        
+        Debug.Log(Hits);
+        foreach (RaycastHit item in Hits)
+        {
+            BoxHits.Add(item.transform.gameObject);
+           if(TryGetComponent(out Nuts_Manager NM)) { NM.Health -= 100; }
+        }
+
 
         GetComponentInChildren<PlayerCam>().enabled = true;                
         MeleePull = false;             

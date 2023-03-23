@@ -38837,7 +38837,7 @@ MonoBehaviour:
   Grounded: 0
   TimeToAttack: 2
   AttackTime: 0
-  range: 4
+  range: 1.5
   BulletType: {fileID: 5969615223017203397, guid: fb7943934cdb53a47930a52e6d4e576b,
     type: 3}
   BulletPoint: {fileID: 3622765560227504744}

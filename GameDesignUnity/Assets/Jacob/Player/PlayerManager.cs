@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public void Update()
     {
-        PC.SuperMeleeDamageCollider(PC.SuperMeleeCollider);
+
         HealthUpdate();
 
         UIUpdate();
@@ -119,6 +119,29 @@ public class PlayerManager : MonoBehaviour, IDamageable
         UM.PlayerHPSLider.value = Health;
         UM.PlayerDashSLider.value = dashT;
         UM.PlayerSuperBar.value = PC.SuperEnergyCharges;
+
+        Transform cameraTransform = Camera.main.transform;
+        RaycastHit hit;
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, 100.0f))
+        {
+            if (hit.transform.CompareTag("Nuts") || hit.transform.CompareTag("Rizzard") || hit.transform.CompareTag("Footer") || hit.transform.CompareTag("Tank")) 
+            {
+                UM.CrossHairOverEnemy.SetActive(true);
+                if(Vector3.Distance(transform.position, hit.transform.position) <= 10) { UM.CrossHairMeleeRange.SetActive(true); } else { UM.CrossHairMeleeRange.SetActive(false); }
+            }
+            else
+            {
+                UM.CrossHairOverEnemy.SetActive(false);
+                UM.CrossHairMeleeRange.SetActive(false);
+            }
+        }
+        else
+        {
+            UM.CrossHairOverEnemy.SetActive(false);
+            UM.CrossHairMeleeRange.SetActive(false);
+        }
+
+
     }
     public void Gravity()
     {
@@ -137,6 +160,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
             if (hit.transform.CompareTag("Ground") || hit.transform.CompareTag("Wall")) { playerVelocity.y = -5f;  }
 
         }
+
     }
     public void Move()
     {
@@ -160,7 +184,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     }
     public void MeleePull()
     {
-         controller.Move(transform.forward * Time.deltaTime * 20);
+        if (Vector3.Distance(transform.position, PC.MeleePullDestination.transform.position) >= 5) { controller.Move(transform.forward * Time.deltaTime * 20); }
     }
 
 

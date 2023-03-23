@@ -27,7 +27,7 @@ public class WeaponUnlock : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (UnlockedSuperPunch) { UM.UnlockedUIPopUpText.text = "Super Punch Unlocked"; GM.UnlockedProjectileType3 = true; }
+        if (UnlockedSuperPunch) { UM.UnlockedUIPopUpText.text = "Super Punch Unlocked"; GM.UnlockedSuperPunch = true; }
         else if (UnlockedFire) { UM.UnlockedUIPopUpText.text = "Fire Element Unlocked"; GM.UnlockedFire = true; }
         else if (UnlockedIce) { UM.UnlockedUIPopUpText.text = "Ice Element Unlocked"; GM.UnlockedIce = true; }
         else if (UnlockedAir) { UM.UnlockedUIPopUpText.text = "Air Element Unlocked"; GM.UnlockedAir = true; }
