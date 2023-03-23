@@ -12,8 +12,6 @@ TagManager:
   - Tank
   - UI
   - Enemy
-  - ProjectileAmmo
-  - ElementAmmo
   - HealthDrop
   - GameManager
   - Tutorial
@@ -21,6 +19,7 @@ TagManager:
   - Wall
   - Boxes
   - BoxesAvailable
+  - SuperDrop
   layers:
   - Default
   - TransparentFX

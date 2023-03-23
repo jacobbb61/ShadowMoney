@@ -183,6 +183,7 @@ MonoBehaviour:
   UnlockedIce: 0
   UnlockedAir: 0
   UnlockedVoid: 0
+  UnlockedSuperPunch: 0
   L1_DoorA: 0
   L1_DoorB: 0
   L2_DoorA: 0
@@ -191,8 +192,8 @@ MonoBehaviour:
   L3_DoorB: 0
   OptionsMusic: 1
   OptionsTutorial: 1
-  SensX: 4
-  SensY: 2
+  SensX: 16
+  SensY: 8
   Music: {fileID: 7710935242219045640}
   Base: {fileID: 5771733450248245415}
   Base1: {fileID: 6518181761151512159}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8650486583438109075}
   - component: {fileID: 7522372812976463077}
   - component: {fileID: 4938229330420413594}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4842,7 +4842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 577843630846592117}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: BulletPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4875,7 +4875,7 @@ GameObject:
   - component: {fileID: 577843631353682772}
   - component: {fileID: 577843631353682730}
   - component: {fileID: 577843631353682731}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Particle System (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9687,7 +9687,7 @@ GameObject:
   - component: {fileID: 577843631938047138}
   - component: {fileID: 577843631938047136}
   - component: {fileID: 577843631938047137}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14505,7 +14505,7 @@ GameObject:
   - component: {fileID: 577843632066836817}
   - component: {fileID: 577843632066836818}
   - component: {fileID: 6983761126032543891}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: RIZZARD
   m_TagString: Rizzard
   m_Icon: {fileID: 0}
@@ -14529,6 +14529,7 @@ Transform:
   - {fileID: 577843631353682772}
   - {fileID: 444663906085653704}
   - {fileID: 4079871394335178088}
+  - {fileID: 7166312851387289729}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14559,6 +14560,7 @@ MonoBehaviour:
     type: 3}
   HealthDrop: {fileID: 1660985183080485684, guid: 28dcb3537d4544749a7a5f7cefa4b96a,
     type: 3}
+  GroundChecker: {fileID: 6271732063459412068}
   Grounded: 0
   TimeToAttack: 1
   BulletPoint: {fileID: 577843630846592118}
@@ -14725,7 +14727,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 444663906085653704}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: ElemetEffected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14762,7 +14764,7 @@ GameObject:
   - component: {fileID: 168530197796749018}
   - component: {fileID: 8430452918351019487}
   - component: {fileID: 8249508332204813221}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PS_Fire_ALPHA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19586,7 +19588,7 @@ GameObject:
   - component: {fileID: 4365572292861357643}
   - component: {fileID: 7636178159136845844}
   - component: {fileID: 5291844479846317143}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 5 Buff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24456,7 +24458,7 @@ GameObject:
   - component: {fileID: 5438721212071223082}
   - component: {fileID: 1904075940783974822}
   - component: {fileID: 4713705062396673167}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29326,7 +29328,7 @@ GameObject:
   - component: {fileID: 775424015285491396}
   - component: {fileID: 5644891708625236621}
   - component: {fileID: 8978225052536076668}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34194,7 +34196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1451073809279744945}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34229,7 +34231,7 @@ GameObject:
   - component: {fileID: 3782427194596800527}
   - component: {fileID: 2822727717199940250}
   - component: {fileID: 1943133768676298447}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Void
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39053,7 +39055,7 @@ GameObject:
   - component: {fileID: 5002869120762472339}
   - component: {fileID: 1933849694445628266}
   - component: {fileID: 4448704553908108515}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 40
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43923,7 +43925,7 @@ GameObject:
   - component: {fileID: 4071327012679580334}
   - component: {fileID: 4933176574361142935}
   - component: {fileID: 3115106038383470892}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PS_Fire_ADD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48747,7 +48749,7 @@ GameObject:
   - component: {fileID: 7220741758722011680}
   - component: {fileID: 1649479790097468742}
   - component: {fileID: 8491589620592125484}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Air
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53569,6 +53571,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &6271732063459412068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7166312851387289729}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7166312851387289729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6271732063459412068}
+  m_LocalRotation: {x: -0.00080767873, y: -0.9989892, z: 0.020067776, w: 0.040216193}
+  m_LocalPosition: {x: 0, y: -1.009, z: 0.054}
+  m_LocalScale: {x: 0.666664, y: 0.5002017, z: 0.6663103}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 577843632066836816}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6458554571500470328
 GameObject:
   m_ObjectHideFlags: 0
@@ -53580,7 +53613,7 @@ GameObject:
   - component: {fileID: 4069958872770893597}
   - component: {fileID: 3400197546496113530}
   - component: {fileID: 3361417615367782644}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58448,7 +58481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4079871394335178088}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: DamageNumbers
   m_TagString: Untagged
   m_Icon: {fileID: 0}

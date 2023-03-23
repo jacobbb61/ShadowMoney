@@ -3,9 +3,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerCam : MonoBehaviour
 {
-    [Header("Controller")]
+
     public float sensX;
     public float sensY;
+
+    public float XAimAssist;
+    public float YAimAssist;
+    public float sensXAimAssist = 1;
+    public float sensYAimAssist = 1;
 
 
 
@@ -17,7 +22,6 @@ public class PlayerCam : MonoBehaviour
 
     float xRotation = 0f;
 
-    public bool IsCointroller;
 
     private void Start()
     {
@@ -34,11 +38,44 @@ public class PlayerCam : MonoBehaviour
     void Update()
     {
 
-            xRotation -= movementInput.y * sensY * Time.deltaTime;
+            xRotation -= movementInput.y * sensY/sensYAimAssist * Time.deltaTime ;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
             transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-            player.transform.Rotate(Vector3.up * movementInput.x * sensX * Time.deltaTime);
+            player.transform.Rotate(Vector3.up * movementInput.x * sensX/ sensXAimAssist * Time.deltaTime);
+
+
+
+
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, fwd, out hit, 100)) 
+        {
+            if (hit.transform.CompareTag("Nuts") || hit.transform.CompareTag("Rizzard") || hit.transform.CompareTag("Footer") || hit.transform.CompareTag("Tank"))
+            {
+                AimAssistOn();
+            }
+            else if (hit.transform==null)
+            {
+                AimAssistOff();
+            }
+            else { AimAssistOff(); }
+            
+        }
+
+
+
+    }
+
+    public void AimAssistOn()
+    {
+        sensXAimAssist = XAimAssist;
+        sensYAimAssist = YAimAssist;
+    }
+    public void AimAssistOff()
+    {
+        sensXAimAssist = 1;
+        sensYAimAssist = 1;
     }
 
     public void UpdateSensX (float playerChangeSensX)

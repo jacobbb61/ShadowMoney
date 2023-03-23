@@ -20,12 +20,12 @@ public class UI_Manager : MonoBehaviour
     public GameObject TopBarMain;
     public Slider PlayerHPSLider;
     public Slider PlayerDashSLider;
-    public TextMeshProUGUI ProjectileAmmo;
-    public TextMeshProUGUI ElementAmmo;
+    public Slider PlayerSuperBar;
 
     [Header("Orb")]
     public GameObject OrbMain;
     public GameObject ElementUI;
+    public GameObject CurrentElementHightlight;
 
     [Header("Pause Menus")]
     public GameObject PauseMenu;
@@ -92,8 +92,6 @@ public class UI_Manager : MonoBehaviour
 
     public void UpdateUnlocked()
     {
-
-
         if (GM.UnlockedFire) { UnlockedFire.SetActive(false); }
         if (GM.UnlockedIce) { UnlockedIce.SetActive(false); }
         if (GM.UnlockedAir) { UnlockedAir.SetActive(false); }
@@ -165,6 +163,35 @@ public class UI_Manager : MonoBehaviour
         if (PauseState == 1) { CloseOptions(); }
     }
 
+    public void Up(InputAction.CallbackContext context)
+    {
+        if (Paused)
+        {
+            if (context.action.triggered && PauseState == 0) { MainOrder--; MoveMainHighlight(0, 100, MainHighlight); }
+            if (context.action.triggered && PauseState == 1) { OpOrder--; MoveOptionsHighlight(0, 150, OpHighlight); }
+        }
+       if (context.action.triggered &&  YouDiedOn) { DiedOrder--; MoveDiedHighlight(0, 150, YouDiedHighlight); }
+       if (context.action.triggered &&  EndOfLevelOn) { EndOrder--; MoveEndHighlight(0, 200, EndHighlight); }
+    }
+    public void Down(InputAction.CallbackContext context)
+    {
+        if (Paused)
+        {
+            if (context.action.triggered && PauseState == 0) { MainOrder++; MoveMainHighlight(0, 100, MainHighlight); }
+            if (context.action.triggered && PauseState == 1) { OpOrder++; MoveOptionsHighlight(0, 150, OpHighlight); }
+        }
+        if (context.action.triggered &&  YouDiedOn) { DiedOrder++; MoveDiedHighlight(0, 150, YouDiedHighlight); }
+        if (context.action.triggered &&  EndOfLevelOn) { EndOrder++; MoveEndHighlight(0, 200, EndHighlight); }
+    }
+    public void Left(InputAction.CallbackContext context)
+    {
+        
+    }
+    public void Right(InputAction.CallbackContext context)
+    {
+        
+    }
+
 
     public void Pause()
     {
@@ -226,7 +253,7 @@ public class UI_Manager : MonoBehaviour
             if (OpOrder == 3)
             {
             if (StickInput.x < -0.3 && reset == true && GM.SensX > 1) { GM.SensX--;  reset = false; }
-            if (StickInput.x > 0.3 && reset == true && GM.SensX < 9) { GM.SensX++;  reset = false; }
+            if (StickInput.x > 0.3 && reset == true && GM.SensX < 20) { GM.SensX++;  reset = false; }
             if (StickInput.x == 0) { reset = true; }
             OpSensX.text = GM.SensX.ToString();
             GM.PCam.UpdateSensX(GM.SensX);
@@ -234,7 +261,7 @@ public class UI_Manager : MonoBehaviour
             if (OpOrder == 4)
             {
             if (StickInput.x < -0.3 && reset == true && GM.SensY > 1) { GM.SensY--; reset = false; }
-            if (StickInput.x > 0.3 && reset == true && GM.SensY < 9) { GM.SensY++; reset = false; }
+            if (StickInput.x > 0.3 && reset == true && GM.SensY < 20) { GM.SensY++; reset = false; }
             if (StickInput.x == 0) { reset = true; }
             OpSensY.text = GM.SensY.ToString();
             GM.PCam.UpdateSensY(GM.SensY);

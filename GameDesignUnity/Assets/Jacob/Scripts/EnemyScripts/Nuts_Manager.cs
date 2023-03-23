@@ -21,6 +21,7 @@ public class Nuts_Manager : MonoBehaviour
     public GameObject ProjectileDrop;
     public GameObject ElementDrop;
     public GameObject HealthDrop;
+    public GameObject GroundChecker;
     public bool Grounded;
     
     private float BaseSpeed;
@@ -99,7 +100,7 @@ public class Nuts_Manager : MonoBehaviour
      
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -Vector3.up, out hit,2f))
+        if (Physics.Raycast(GroundChecker.transform.position, -Vector3.up, out hit,0.5f))
         {
             
             if (hit.transform.tag == "Ground") { Grounded = true; } 
@@ -192,7 +193,7 @@ public class Nuts_Manager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    IEnumerator DamageNumbers(GameObject Num)
+    public IEnumerator DamageNumbers(GameObject Num)
     {
         Num.SetActive(true);
         yield return new WaitForSeconds(0.75f);

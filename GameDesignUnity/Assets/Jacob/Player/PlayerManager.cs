@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour, IDamageable
 {
 
- 
-    private CharacterController controller;
+
+    public CharacterController controller;
     public PlayerCombat PC;
     public GameManager GM;
     public Effects_Manager EM;
@@ -34,6 +34,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [Header("Player stats")]
     public float playerSpeed = 10f;
     public float jumpHeight = 6.0f;
+    public float dashSpeed;
     public bool groundedPlayer;
     public float dashT;
     public int Health;
@@ -72,6 +73,9 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Move();
 
         Dash();
+        if (PC.MeleePull) { MeleePull(); }
+
+
         if (PC.SelfFire) { SelfFireEffect(); }
         if (PC.SelfIce) { SelfIceEffect(); }
         if (PC.SelfVoid) { SelfVoidEffect(); }
@@ -113,6 +117,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         UM.PlayerHPSLider.value = Health;
         UM.PlayerDashSLider.value = dashT;
+        UM.PlayerSuperBar.value = PC.SuperEnergyCharges;
     }
     public void Gravity()
     {
@@ -139,41 +144,41 @@ public class PlayerManager : MonoBehaviour, IDamageable
     }
     public void Dash()
     {
-        if ((dash == true) && (dashT == 0f)) { dashT = -2f; dashTS = true; dashV = transform.right * movementInput.x + transform.forward * movementInput.y; }
+        if ((dash == true) && (dashT == 0f)) { dashT = -2f; dashTS = true; dashV = transform.forward * dashSpeed; }
         if (dashTS == true) { dashT += Time.deltaTime; }
-        if ((dashT < -1.5f) && (dashTS == true)) { controller.Move(dashV * Time.deltaTime * 30f); gravityValue = -20f; CanWalk = false; }
+        if ((dashT < -1.5f) && (dashTS == true)) { controller.Move(dashV * Time.deltaTime); gravityValue = -20f; CanWalk = false; }
         if (dashT < -1.5f) { dash = false; gravityValue = -25f; CanWalk = true; }
         if (dashT > 0f) { dashT = 0f; dashTS = false; }
+    }
+    public void MeleePull()
+    {
+         controller.Move(transform.forward * Time.deltaTime * 20);
     }
 
 
 
     public void SelfFireEffect() 
     {
-
+        //damage buff
         PC.SelfEffectTime += Time.deltaTime;
-        PC.SelfFireParticle.SetActive(true);
         if (PC.SelfEffectTime >= 5f) { PC.SelfFire = false; PC.SelfFireParticle.SetActive(false); PC.SelfEffectTime = 0f; }
     }
     public void SelfIceEffect()
     {
         DamageReduction = PC.IceArmourBuff;
         PC.SelfEffectTime += Time.deltaTime;
-        PC.SelfIceParticle.SetActive(true);
         if (PC.SelfEffectTime >= 5f) { PC.SelfIce = false;  PC.SelfIceParticle.SetActive(false); DamageReduction = 0; PC.SelfEffectTime = 0f; }
     }
     public void SelfVoidEffect()
     {
         jumpHeight = PC.VoidJumpBuff;
         PC.SelfEffectTime += Time.deltaTime;
-        PC.SelfVoidParticle.SetActive(true);
         if (PC.SelfEffectTime >= 5f) { PC.SelfVoid = false; PC.SelfVoidParticle.SetActive(false); jumpHeight = 6f; PC.SelfEffectTime = 0f; }
     }
     public void SelfAirEffect()
     {
         gravityValue = PC.AirFallBuff;
         PC.SelfEffectTime += Time.deltaTime;
-        PC.SelfAirParticle.SetActive(true);
         if (PC.SelfEffectTime >= 5f) { PC.SelfAir = false; gravityValue = -25f; PC.SelfAirParticle.SetActive(false); PC.SelfEffectTime = 0f; }
     }
 
@@ -233,9 +238,12 @@ public class PlayerManager : MonoBehaviour, IDamageable
         }
         else if (other.CompareTag("HealthDrop"))
         {
-            if (Health <= 80) { Health += 20; }
-            else if (Health > 80) { Health = 100; }
-            Destroy(other.gameObject);
+            if (Health <= 80) { Health += 20; Destroy(other.gameObject);}
+            else if (Health > 80 && Health <100) { Health = 100; Destroy(other.gameObject); }           
+        }
+        else if (other.CompareTag("SuperDrop"))
+        {
+            if (PC.SuperEnergyCharges < 9) { PC.SuperEnergyCharges++; Destroy(other.gameObject); }
         }
     }
 

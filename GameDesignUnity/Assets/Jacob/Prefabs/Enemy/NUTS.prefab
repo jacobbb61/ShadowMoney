@@ -38781,7 +38781,7 @@ GameObject:
   - component: {fileID: 4736788128456832572}
   - component: {fileID: 4736788128456832560}
   - component: {fileID: 1505565543791102722}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: NUTS
   m_TagString: Nuts
   m_Icon: {fileID: 0}
@@ -38806,6 +38806,7 @@ Transform:
   - {fileID: 8129145088589202498}
   - {fileID: 4565644478136780549}
   - {fileID: 8444233824344591994}
+  - {fileID: 5760095798947399045}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -38834,10 +38835,11 @@ MonoBehaviour:
     type: 3}
   HealthDrop: {fileID: 1660985183080485684, guid: 28dcb3537d4544749a7a5f7cefa4b96a,
     type: 3}
+  GroundChecker: {fileID: 7971844954111823737}
   Grounded: 0
-  TimeToAttack: 1
+  TimeToAttack: 2
   AttackTime: 0
-  range: 8
+  range: 4
   BulletType: {fileID: 5969615223017203397, guid: 6d0e20bdc8dca5b45bf4d1bb2a5f85a9,
     type: 3}
   BulletPoint: {fileID: 3622765560227504744}
@@ -38879,13 +38881,13 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
+  m_Speed: 5
   m_Acceleration: 3000
   avoidancePriority: 50
   m_AngularSpeed: 3000
   m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
@@ -48661,6 +48663,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &7971844954111823737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5760095798947399045}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5760095798947399045
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7971844954111823737}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.058, z: -0.13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4736788128456832575}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8367282494057709341
 GameObject:
   m_ObjectHideFlags: 0

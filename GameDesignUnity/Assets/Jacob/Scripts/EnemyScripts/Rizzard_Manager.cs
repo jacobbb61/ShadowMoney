@@ -26,6 +26,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     public GameObject ProjectileDrop;
     public GameObject ElementDrop;
     public GameObject HealthDrop;
+    public GameObject GroundChecker;
     public bool Grounded;
 
     [Header("Attack")]
@@ -136,7 +137,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
 
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -Vector3.up, out hit, 2.75f))
+        if (Physics.Raycast(GroundChecker.transform.position, -Vector3.up, out hit, 0.5f))
         {
 
             if (hit.transform.tag == "Ground"||  hit.transform.tag == "Wall") { Grounded = true; }
