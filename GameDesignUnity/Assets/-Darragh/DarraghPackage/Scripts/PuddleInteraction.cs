@@ -56,6 +56,13 @@ public class PuddleInteraction : MonoBehaviour
                 rizzard.EM.IsFrozen = true;
             }
         }
+        else if (toFreeze.TryGetComponent(out Tank_Manager tank))
+        {
+            if (!tank.EM.IsFrozen)
+            {
+                tank.EM.IsFrozen = true;
+            }
+        }
         else if (toFreeze.TryGetComponent(out Effects_Manager E))
         {
             if (!E.IsFrozen)

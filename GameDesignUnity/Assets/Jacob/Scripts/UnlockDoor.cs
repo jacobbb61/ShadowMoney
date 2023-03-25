@@ -59,7 +59,7 @@ public class UnlockDoor : MonoBehaviour
             else { GM.L3_DoorB = true; }
         }
         GetComponent<Animator>().SetBool("Open", true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Door.GetComponent<Animator>().SetBool("Open", true);
     }
 }

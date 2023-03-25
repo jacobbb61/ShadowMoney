@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Nuts_Manager : MonoBehaviour
+public class Tank_Manager : MonoBehaviour
 {
     NavMeshAgent Agent;
     GameObject Player;
@@ -17,23 +17,15 @@ public class Nuts_Manager : MonoBehaviour
     public bool Void;
     public bool Air;
 
-    [Header("Nuts Type Stats")]
-    public int NutsBaseSpeed;
-    public int NutsBaseMovementRange;
-    public int NutsBaseAttackRange;
-    public int NutsProjectileSpeed;
-    public int NutsProjectileMovementRange;
-    public int NutsProjectileAttackRange;
 
     [Header("Stats & other")]
-    public bool IsProjectileNuts;
     public int Health;
     public int MaxHealth;
     public GameObject SuperEnergyDrop;
     public GameObject HealthDrop;
     public GameObject GroundChecker;
     public bool Grounded;
-    
+
     private float BaseSpeed;
 
 
@@ -43,8 +35,8 @@ public class Nuts_Manager : MonoBehaviour
     public float range;
     public GameObject BulletType;
     public GameObject BulletPoint;
-    
-    private bool CanAttack=true;
+
+    private bool CanAttack = true;
     private bool IsAttacking;
 
     [Header("Freeze")]
@@ -85,14 +77,10 @@ public class Nuts_Manager : MonoBehaviour
     }
     void Update()
     {
-           GroundCheck();
-        if (Agent.enabled && Grounded) 
-        { 
-            if (IsProjectileNuts) { MovementAndAttack(NutsProjectileSpeed, NutsProjectileAttackRange, NutsProjectileMovementRange); } 
-            else
-            {
-                MovementAndAttack(NutsBaseSpeed, NutsBaseAttackRange, NutsBaseMovementRange);
-            }
+        GroundCheck();
+        if (Agent.enabled && Grounded)
+        {
+            Agent.SetDestination(Player.transform.position);
         }
 
         if (Health <= 0)
@@ -100,61 +88,49 @@ public class Nuts_Manager : MonoBehaviour
             Death();
         }
 
-
-        if (IsAttacking) { Attack(); }            
-        if (EM.IsFrozen) { Frozen(); }
-        if (EM.IsBurning) { Burning(); }
-
-       
-    }
-
-    void MovementAndAttack(int Speed, int AttackRange, int MovementRange)
-    { 
-        Agent.SetDestination(Player.transform.position);
-
-        if (Vector3.Distance(transform.position, Player.transform.position) <= MovementRange)
-        {
-            Agent.speed = Speed;
-        }
-        else { Agent.speed = 0; }
-
-        if (Vector3.Distance(transform.position, Player.transform.position) <= AttackRange && IsAttacking == false)
+        if (Vector3.Distance(transform.position, Player.transform.position) <= range && CanAttack == true)
         {
             IsAttacking = true;
         }
+
+        if (IsAttacking) { Attack(); }
+        if (EM.IsFrozen) { Frozen(); }
+        if (EM.IsBurning) { Burning(); }
+
+
     }
+
 
 
 
 
     public void GroundCheck()
-    {    
-        if (IsPushed && Grounded==true) { Agent.enabled = true; IsPushed = false;}
-     
+    {
+        if (IsPushed && Grounded == true) { Agent.enabled = true; IsPushed = false; }
+
 
         RaycastHit hit;
-        if (Physics.Raycast(GroundChecker.transform.position, -Vector3.up, out hit,0.5f))
+        if (Physics.Raycast(GroundChecker.transform.position, -Vector3.up, out hit, 0.5f))
         {
-            
-            if (hit.transform.tag == "Ground" || hit.transform.tag == "Wall") { Grounded = true; } 
-           
-        } else { Grounded = false; }
 
-       
+            if (hit.transform.tag == "Ground" || hit.transform.tag == "Wall") { Grounded = true; }
+
+        }
+        else { Grounded = false; }
+
+
     }
     public void Attack()
     {
-        Agent.speed = 0.1f;
-        Anim.Play("NutsAttack");
         AttackTime += Time.deltaTime;
         BulletPoint.transform.LookAt(Player.transform.position);
         if (AttackTime >= TimeToAttack)
-            {
-                Shoot(BulletType);          
-                AttackTime = 0;
-                IsAttacking = false;
-            
-            }
+        {
+            Shoot(BulletType);
+            AttackTime = 0;
+            IsAttacking = false;
+
+        }
     }
     public void Shoot(GameObject Bullet)
     {
@@ -188,7 +164,7 @@ public class Nuts_Manager : MonoBehaviour
     public void Burning()
     {
         FireParticles.SetActive(true);
-         BurningTime += Time.deltaTime;
+        BurningTime += Time.deltaTime;
         if (BurningTime >= TickTime) { TickTime++; Health--; StartCoroutine(DamageNumbers(One)); }
         if (BurningTime >= TimeToStopBurning)
         {
@@ -200,7 +176,7 @@ public class Nuts_Manager : MonoBehaviour
     }
 
     public void Push()
-    {   
+    {
         Agent.enabled = false;
         Grounded = false;
         GroundCheck();
@@ -208,7 +184,7 @@ public class Nuts_Manager : MonoBehaviour
     }
     public IEnumerator PushReset()
     {
-        yield return new WaitForSeconds(0.5f); 
+        yield return new WaitForSeconds(0.5f);
         IsPushed = true;
         yield return new WaitForSeconds(1.5f);
         myRB.velocity = Vector3.zero;
@@ -220,9 +196,14 @@ public class Nuts_Manager : MonoBehaviour
         GameObject A1 = Instantiate(HealthDrop);
         A1.transform.position = transform.position;
 
-        GameObject A3 = Instantiate(SuperEnergyDrop);
+        GameObject A2 = Instantiate(SuperEnergyDrop);
+        A2.transform.position = transform.position;
+
+        GameObject A3 = Instantiate(HealthDrop);
         A3.transform.position = transform.position;
 
+        GameObject A4 = Instantiate(SuperEnergyDrop);
+        A4.transform.position = transform.position;
 
         Destroy(this.gameObject);
     }
@@ -231,20 +212,20 @@ public class Nuts_Manager : MonoBehaviour
     {
         Num.SetActive(true);
         yield return new WaitForSeconds(0.75f);
-        Num.SetActive(false); 
+        Num.SetActive(false);
     }
 
 
-     void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
 
 
-            if (other.CompareTag("PlayerBullet"))
+        if (other.CompareTag("PlayerBullet"))
         {
             Bullet_Manager BM;
             BM = other.GetComponent<Bullet_Manager>();
-            Health -= BM.Damage + BM.DamageBuff; 
-            if (BM.Damage == 5) { StartCoroutine(DamageNumbers(Five));  }
+            Health -= BM.Damage + BM.DamageBuff;
+            if (BM.Damage == 5) { StartCoroutine(DamageNumbers(Five)); }
             if (BM.DamageBuff == 5) { StartCoroutine(DamageNumbers(FiveBuff)); }
             if (BM.Damage == 20) { StartCoroutine(DamageNumbers(Twenty)); }
             if (BM.Damage == 40) { StartCoroutine(DamageNumbers(Forty)); }
@@ -253,11 +234,12 @@ public class Nuts_Manager : MonoBehaviour
 
             Effects_Manager BEM;
             BEM = other.GetComponent<Effects_Manager>();
-            if (BEM.FireEffect) { EM.IsBurning = true;  }
-            if (BEM.IceEffect) { EM.IsFrozen = true;}
+            if (BEM.FireEffect) { EM.IsBurning = true; }
+            if (BEM.IceEffect) { EM.IsFrozen = true; }
             if (BEM.VoidEffect) { }
             if (BEM.AirEffect) { }
-        }else { return; }
+        }
+        else { return; }
 
     }
 

@@ -105,7 +105,7 @@ public class Footer_Manager : MonoBehaviour
         float disfrom2;
         float disfrom3;
         float disfrom4;
-
+/*
         disfrom1 = Vector3.Distance(transform.position, activeCM.GetComponent<CombatRoom_Manager>().Pos1.transform.position);
         disfrom2 = Vector3.Distance(transform.position, activeCM.GetComponent<CombatRoom_Manager>().Pos2.transform.position);
         disfrom3 = Vector3.Distance(transform.position, activeCM.GetComponent<CombatRoom_Manager>().Pos3.transform.position);
@@ -122,7 +122,7 @@ public class Footer_Manager : MonoBehaviour
         else if (lar == disfrom2) { TeleportLocation = activeCM.GetComponent<CombatRoom_Manager>().Pos2.transform; }
         else if (lar == disfrom3) { TeleportLocation = activeCM.GetComponent<CombatRoom_Manager>().Pos3.transform; }
         else if (lar == disfrom4) { TeleportLocation = activeCM.GetComponent<CombatRoom_Manager>().Pos4.transform; }
-
+*/
     }
 
     public void Frozen()

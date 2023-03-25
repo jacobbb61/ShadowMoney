@@ -96,6 +96,13 @@ public class WallDestruction : MonoBehaviour
                 rizzard.EM.IsBurning = true;
             }
         }
+        else if (toBurn.TryGetComponent(out Tank_Manager tank))
+        {
+            if (!tank.EM.IsBurning)
+            {
+                tank.EM.IsBurning = true;
+            }
+        }
         else if (toBurn.TryGetComponent(out Effects_Manager E))
         {
             if (!E.IsBurning)

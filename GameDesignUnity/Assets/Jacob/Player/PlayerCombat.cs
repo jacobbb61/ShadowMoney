@@ -23,8 +23,7 @@ public class PlayerCombat : MonoBehaviour
     public int SuperEnergyCharges;
     public int SuperMeleeDamage; 
     public GameObject MeleePullDestination;
-    public RaycastHit[] Hits;
-    public List<GameObject> BoxHits;
+    public Collider SuperMeleeCollider;
 
     [Header("Elements")]
     public int CurrentElement;
@@ -277,7 +276,7 @@ public class PlayerCombat : MonoBehaviour
                 if (EnemyHit.transform.CompareTag("Nuts")) { EnemyHit.transform.GetComponent<Nuts_Manager>().Health -= BaseMeleeDamage;  }
                 if (EnemyHit.transform.CompareTag("Rizzard")) { EnemyHit.transform.GetComponent<Rizzard_Manager>().Health -= BaseMeleeDamage; }
                 //if (EnemyHit.transform.CompareTag("Footer")) { EnemyHit.transform.GetComponent<Footer_Manager>().Health -= BaseMeleeDamage; }
-                // if (EnemyHit.transform.CompareTag("Tank")) { EnemyHit.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
+                 if (EnemyHit.transform.CompareTag("Tank")) { EnemyHit.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
 
                 if (CurrentElement == 1) { MEM.IsBurning = true; }
                 else if (CurrentElement == 2) { MEM.IsFrozen = true; }
@@ -325,19 +324,24 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
-        Hits = Physics.BoxCastAll(transform.position, transform.lossyScale / 2, transform.forward, transform.rotation, 20f, 1, QueryTriggerInteraction.Collide);
-        
-        Debug.Log(Hits);
-        foreach (RaycastHit item in Hits)
+
+        Collider[] colliders = Physics.OverlapSphere(new Vector3 (transform.localPosition.x, transform.localPosition.y, transform.localPosition.z+5f), 15);//range
+
+
+        foreach (Collider _hit in colliders)
         {
-            BoxHits.Add(item.transform.gameObject);
-           if(TryGetComponent(out Nuts_Manager NM)) { NM.Health -= 100; }
+            if (_hit.transform.CompareTag("Nuts")) { _hit.gameObject.GetComponent<Nuts_Manager>().Health -= 100; Debug.Log("Hit nuts"); }
+            if (_hit.transform.CompareTag("Rizzard")) { _hit.gameObject.GetComponent<Rizzard_Manager>().Health -= 100; }
+            if (_hit.transform.CompareTag("Tank")) { _hit.gameObject.GetComponent<Tank_Manager>().Health -= 100; }
         }
+
 
 
         GetComponentInChildren<PlayerCam>().enabled = true;                
         MeleePull = false;             
         CanInput = true;
     }
+
+  
 
 }
