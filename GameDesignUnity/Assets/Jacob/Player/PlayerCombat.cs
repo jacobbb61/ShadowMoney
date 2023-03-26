@@ -330,9 +330,9 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider _hit in colliders)
         {
-            if (_hit.transform.CompareTag("Nuts")) { _hit.gameObject.GetComponent<Nuts_Manager>().Health -= 100; Debug.Log("Hit nuts"); }
-            if (_hit.transform.CompareTag("Rizzard")) { _hit.gameObject.GetComponent<Rizzard_Manager>().Health -= 100; }
-            if (_hit.transform.CompareTag("Tank")) { _hit.gameObject.GetComponent<Tank_Manager>().Health -= 100; }
+            if (_hit.transform.CompareTag("Nuts")) { _hit.gameObject.GetComponent<Nuts_Manager>().Health -= 40; Debug.Log("Hit nuts"); }
+            if (_hit.transform.CompareTag("Rizzard")) { _hit.gameObject.GetComponent<Rizzard_Manager>().Health -= 40; }
+            if (_hit.transform.CompareTag("Tank")) { _hit.gameObject.GetComponent<Tank_Manager>().Health -= 40; }
         }
 
 

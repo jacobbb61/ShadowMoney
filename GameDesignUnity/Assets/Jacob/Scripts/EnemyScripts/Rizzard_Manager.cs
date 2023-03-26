@@ -57,12 +57,21 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     [Header("Air Push")]
     public bool IsPushed;
 
+
+    [Header("Current Element Particles")]
+    public GameObject CurrentlyFireParticles;
+    public GameObject CurrentlyIceParticles;
+    public GameObject CurrentlyVoidParticles;
+    public GameObject CurrentlyAirParticles;
+
     [Header("Damage Numbers")]
     public GameObject One;
     public GameObject Five;
-    public GameObject FiveBuff;
-    public GameObject Twenty;
+    public GameObject Ten;
+    public GameObject Fifteen;
     public GameObject Forty;
+    public GameObject FortyFive;
+    public GameObject Fifty;
 
 
     void Start()
@@ -76,6 +85,11 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
         Health = MaxHealth;
         Grounded = true;
         Agent.enabled = true;
+        if (Fire == false && Ice == false && Void == false && Air == false) { Fire = true; }
+        if (Fire) { CurrentlyFireParticles.SetActive(true); }
+        if (Ice) { CurrentlyIceParticles.SetActive(true); }
+        if (Void) { CurrentlyVoidParticles.SetActive(true); }
+        if (Air) { CurrentlyAirParticles.SetActive(true); }
     }
 
     void Update()
@@ -243,25 +257,37 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     }
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.CompareTag("PlayerBullet"))
         {
             Bullet_Manager BM;
             BM = other.GetComponent<Bullet_Manager>();
+            int PreHealth = Health;
+
             Health -= BM.Damage + BM.DamageBuff;
-            if (BM.Damage == 5) { StartCoroutine(DamageNumbers(Five)); }
-            if (BM.DamageBuff == 5) { StartCoroutine(DamageNumbers(FiveBuff)); }
-            if (BM.Damage == 20) { StartCoroutine(DamageNumbers(Twenty)); }
-            if (BM.Damage == 40) { StartCoroutine(DamageNumbers(Forty)); }
+
 
 
 
             Effects_Manager BEM;
             BEM = other.GetComponent<Effects_Manager>();
-            if (BEM.FireEffect) { EM.IsBurning = true; }
-            if (BEM.IceEffect) { EM.IsFrozen = true; }
-            if (BEM.VoidEffect) { }
-            if (BEM.AirEffect) { }
+            if (BEM.FireEffect) { EM.IsBurning = true; if (Fire) { Health -= 5; } }
+            if (BEM.IceEffect) { EM.IsFrozen = true; if (Ice) { Health -= 5; } }
+            if (BEM.VoidEffect) { if (Void) { Health -= 5; } }
+            if (BEM.AirEffect) { if (Air) { Health -= 5; } }
+
+            int PostHealth = Health;
+            int HealthTaken = PreHealth - PostHealth;
+            switch (HealthTaken)
+            {
+                case 5: StartCoroutine(DamageNumbers(Five)); break;
+                case 10: StartCoroutine(DamageNumbers(Ten)); break;
+                case 15: StartCoroutine(DamageNumbers(Fifteen)); break;
+                case 40: StartCoroutine(DamageNumbers(Forty)); break;
+                case 45: StartCoroutine(DamageNumbers(FortyFive)); break;
+                case 50: StartCoroutine(DamageNumbers(Fifty)); break;
+                default:
+                    break;
+            }
         }
         else { return; }
 
