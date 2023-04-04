@@ -9699,7 +9699,7 @@ GameObject:
   - component: {fileID: 9145565524610126593}
   m_Layer: 0
   m_Name: Burnable Wall
-  m_TagString: Ground
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

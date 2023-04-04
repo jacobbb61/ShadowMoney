@@ -21,6 +21,7 @@ public class Tank_Manager : MonoBehaviour
     [Header("Stats & other")]
     public int Health;
     public int MaxHealth;
+    public int WalkSpeed;
     public GameObject SuperEnergyDrop;
     public GameObject HealthDrop;
     public GameObject GroundChecker;
@@ -32,12 +33,14 @@ public class Tank_Manager : MonoBehaviour
     [Header("Attack")]
     public float TimeToAttack;
     public float AttackTime;
-    public float range;
-    public GameObject BulletType;
+    public float CloseRange;
+    public float FarRange;
+    public GameObject CloseBulletType;
+    public GameObject FarBulletType;
     public GameObject BulletPoint;
 
-    private bool CanAttack = true;
-    private bool IsAttacking;
+    public bool CanAttack = true;
+    public bool IsAttacking;
 
     [Header("Freeze")]
     public float TimeToBreakFreeze;
@@ -101,12 +104,29 @@ public class Tank_Manager : MonoBehaviour
             Death();
         }
 
-        if (Vector3.Distance(transform.position, Player.transform.position) <= range && CanAttack == true)
+        if (Vector3.Distance(transform.position, Player.transform.position) <= CloseRange && CanAttack == true)
         {
+            StartCoroutine(CloseAttack());
             IsAttacking = true;
+            CanAttack = false;
+        }
+        else if (Vector3.Distance(transform.position, Player.transform.position) >= FarRange && CanAttack == true)
+        {
+            StartCoroutine(FarAttack());
+            IsAttacking = true;
+            CanAttack = false;
         }
 
-        if (IsAttacking) { Attack(); }
+
+
+
+
+
+
+        if (IsAttacking) { Agent.speed = 0; } else 
+        { 
+            Agent.speed = WalkSpeed;
+        }
         if (EM.IsFrozen) { Frozen(); }
         if (EM.IsBurning) { Burning(); }
 
@@ -133,25 +153,51 @@ public class Tank_Manager : MonoBehaviour
 
 
     }
-    public void Attack()
+    public IEnumerator CloseAttack()
     {
-        AttackTime += Time.deltaTime;
-        BulletPoint.transform.LookAt(Player.transform.position);
-        if (AttackTime >= TimeToAttack)
-        {
-            Shoot(BulletType);
-            AttackTime = 0;
-            IsAttacking = false;
 
-        }
+        Anim.Play("TankCloseAttack");
+
+        yield return new WaitForSeconds(0.75f);
+       
+        Shoot(CloseBulletType);
+
+        yield return new WaitForSeconds(1f);
+        IsAttacking = false;
+        yield return new WaitForSeconds(Random.Range(1, 4));
+        CanAttack = true;
+        
     }
-    public void Shoot(GameObject Bullet)
+
+    public IEnumerator FarAttack()
     {
+
+        Anim.Play("TankFarAttack");
+
+        yield return new WaitForSeconds(1f);
+
+        Shoot(FarBulletType);
+
+        yield return new WaitForSeconds(1f);
+        IsAttacking = false;
+        yield return new WaitForSeconds(Random.Range(2,6));
+        CanAttack = true;
+    }
+
+
+        public void Shoot(GameObject Bullet)
+    { 
+        BulletPoint.transform.LookAt(Player.transform.position);
         GameObject NewBullet = Instantiate(Bullet, BulletPoint.transform.position, BulletPoint.transform.rotation);
         NewBullet.transform.tag = "EnemyBullet";
         ApplyBulletEffect(NewBullet);
         if (NewBullet.GetComponent<Bullet_Manager>().BulletType3) { Bullet.GetComponent<BoxCollider>().enabled = true; } else { Bullet.GetComponent<SphereCollider>().enabled = true; }
+
     }
+
+ 
+
+
     public void ApplyBulletEffect(GameObject Bullet)
     {
         if (Fire) { Bullet.GetComponent<Effects_Manager>().FireEffect = true; }
