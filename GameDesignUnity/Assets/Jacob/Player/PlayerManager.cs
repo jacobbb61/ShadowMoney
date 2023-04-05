@@ -147,19 +147,31 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         groundedPlayer = controller.isGrounded;
 
-        if (groundedPlayer && playerVelocity.y < 0f) { playerVelocity.y = 0f; } 
+        if (groundedPlayer){
+            PC.LandAudio.gameObject.SetActive(true);
+            if (playerVelocity.y < 0f) { playerVelocity.y = 0f; PC.JumpAudio.gameObject.SetActive(false); }
+        } 
 
         if (jumped && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            PC.JumpAudio.gameObject.SetActive(true);
+            PC.LandAudio.gameObject.SetActive(false);
+            PC.JumpAudio.pitch = Random.Range(0.9f, 1.1f);
+            PC.LandAudio.pitch = Random.Range(0.9f, 1.1f);
         }
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.up, out hit, 3f))
         {
 
-            if (hit.transform.CompareTag("Ground") || hit.transform.CompareTag("Wall")) { playerVelocity.y = -5f;  }
-
+            if (hit.transform.CompareTag("Ground") || hit.transform.CompareTag("Wall")) 
+            { 
+                playerVelocity.y = -5f; 
+                
+                
+            }
         }
+
 
     }
     public void Move()
@@ -170,17 +182,19 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
             if (CanWalk == true) { controller.Move(move * Time.deltaTime * playerSpeed); }
 
+            if (movementInput.x>0 || movementInput.y > 0 && groundedPlayer) { PC.WalkAudio.volume = 0.2f; } else { PC.WalkAudio.volume = 0; }
+
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
         }
     }
     public void Dash()
     {
-        if ((dash == true) && (dashT == 0f)) { dashT = -2f; dashTS = true; dashV = transform.forward * dashSpeed; }
+        if ((dash == true) && (dashT == 0f)) { dashT = -2f; dashTS = true; dashV = transform.forward * dashSpeed; PC.DashAudio.gameObject.SetActive(true); PC.DashAudio.pitch = Random.Range(0.9f, 1.1f); }
         if (dashTS == true) { dashT += Time.deltaTime; }
         if ((dashT < -1.5f) && (dashTS == true)) { controller.Move(dashV * Time.deltaTime); gravityValue = -20f; CanWalk = false; }
         if (dashT < -1.5f) { dash = false; gravityValue = -25f; CanWalk = true; }
-        if (dashT > 0f) { dashT = 0f; dashTS = false; }
+        if (dashT > 0f) { dashT = 0f; dashTS = false; PC.DashAudio.gameObject.SetActive(false); }
     }
     public void MeleePull()
     {

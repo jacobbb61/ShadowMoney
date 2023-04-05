@@ -69,6 +69,13 @@ public class PlayerCombat : MonoBehaviour
     public GameObject RightHandAir;
     public GameObject LeftHandAir;
 
+    [Header("Audio")]
+    public AudioSource BaseMeleeAudio;
+    public AudioSource DashAudio;
+    public AudioSource JumpAudio;
+    public AudioSource LandAudio;
+    public AudioSource WalkAudio;
+    public AudioSource ChangeElementAudio;
 
     [Header("Unlocked Elements")]
     private bool UnlockedIce;
@@ -205,6 +212,8 @@ public class PlayerCombat : MonoBehaviour
 
     public void UpdateHandParticle()
     {
+        ChangeElementAudio.Play();
+        ChangeElementAudio.pitch = Random.Range(0.8f, 1.2f);
         if (CurrentElement == 1) { RightHandFire.SetActive(true); LeftHandFire.SetActive(true); } else { RightHandFire.SetActive(false); LeftHandFire.SetActive(false); }
         if (CurrentElement == 2) { RightHandIce.SetActive(true); LeftHandIce.SetActive(true); } else { RightHandIce.SetActive(false); LeftHandIce.SetActive(false); }
         if (CurrentElement == 3) { RightHandVoid.SetActive(true); LeftHandVoid.SetActive(true); } else { RightHandVoid.SetActive(false); LeftHandVoid.SetActive(false); }
@@ -251,6 +260,7 @@ public class PlayerCombat : MonoBehaviour
 
     IEnumerator BaseMeleeAttack()
     {
+        BaseMeleeAudio.pitch = Random.Range(0.8f, 1.2f);
         Vector3 fwd = BulletHolder.transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
         if (Physics.Raycast(BulletHolder.transform.position, fwd, out hit, 10)) // void effect increases this range?
