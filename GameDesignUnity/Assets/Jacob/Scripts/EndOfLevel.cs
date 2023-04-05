@@ -13,6 +13,7 @@ public class EndOfLevel : MonoBehaviour
     PlayerManager PM;
     PlayerCombat PC;
     UI_Manager UM;
+    Animator Anim;
 
     private void Start()
     {
@@ -22,12 +23,26 @@ public class EndOfLevel : MonoBehaviour
         PM = Player.GetComponent<PlayerManager>();
         PC = Player.GetComponent<PlayerCombat>();
         UM = UI.GetComponent<UI_Manager>();
+        Anim = GetComponentInChildren<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(ExitAnim());
+            other.gameObject.SetActive(false);
+            GM.Music.SetActive(false);
+        }
+    }
+
+    IEnumerator ExitAnim()
+    {
+        Anim.Play("BallistaFire");
+        yield return new WaitForSeconds(13f);
         OpenUI();
     }
+
     void OpenUI()
     {
         GM.Base.volume = 0.1f; GM.Base1.volume = 0.1f; GM.Base2.volume = 0.1f; //audio muffle 
