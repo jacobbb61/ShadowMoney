@@ -1,14 +1,26 @@
 using UnityEngine;
 
-public class VoidPullExplosion : MonoBehaviour
+public class VoidSelfApply : MonoBehaviour
 {
-    public void Active()
+    public GameObject emptyExplosion;
+    private AudioSource source;
+    
+    [SerializeField] private float areaEffect;
+
+    private void Start()
     {
+        //EM = GetComponent<Effects_Manager>();
+        Explode();
+    }
 
+    public void Explode()
+    {
+        
+        //source.Play();
+        
         Vector3 explosive = transform.position;
-
-        Collider[] colliders = Physics.OverlapSphere(explosive, 10);//range
-
+        Collider[] colliders = Physics.OverlapSphere(explosive, areaEffect);
+        
 
         foreach (Collider hit in colliders)
         {
@@ -24,7 +36,12 @@ public class VoidPullExplosion : MonoBehaviour
             if (hit.transform.CompareTag("Rizzard")) { hit.gameObject.GetComponent<Rizzard_Manager>().Push(); }
             if (hit.transform.CompareTag("Tank")) { hit.gameObject.GetComponent<Tank_Manager>().Push(); }
         }
-
-        Destroy(this.gameObject);
+        Debug.Log("Exploded");
+        Destroy(emptyExplosion);
+    }
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, areaEffect);
     }
 }
