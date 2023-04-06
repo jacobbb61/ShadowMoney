@@ -60,6 +60,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         //GM.RespawnPlayer();
         Health = 100;
         Time.timeScale = 1;
+        transform.position = Vector3.zero;
         
     }
 
