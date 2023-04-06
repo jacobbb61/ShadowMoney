@@ -60,8 +60,8 @@ public class CombatRoom_Manager : MonoBehaviour
     {
         if (InCombat)
         {
-            
-            foreach (var item in Doors) { item.SetActive(true); }
+         
+            foreach (var item in Doors) { item.GetComponent<Animator>().SetBool("Closed", true); }
             
             SpawnTimer += Time.deltaTime;
 
@@ -84,7 +84,7 @@ public class CombatRoom_Manager : MonoBehaviour
         {
             foreach (var item in Doors)
             {
-                item.SetActive(false);
+                item.GetComponent<Animator>().SetBool("Closed", false);
             }
             
            

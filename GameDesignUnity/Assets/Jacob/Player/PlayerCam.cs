@@ -38,11 +38,13 @@ public class PlayerCam : MonoBehaviour
     void Update()
     {
 
-            xRotation -= movementInput.y * sensY/sensYAimAssist * Time.deltaTime ;
+           // xRotation -= movementInput.y * sensY/sensYAimAssist * Time.deltaTime ;
+            xRotation -= movementInput.y * sensY * Time.deltaTime ;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
             transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-            player.transform.Rotate(Vector3.up * movementInput.x * sensX/ sensXAimAssist * Time.deltaTime);
+           // player.transform.Rotate(Vector3.up * movementInput.x * sensX/ sensXAimAssist * Time.deltaTime);
+            player.transform.Rotate(Vector3.up * movementInput.x * sensX * Time.deltaTime);
 
 
 

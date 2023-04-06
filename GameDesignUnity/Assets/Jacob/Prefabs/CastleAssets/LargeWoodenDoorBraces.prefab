@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5010476599888088725
 Transform:
@@ -126,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 7889055934960336424}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -18.97401, y: -61.457, z: -37.909595}
-  m_LocalScale: {x: 32.382114, y: 32.382107, z: 32.382107}
+  m_LocalScale: {x: 26.085411, y: 26.085405, z: 26.085405}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5010476599888088725}
@@ -201,7 +201,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8626092328629013733
 Transform:
