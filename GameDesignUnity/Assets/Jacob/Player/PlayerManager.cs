@@ -190,7 +190,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
     }
     public void Dash()
     {
-        if ((dash == true) && (dashT == 0f)) { dashT = -2f; dashTS = true; dashV = transform.forward * dashSpeed; PC.DashAudio.gameObject.SetActive(true); PC.DashAudio.pitch = Random.Range(0.9f, 1.1f); }
+        if ((dash == true) && (dashT == 0f)) 
+        { 
+            dashT = -2f; dashTS = true; PC.DashAudio.gameObject.SetActive(true); PC.DashAudio.pitch = Random.Range(0.9f, 1.1f);        
+            if ( movementInput.x == 0 && movementInput.y == 0) { dashV = transform.forward * dashSpeed; }
+            else { dashV = (transform.right * movementInput.x + transform.forward * movementInput.y) * dashSpeed; }
+            Debug.Log(dashV);
+        }
         if (dashTS == true) { dashT += Time.deltaTime; }
         if ((dashT < -1.5f) && (dashTS == true)) { controller.Move(dashV * Time.deltaTime); gravityValue = -20f; CanWalk = false; }
         if (dashT < -1.5f) { dash = false; gravityValue = -25f; CanWalk = true; }
