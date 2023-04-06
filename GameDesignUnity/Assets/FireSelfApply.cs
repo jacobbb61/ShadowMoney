@@ -8,7 +8,7 @@ public class FireSelfApply : MonoBehaviour, IDamageable
 
     public GameObject explosion,emptyExplosion;
     private AudioSource source;
-
+    public GameObject Particles;
 
     public int explosionDamage = 5;
     public float force;
@@ -25,8 +25,8 @@ public class FireSelfApply : MonoBehaviour, IDamageable
     public void Explode()
     {
         //Instantiate(explosion, transform.position, quaternion.identity);
-        //source.Play();
-        
+        GameObject NP = Instantiate(Particles, transform.position, transform.rotation);
+        Destroy(NP, 1f);
         Vector3 explosive = transform.position;
         
         Collider[] colliders = Physics.OverlapSphere(explosive, areaEffect);
@@ -38,9 +38,9 @@ public class FireSelfApply : MonoBehaviour, IDamageable
             if (rb)
             {
                 //Applying Force
-                Vector3 direction = hit.transform.position - transform.position;
-                Vector3 explosiveForce = new Vector3(direction.x, direction.y + verticality * Random.Range(1f, 2f), direction.z);
-                rb.AddForce(explosiveForce * force, ForceMode.Impulse);
+              //  Vector3 direction = hit.transform.position - transform.position;
+              //  Vector3 explosiveForce = new Vector3(direction.x, direction.y + verticality * Random.Range(1f, 2f), direction.z);
+              //  rb.AddForce(explosiveForce * force, ForceMode.Impulse);
 
                 if (hit.TryGetComponent(out IDamageable damageable))
                 {
@@ -53,9 +53,9 @@ public class FireSelfApply : MonoBehaviour, IDamageable
                 }
  
             
-                if (hit.transform.CompareTag("Nuts")) { hit.gameObject.GetComponent<Nuts_Manager>().Push(); }
-                if (hit.transform.CompareTag("Rizzard")) { hit.gameObject.GetComponent<Rizzard_Manager>().Push(); }
-                if (hit.transform.CompareTag("Tank")) { hit.gameObject.GetComponent<Tank_Manager>().Push(); }
+              //  if (hit.transform.CompareTag("Nuts")) { hit.gameObject.GetComponent<Nuts_Manager>().Push(); }
+              //  if (hit.transform.CompareTag("Rizzard")) { hit.gameObject.GetComponent<Rizzard_Manager>().Push(); }
+              //  if (hit.transform.CompareTag("Tank")) { hit.gameObject.GetComponent<Tank_Manager>().Push(); }
             }
         }
         Debug.Log("Exploded");

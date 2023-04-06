@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1221659101876812760
 Transform:
   m_ObjectHideFlags: 0
@@ -46,7 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 141070, guid: 805832771bf9f5f48bead8310975480e, type: 3}
   emptyExplosion: {fileID: 1221659101876812762}
+  Particles: {fileID: 1464318411640527954, guid: cff8ee9b204ec754c813804aa388799f,
+    type: 3}
   explosionDamage: 5
   force: 5
   verticality: 1
-  areaEffect: 10
+  areaEffect: 20

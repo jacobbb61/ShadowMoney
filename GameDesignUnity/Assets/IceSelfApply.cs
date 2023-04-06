@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class IceSelfApply : MonoBehaviour
 {
 
-
+    public GameObject Particles;
     public GameObject emptyExplosion;
     private AudioSource source;
     
@@ -22,7 +22,8 @@ public class IceSelfApply : MonoBehaviour
 
     public void Explode()
     {
-
+        GameObject NP = Instantiate(Particles, transform.position, transform.rotation);
+        Destroy(NP, 1f);
         //source.Play();
 
         Vector3 explosive = transform.position;

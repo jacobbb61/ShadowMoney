@@ -7,6 +7,7 @@ public class AirSelfApply : MonoBehaviour
         
 
     public GameObject emptyExplosion;
+    public GameObject Particles;
     private AudioSource source;
     
     public float force;
@@ -21,9 +22,10 @@ public class AirSelfApply : MonoBehaviour
 
     public void Explode()
     {
-        
+        GameObject NP = Instantiate(Particles, transform.position, transform.rotation);
+        Destroy(NP, 1f);
         //source.Play();
-        
+
         Vector3 explosive = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosive, areaEffect);
         

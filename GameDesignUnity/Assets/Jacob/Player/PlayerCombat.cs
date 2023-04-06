@@ -69,6 +69,14 @@ public class PlayerCombat : MonoBehaviour
     public GameObject RightHandAir;
     public GameObject LeftHandAir;
 
+    [Header("Self Apply Particles")]
+    public GameObject SelfFireParticles;
+    public GameObject SelfIceParticles;
+    public GameObject SelfVoidParticles;
+    public GameObject SelfAirParticles;
+
+
+
     [Header("Audio")]
     public AudioSource BaseMeleeAudio;
     public AudioSource DashAudio;
@@ -225,7 +233,7 @@ public class PlayerCombat : MonoBehaviour
     IEnumerator Shoot(GameObject Bullet, float WaitTime)
     {
         CanInput = false;
-        yield return new WaitForSeconds(WaitTime);
+         yield return new WaitForSeconds(WaitTime);
         GameObject BulletShot = Instantiate(Bullet);
         if (SelfFire == true) { BulletShot.GetComponent<Bullet_Manager>().DamageBuff = FireDamageBuff; }
         BulletShot.transform.parent = null;
@@ -247,6 +255,7 @@ public class PlayerCombat : MonoBehaviour
         Anim.Play("PlayerApplyToSelf");
         CanInput = false;
         yield return new WaitForSeconds(WaitTime);
+
 
         if (CurrentElement == 1) { SelfFire = true; GameObject Prefab = Instantiate(SelfFirePrefab); Prefab.transform.position = transform.position; }
         else if (CurrentElement == 2) { SelfIce = true; GameObject Prefab = Instantiate(SelfIcePrefab); Prefab.transform.position = transform.position; }
