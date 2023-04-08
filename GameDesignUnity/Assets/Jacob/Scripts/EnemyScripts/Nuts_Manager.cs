@@ -33,6 +33,7 @@ public class Nuts_Manager : MonoBehaviour
     public GameObject HealthDrop;
     public GameObject GroundChecker;
     public bool Grounded;
+    public GameObject LowHealth;
     
     private float BaseSpeed;
 
@@ -107,8 +108,12 @@ public class Nuts_Manager : MonoBehaviour
                 MovementAndAttack(NutsBaseSpeed, NutsBaseAttackRange, NutsBaseMovementRange);
             }
         }
+        if (Health <= 5)
+        {
+            LowHealth.SetActive(true);
+        }
 
-        if (Health <= 0)
+            if (Health <= 0)
         {
             Death();
         }

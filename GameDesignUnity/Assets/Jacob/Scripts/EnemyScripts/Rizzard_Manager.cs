@@ -38,7 +38,6 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     public GameObject BulletPoint;
     public GameObject CloseBulletType;
     public GameObject FarBulletType;
-    public GameObject Far2BulletType;
     public float CloseRange;
     public float FarRange;
     public int EffectType;
@@ -97,15 +96,15 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
         GroundCheck();
 
     
-        CS.boxesAvailable = GameObject.FindGameObjectsWithTag("BoxesAvailable");
+       /* CS.boxesAvailable = GameObject.FindGameObjectsWithTag("BoxesAvailable");
 
         if (CS.boxesAvailable.Length >= 2)
         {
          //   CS.boxSelector();
         }
-
+       
         if (Agent.enabled && Grounded) { CS.navigation();}
-
+*/
         if (Health <= 0)
         {
             Death();
@@ -120,16 +119,9 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
         {
             IsAttackingFar = true;
         }
-        else if (Vector3.Distance(transform.position, Player.transform.position) > FarRange + 5 && CanAttack == true)
-        {
-            IsAttackingFar2 = true;
-        }
+      
 
-        if (IsAttackingFar2)
-        {
-            Attack(Far2BulletType);
-            AttackTime += Time.deltaTime;
-        }
+       
         if (IsAttackingFar)
         {
             Attack(FarBulletType);

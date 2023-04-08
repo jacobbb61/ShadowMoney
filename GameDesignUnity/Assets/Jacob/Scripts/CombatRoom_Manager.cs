@@ -144,7 +144,7 @@ public class CombatRoom_Manager : MonoBehaviour
         GameObject NewSpawnAnim = Instantiate(EnemySpawnAnim, Location.position, Enemy.transform.rotation);
         Destroy(NewSpawnAnim, 1f);
         yield return new WaitForSeconds(0.75f);
-        GameObject NewEnemy =  Instantiate(Enemy, Location.position, Enemy.transform.rotation);
+        GameObject NewEnemy =  Instantiate(Enemy, new Vector3(Location.position.x, Location.position.y+2f,Location.position.z), Enemy.transform.rotation);
         if (NewEnemy.CompareTag("Nuts"))
         {
             IsNutsBase = !IsNutsBase;

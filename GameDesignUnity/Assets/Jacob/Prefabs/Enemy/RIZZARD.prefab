@@ -14572,7 +14572,6 @@ GameObject:
   - component: {fileID: 577843632066836819}
   - component: {fileID: 577843632066836817}
   - component: {fileID: 577843632066836818}
-  - component: {fileID: 6983761126032543891}
   m_Layer: 0
   m_Name: RIZZARD
   m_TagString: Rizzard
@@ -14639,14 +14638,18 @@ MonoBehaviour:
     type: 3}
   Far2BulletType: {fileID: 5969615223017203397, guid: e729f1c826d659b46bf61af4d4d236d4,
     type: 3}
-  CloseRange: 5
-  FarRange: 30
+  CloseRange: 10
+  FarRange: 50
   EffectType: 0
   TimeToBreakFreeze: 5
   FrozenParticles: {fileID: 164891184184383176}
   TimeToStopBurning: 5
   FireParticles: {fileID: 5254038246866513252}
   IsPushed: 0
+  CurrentlyFireParticles: {fileID: 399331892551593986}
+  CurrentlyIceParticles: {fileID: 6814184903847623571}
+  CurrentlyVoidParticles: {fileID: 2457809325933018992}
+  CurrentlyAirParticles: {fileID: 8281056287109347271}
   One: {fileID: 9149581270020977748}
   Five: {fileID: 9043743803996230227}
   Ten: {fileID: 8825208295935746028}
@@ -14680,7 +14683,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577843632066836828}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 0.5
   m_Speed: 2
   m_Acceleration: 3000
@@ -14774,21 +14777,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6983761126032543891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577843632066836828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfb26dd7eedfbea418a0eb6d1f5e9c03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxesAvailable: []
-  boxesInUse: []
-  destination: {x: 0, y: 0, z: 0}
 --- !u!1 &1123153061537594973
 GameObject:
   m_ObjectHideFlags: 0
