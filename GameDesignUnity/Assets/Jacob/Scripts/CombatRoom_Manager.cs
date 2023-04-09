@@ -6,6 +6,7 @@ public class CombatRoom_Manager : MonoBehaviour
 {
     [Header("Combat room stats")]
     public bool InCombat;
+    public bool CanSpawn;
     public float TimeBeforeSpawn;
     public int TotalEnemiesToSpawn;
     public GameObject EnemySpawnAnim;
@@ -62,18 +63,18 @@ public class CombatRoom_Manager : MonoBehaviour
         {
          
             foreach (var item in Doors) { item.GetComponent<Animator>().SetBool("Closed", true); }
-            
-            SpawnTimer += Time.deltaTime;
+
+             SpawnTimer += Time.deltaTime; 
 
 
-            if (SpawnTimer >= TimeBeforeSpawn && CurrentNuts < MaxNuts && NutsToSpawn>0) { AttemptSpawn(Nuts, NutsElement, NutsToSpawn); }
-            if (SpawnTimer >= TimeBeforeSpawn && CurrentRizzards < MaxRizzards && RizzardsToSpawn > 0) { AttemptSpawn(Rizzard, RizzardElement, RizzardsToSpawn);  }
-            if (SpawnTimer >= TimeBeforeSpawn && CurrentFooters < MaxFooters && FootersToSpawn > 0) { AttemptSpawn(Footer, FooterElement, FootersToSpawn);  }
-            if (SpawnTimer >= TimeBeforeSpawn && CurrentTanks < MaxTanks && TanksToSpawn > 0) { AttemptSpawn(Tank, TankElement, TanksToSpawn); }
+            if (CanSpawn &&  SpawnTimer >= TimeBeforeSpawn && CurrentNuts < MaxNuts && NutsToSpawn>0) {  AttemptSpawn(Nuts, NutsElement, NutsToSpawn); }
+            if (CanSpawn && SpawnTimer >= TimeBeforeSpawn && CurrentRizzards < MaxRizzards && RizzardsToSpawn > 0) {  AttemptSpawn(Rizzard, RizzardElement, RizzardsToSpawn);  }
+            if (CanSpawn && SpawnTimer >= TimeBeforeSpawn && CurrentFooters < MaxFooters && FootersToSpawn > 0) { AttemptSpawn(Footer, FooterElement, FootersToSpawn);  }
+            if (CanSpawn && SpawnTimer >= TimeBeforeSpawn && CurrentTanks < MaxTanks && TanksToSpawn > 0) {  AttemptSpawn(Tank, TankElement, TanksToSpawn); }
 
            
             GetCurrentEnemies();
-            if (TotalEnemiesToSpawn == 0 && CurrentNuts == 0 && CurrentRizzards == 0 && CurrentFooters == 0 && CurrentTanks == 0)
+            if (TotalEnemiesToSpawn <= 0 && CurrentNuts <= 0 && CurrentRizzards <= 0 && CurrentFooters <= 0 && CurrentTanks <= 0)
             {
                 InCombat = false;
                 GM.OutCombat();
@@ -140,11 +141,11 @@ public class CombatRoom_Manager : MonoBehaviour
     }
     IEnumerator SpawnEnemy(GameObject Enemy, int Element, Transform Location)
     {
-        SpawnTimer = 0;
+        CanSpawn = false;
         GameObject NewSpawnAnim = Instantiate(EnemySpawnAnim, Location.position, Enemy.transform.rotation);
-        Destroy(NewSpawnAnim, 1f);
-        yield return new WaitForSeconds(0.75f);
-        GameObject NewEnemy =  Instantiate(Enemy, new Vector3(Location.position.x, Location.position.y+2f,Location.position.z), Enemy.transform.rotation);
+        Destroy(NewSpawnAnim, 0.8f);
+        yield return new WaitForSeconds(TimeBeforeSpawn);
+        GameObject NewEnemy =  Instantiate(Enemy, new Vector3(Location.position.x, Location.position.y+4f,Location.position.z), Enemy.transform.rotation);
         if (NewEnemy.CompareTag("Nuts"))
         {
             IsNutsBase = !IsNutsBase;
@@ -180,5 +181,7 @@ public class CombatRoom_Manager : MonoBehaviour
             TanksToSpawn--;
         }
         TotalEnemiesToSpawn--;
+        CanSpawn = true;
+        SpawnTimer = 0;
     }
 }

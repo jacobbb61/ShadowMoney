@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "Level3") { LatestLevel = 3; }
     }
 
-    public void Update()
+ /*   public void Update()
     {
         if (!Player)
         {
@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
             
         } 
     }
+ */
 
     public void RespawnPlayer()
     {
