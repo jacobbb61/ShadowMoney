@@ -134,7 +134,7 @@ public class Nuts_Manager : MonoBehaviour
         {
             Agent.speed = Speed;
         }
-        else { Agent.speed = 0; }
+        else { Agent.speed = 0.5f; }
 
         if (Vector3.Distance(transform.position, Player.transform.position) <= AttackRange && IsAttacking == false)
         {

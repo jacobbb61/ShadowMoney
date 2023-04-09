@@ -11128,9 +11128,9 @@ MonoBehaviour:
     type: 3}
   EnemyFireParticle: {fileID: 1995553336449100723}
   EnemyIceParticle: {fileID: 2170513510323781945}
-  Shoot1AnimTime: 0.75
-  Shoot2AnimTime: 1
-  BaseMeleeAnimTime: 0.75
+  Shoot1AnimTime: 0.5
+  Shoot2AnimTime: 0.5
+  BaseMeleeAnimTime: 0.5
   ApplyToSelfAnimTime: 0.5
   RightHandFire: {fileID: 6619716641157867351}
   LeftHandFire: {fileID: 3681858616840216368}

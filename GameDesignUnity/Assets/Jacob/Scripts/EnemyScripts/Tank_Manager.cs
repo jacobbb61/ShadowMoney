@@ -143,7 +143,7 @@ public class Tank_Manager : MonoBehaviour
 
 
         RaycastHit hit;
-        if (Physics.Raycast(GroundChecker.transform.position, -Vector3.up, out hit, 0.5f))
+        if (Physics.Raycast(GroundChecker.transform.position, -Vector3.up, out hit, 1.5f))
         {
 
             if (hit.transform.tag == "Ground" || hit.transform.tag == "Wall") { Grounded = true; }

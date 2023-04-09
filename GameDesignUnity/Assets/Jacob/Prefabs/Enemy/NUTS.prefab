@@ -48529,11 +48529,11 @@ MonoBehaviour:
   Ice: 0
   Void: 0
   Air: 0
-  NutsBaseSpeed: 3
+  NutsBaseSpeed: 4
   NutsBaseMovementRange: 10
-  NutsBaseAttackRange: 2
-  NutsProjectileSpeed: 1
-  NutsProjectileMovementRange: 10
+  NutsBaseAttackRange: 4
+  NutsProjectileSpeed: 2
+  NutsProjectileMovementRange: 8
   NutsProjectileAttackRange: 10
   IsProjectileNuts: 0
   Health: 1
@@ -48545,7 +48545,7 @@ MonoBehaviour:
   GroundChecker: {fileID: 7971844954111823737}
   Grounded: 0
   LowHealth: {fileID: 8994913597103813419}
-  TimeToAttack: 2
+  TimeToAttack: 1
   AttackTime: 0
   range: 1.5
   BulletType: {fileID: 5969615223017203397, guid: fb7943934cdb53a47930a52e6d4e576b,

@@ -144,7 +144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InCombat: 0
-  TimeBeforeSpawn: 1
+  CanSpawn: 1
+  TimeBeforeSpawn: 0.1
   TotalEnemiesToSpawn: 0
   EnemySpawnAnim: {fileID: 2985450566740301259, guid: decbd4a4ba9b5ec479cf7aa27b33951c,
     type: 3}
