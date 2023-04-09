@@ -23,7 +23,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     
 
-    private Vector3 playerVelocity;
+    public Vector3 playerVelocity;
     private Vector3 dashV;
     private Vector2 movementInput = Vector2.zero;
 
@@ -175,6 +175,12 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
 
     }
+
+    public void AirVent(float force)
+    {
+        playerVelocity.y += Mathf.Sqrt(force * -3.0f * gravityValue);
+    }
+    
     public void Move()
     {
         if (controller.enabled)
