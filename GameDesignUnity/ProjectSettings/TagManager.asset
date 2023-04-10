@@ -20,6 +20,7 @@ TagManager:
   - Boxes
   - BoxesAvailable
   - SuperDrop
+  - NavMesh
   layers:
   - Default
   - TransparentFX

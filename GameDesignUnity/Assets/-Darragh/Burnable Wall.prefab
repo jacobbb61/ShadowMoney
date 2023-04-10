@@ -9842,7 +9842,7 @@ Transform:
   m_GameObject: {fileID: 9145565524610126607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -20.0336, y: 4.5461, z: 1.25}
-  m_LocalScale: {x: 6.3673, y: 6.7923, z: 1}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1607190486348502228}
@@ -9910,8 +9910,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 1.2, z: 2.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0908753, y: 2.2049599, z: 1.1194468}
+  m_Center: {x: 0.0029056075, y: -0.017669678, z: 0.006351853}
 --- !u!65 &9145565524610126605
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9938,13 +9938,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EM: {fileID: 0}
-  Health: 10
-  MaxHealth: 10
-  TimeToStopBurning: 5
+  Health: 4
+  MaxHealth: 4
+  TimeToStopBurning: 2
   wall: {fileID: 9145565524610126604}
   Wood: {fileID: 2100000, guid: abfb6849d75fa894e80bb8b067e7a0f8, type: 2}
   BurntWood: {fileID: 2100000, guid: 8a7fade2af4ac8a42bbbe281965b404b, type: 2}
   FireParticles: {fileID: 9025688988158477076}
+  Navmeshes: []
+  NavCol1: {fileID: 9145565524610126605}
+  NavCol2: {fileID: 7611229567872064265}
 --- !u!114 &751678948223209529
 MonoBehaviour:
   m_ObjectHideFlags: 0

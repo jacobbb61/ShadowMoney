@@ -49207,18 +49207,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9145565524610126594, guid: 761bcec74d689794f9abc02d5887260b,
         type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3235488
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145565524610126594, guid: 761bcec74d689794f9abc02d5887260b,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.000000050847
       objectReference: {fileID: 0}
     - target: {fileID: 9145565524610126594, guid: 761bcec74d689794f9abc02d5887260b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.00000016172
       objectReference: {fileID: 0}
     - target: {fileID: 9145565524610126594, guid: 761bcec74d689794f9abc02d5887260b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.18752
       objectReference: {fileID: 0}
     - target: {fileID: 9145565524610126594, guid: 761bcec74d689794f9abc02d5887260b,
         type: 3}
@@ -49258,12 +49263,22 @@ PrefabInstance:
     - target: {fileID: 9145565524610126606, guid: 761bcec74d689794f9abc02d5887260b,
         type: 3}
       propertyPath: Health
-      value: 20
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145565524610126606, guid: 761bcec74d689794f9abc02d5887260b,
+        type: 3}
+      propertyPath: IsSheild
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9145565524610126606, guid: 761bcec74d689794f9abc02d5887260b,
         type: 3}
       propertyPath: MaxHealth
-      value: 20
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145565524610126606, guid: 761bcec74d689794f9abc02d5887260b,
+        type: 3}
+      propertyPath: TimeToStopBurning
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9145565524610126607, guid: 761bcec74d689794f9abc02d5887260b,
         type: 3}
