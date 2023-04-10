@@ -17,7 +17,7 @@ public class VoidPullExplosion : MonoBehaviour
             {
                 Vector3 direction = hit.transform.position - transform.position;
                 Vector3 explosiveForce = new Vector3(direction.x, direction.y, direction.z);
-                rb.AddForce((explosiveForce * 3 * 1.5f)*-1, ForceMode.Impulse);
+                rb.AddForce((explosiveForce * 5)*-1, ForceMode.Impulse);
             }
             
             if (hit.transform.CompareTag("Nuts")) { hit.gameObject.GetComponent<Nuts_Manager>().Push(); }

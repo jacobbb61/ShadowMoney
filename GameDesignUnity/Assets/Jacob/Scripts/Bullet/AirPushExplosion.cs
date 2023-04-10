@@ -24,7 +24,7 @@ public class AirPushExplosion : MonoBehaviour
             {
                  Vector3 direction = hit.transform.position - transform.position;
                  Vector3 explosiveForce = new Vector3(direction.x * Random.Range(1f, 2f), direction.y + 4 * Random.Range(1f, 2f), direction.z * Random.Range(1f, 2f)); //verticality
-                 rb.AddForce(explosiveForce * 4 * 1.5f, ForceMode.Impulse);      //force
+                 rb.AddForce(explosiveForce * 4, ForceMode.Impulse);      //force
 
 
             }
