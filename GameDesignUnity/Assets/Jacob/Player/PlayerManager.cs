@@ -211,7 +211,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     }
     public void MeleePull()
     {
-        if (Vector3.Distance(transform.position, PC.MeleePullDestination.transform.position) >= 5) { controller.Move(transform.forward * Time.deltaTime * 20); }
+       // if (Vector3.Distance(transform.position, PC.MeleePullDestination.transform.position) >= 5) { controller.Move(transform.forward * Time.deltaTime * 20); }
     }
 
 
