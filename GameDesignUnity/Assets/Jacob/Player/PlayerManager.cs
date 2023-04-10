@@ -57,10 +57,10 @@ public class PlayerManager : MonoBehaviour, IDamageable
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         UM = GameObject.FindGameObjectWithTag("UI").GetComponent<UI_Manager>();
         EM = GetComponent<Effects_Manager>();
-        //GM.RespawnPlayer();
+        GM.RespawnPlayer(this.gameObject);
         Health = 100;
         Time.timeScale = 1;
-        transform.position = Vector3.zero;
+       // transform.position = Vector3.zero;
         
     }
 

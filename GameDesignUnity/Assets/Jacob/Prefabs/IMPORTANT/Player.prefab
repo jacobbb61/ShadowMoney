@@ -11101,8 +11101,8 @@ MonoBehaviour:
   BulletV2: {fileID: 5969615223017203397, guid: 0f4ba40009ceeb546ac293df28694848,
     type: 3}
   BulletHolder: {fileID: 669387199697163958}
-  BaseMeleeDamage: 5
-  SuperEnergyCharges: 100
+  BaseMeleeDamage: 15
+  SuperEnergyCharges: 0
   SuperMeleeDamage: 100
   MeleePullDestination: {fileID: 0}
   SuperMeleeCollider: {fileID: 0}

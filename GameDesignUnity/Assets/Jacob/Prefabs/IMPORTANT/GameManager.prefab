@@ -185,7 +185,7 @@ MonoBehaviour:
   UnlockedAir: 0
   UnlockedVoid: 0
   UnlockedSuperPunch: 0
-  LastCheckPoint: {x: 0, y: 10, z: 0}
+  LastCheckPoint: {x: 0, y: 0, z: 0}
   L1_DoorA: 0
   L1_DoorB: 0
   L2_DoorA: 0

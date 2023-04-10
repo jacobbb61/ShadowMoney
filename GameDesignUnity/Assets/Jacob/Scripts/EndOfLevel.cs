@@ -33,6 +33,7 @@ public class EndOfLevel : MonoBehaviour
             StartCoroutine(ExitAnim());
             other.gameObject.SetActive(false);
             GM.Music.SetActive(false);
+            GM.LastCheckPoint = Vector3.zero;
         }
     }
 

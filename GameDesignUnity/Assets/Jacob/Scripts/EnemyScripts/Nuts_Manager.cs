@@ -24,6 +24,10 @@ public class Nuts_Manager : MonoBehaviour
     public int NutsProjectileSpeed;
     public int NutsProjectileMovementRange;
     public int NutsProjectileAttackRange;
+    public GameObject NutsProjectileAssets;
+    public GameObject NutsMeleeAssets;
+    public Animator NutsProjectileAnimator;
+    public Animator NutsMeleeAnimator;
 
     [Header("Stats & other")]
     public bool IsProjectileNuts;
@@ -40,8 +44,6 @@ public class Nuts_Manager : MonoBehaviour
 
     [Header("Attack")]
     public float TimeToAttack;
-    public float AttackTime;
-    public float range;
     public GameObject BulletType;
     public GameObject BulletPoint;
     
@@ -62,11 +64,17 @@ public class Nuts_Manager : MonoBehaviour
     [Header("Air Push")]
     public bool IsPushed;
 
-    [Header("Current Element Particles")]
-    public GameObject CurrentlyFireParticles;
-    public GameObject CurrentlyIceParticles;
-    public GameObject CurrentlyVoidParticles;
-    public GameObject CurrentlyAirParticles;
+    [Header("Current Element Particles P")]
+    public GameObject CurrentlyFireParticlesP;
+    public GameObject CurrentlyIceParticlesP;
+    public GameObject CurrentlyVoidParticlesP;
+    public GameObject CurrentlyAirParticlesP;
+
+    [Header("Current Element Particles M")]
+    public GameObject CurrentlyFireParticlesM;
+    public GameObject CurrentlyIceParticlesM;
+    public GameObject CurrentlyVoidParticlesM;
+    public GameObject CurrentlyAirParticlesM;
 
 
     [Header("Damage Numbers")]
@@ -92,14 +100,36 @@ public class Nuts_Manager : MonoBehaviour
         Grounded = true;
         Agent.enabled = true;
         if (Fire == false && Ice == false && Void == false && Air == false) { Fire = true; }
-        if (Fire) { CurrentlyFireParticles.SetActive(true); }
-        if (Ice) { CurrentlyIceParticles.SetActive(true); }
-        if (Void) { CurrentlyVoidParticles.SetActive(true); }
-        if (Air) { CurrentlyAirParticles.SetActive(true); }
+        if (Fire) { CurrentlyFireParticlesP.SetActive(true); CurrentlyFireParticlesM.SetActive(true); }
+        if (Ice) { CurrentlyIceParticlesP.SetActive(true); CurrentlyIceParticlesM.SetActive(true); }
+        if (Void) { CurrentlyVoidParticlesP.SetActive(true); CurrentlyVoidParticlesM.SetActive(true); }
+        if (Air) { CurrentlyAirParticlesP.SetActive(true); CurrentlyAirParticlesM.SetActive(true); }
+
+        StartCoroutine(Spawn());
     }
+
+    IEnumerator Spawn()
+    {
+        Agent.enabled = false;
+        if (IsProjectileNuts) 
+        { 
+            NutsProjectileAssets.SetActive(true);
+            NutsMeleeAssets.SetActive(false);
+            Anim = NutsProjectileAnimator;
+        }
+        else
+        {
+            NutsProjectileAssets.SetActive(false);
+            NutsMeleeAssets.SetActive(true);
+            Anim = NutsMeleeAnimator;
+        }
+        yield return new WaitForSeconds(0.1f);
+        Agent.enabled = true;
+    }
+
     void Update()
     {
-           GroundCheck();
+        GroundCheck();
         if (Agent.enabled && Grounded) 
         { 
             if (IsProjectileNuts) { MovementAndAttack(NutsProjectileSpeed, NutsProjectileAttackRange, NutsProjectileMovementRange); } 
@@ -113,13 +143,12 @@ public class Nuts_Manager : MonoBehaviour
             LowHealth.SetActive(true);
         }
 
-            if (Health <= 0)
+        if (Health <= 0 && Health > -100)
         {
             Death();
         }
 
-
-        if (IsAttacking) { Attack(); }            
+         
         if (EM.IsFrozen) { Frozen(); }
         if (EM.IsBurning) { Burning(); }
 
@@ -129,16 +158,20 @@ public class Nuts_Manager : MonoBehaviour
     void MovementAndAttack(int Speed, int AttackRange, int MovementRange)
     { 
         Agent.SetDestination(Player.transform.position);
-
-        if (Vector3.Distance(transform.position, Player.transform.position) <= MovementRange)
+        
+        if (Vector3.Distance(transform.position, Player.transform.position) <= MovementRange && IsAttacking == false)
         {
-            Agent.speed = Speed;
+            Agent.speed = Speed; Anim.SetBool("Walk", true);
+            Agent.angularSpeed = 2000f;
+   
         }
-        else { Agent.speed = 0.5f; }
+        else { Agent.speed = 0.01f; Anim.SetBool("Walk", false); }
 
-        if (Vector3.Distance(transform.position, Player.transform.position) <= AttackRange && IsAttacking == false)
+        if (Vector3.Distance(transform.position, Player.transform.position) <= AttackRange && CanAttack == true)
         {
-            IsAttacking = true;
+            StartCoroutine(Attack());
+            Anim.SetBool("Walk", false);
+            Anim.SetTrigger("Attack");
         }
     }
 
@@ -160,19 +193,25 @@ public class Nuts_Manager : MonoBehaviour
 
        
     }
-    public void Attack()
+    public IEnumerator Attack()
     {
-        Agent.speed = 0.1f;
-        Anim.Play("NutsAttack");
-        AttackTime += Time.deltaTime;
+        IsAttacking = true;
+        CanAttack = false;
+        Agent.speed = 1f;
+        Agent.angularSpeed = 200f;
+        Anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(0.1f);
+        Agent.speed = 0f;
         BulletPoint.transform.LookAt(Player.transform.position);
-        if (AttackTime >= TimeToAttack)
-            {
-                Shoot(BulletType);          
-                AttackTime = 0;
-                IsAttacking = false;
+        yield return new WaitForSeconds(0.8f);
+       
+        Shoot(BulletType);
+        yield return new WaitForSeconds(0.25f);
+        IsAttacking = false;
+        yield return new WaitForSeconds(0.75f);
+        CanAttack = true;
             
-            }
+
     }
     public void Shoot(GameObject Bullet)
     {
@@ -234,15 +273,20 @@ public class Nuts_Manager : MonoBehaviour
     }
     public void Death()
     {
+        Health = -100;
+        Anim.SetTrigger("Death");
         Agent.enabled = false;
+        Destroy(this.gameObject,1f);
         GameObject A1 = Instantiate(HealthDrop);
         A1.transform.position = transform.position;
 
         GameObject A3 = Instantiate(SuperEnergyDrop);
         A3.transform.position = transform.position;
+  
 
 
-        Destroy(this.gameObject);
+        
+        
     }
 
     public IEnumerator DamageNumbers(GameObject Num)

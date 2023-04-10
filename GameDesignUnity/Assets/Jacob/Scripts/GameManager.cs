@@ -109,8 +109,9 @@ public class GameManager : MonoBehaviour
     }
  */
 
-    public void RespawnPlayer()
+    public void RespawnPlayer(GameObject P)
     {
+        Player = P;
         Debug.Log("A");
         UpdateTutorials();
         MusicState();
