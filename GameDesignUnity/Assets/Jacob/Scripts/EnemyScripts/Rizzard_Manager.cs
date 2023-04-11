@@ -139,7 +139,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
 
     public void GroundCheck()
     {
-        if (IsPushed && Grounded == true) { Agent.enabled = true; IsPushed = false; myRB.constraints = RigidbodyConstraints.FreezeAll; }
+        if (IsPushed && Grounded == true) { Agent.enabled = true; IsPushed = false;  }
 
 
         RaycastHit hit;

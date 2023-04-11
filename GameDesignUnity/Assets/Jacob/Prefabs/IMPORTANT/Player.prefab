@@ -11075,7 +11075,8 @@ MonoBehaviour:
   GM: {fileID: 0}
   EM: {fileID: 5432166676462643460}
   UM: {fileID: 0}
-  playerSpeed: 10
+  playerVelocity: {x: 0, y: 0, z: 0}
+  playerSpeed: 12
   jumpHeight: 6
   dashSpeed: 35
   groundedPlayer: 0
@@ -11129,7 +11130,7 @@ MonoBehaviour:
   EnemyFireParticle: {fileID: 1995553336449100723}
   EnemyIceParticle: {fileID: 2170513510323781945}
   Shoot1AnimTime: 0.5
-  Shoot2AnimTime: 0.5
+  Shoot2AnimTime: 0.25
   BaseMeleeAnimTime: 0.5
   ApplyToSelfAnimTime: 0.5
   RightHandFire: {fileID: 6619716641157867351}

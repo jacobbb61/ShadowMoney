@@ -57,12 +57,13 @@ public class TutorialManager : MonoBehaviour
         PCam.enabled = false;
         PC.enabled = false;
         StartCoroutine(WaitToExit());
-        Time.timeScale = 0.1f; 
+        Time.timeScale = 0.001f;
+        Player.GetComponent<PlayerManager>().playerVelocity = Vector3.zero;
     }
 
     IEnumerator WaitToExit()
     {  
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.001f);
         MainExitPromptUI.SetActive(true);
         On = true;
     }

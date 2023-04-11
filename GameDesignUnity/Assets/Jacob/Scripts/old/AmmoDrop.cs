@@ -22,6 +22,7 @@ public class AmmoDrop : MonoBehaviour
 
 
         Destroy(this, 0.1f);
+        Destroy(gameObject, 20f);
     }
 
 

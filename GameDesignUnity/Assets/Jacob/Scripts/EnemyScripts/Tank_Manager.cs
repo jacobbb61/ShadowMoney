@@ -94,7 +94,7 @@ public class Tank_Manager : MonoBehaviour
     void Update()
     {
         GroundCheck();
-        if (Agent.enabled && Grounded)
+        if (Agent.enabled && Grounded && IsPushed==false)
         {
             Agent.SetDestination(Player.transform.position);
         }
@@ -139,7 +139,7 @@ public class Tank_Manager : MonoBehaviour
 
     public void GroundCheck()
     {
-        if (IsPushed && Grounded == true) { Agent.enabled = true; IsPushed = false; myRB.constraints = RigidbodyConstraints.FreezeAll; }
+        if (IsPushed && Grounded == true) { Agent.enabled = true; IsPushed = false;  }
 
 
         RaycastHit hit;

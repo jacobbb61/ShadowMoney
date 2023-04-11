@@ -180,7 +180,7 @@ public class Nuts_Manager : MonoBehaviour
 
     public void GroundCheck()
     {    
-        if (IsPushed && Grounded==true) { Agent.enabled = true; IsPushed = false; myRB.constraints = RigidbodyConstraints.FreezeAll; }
+        if (IsPushed && Grounded==true) { Agent.enabled = true; IsPushed = false;  }
      
 
         RaycastHit hit;
