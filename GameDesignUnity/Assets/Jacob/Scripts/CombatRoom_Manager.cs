@@ -166,11 +166,12 @@ public class CombatRoom_Manager : MonoBehaviour
         }
         if (NewEnemy.CompareTag("Footer"))
         {
-            //   if (Element == 1) { NewEnemy.GetComponent<Nuts_Manager>().Fire = true; }
-            //   if (Element == 2) { NewEnemy.GetComponent<Nuts_Manager>().Ice = true; }
-            //   if (Element == 3) { NewEnemy.GetComponent<Nuts_Manager>().Void = true; }
-            //  if (Element == 4) { NewEnemy.GetComponent<Nuts_Manager>().Air = true; }
-            // TanksToSpawn--;
+               if (Element == 1) { NewEnemy.GetComponent<Footer_Manager>().Fire = true; }
+               if (Element == 2) { NewEnemy.GetComponent<Footer_Manager>().Ice = true; }
+               if (Element == 3) { NewEnemy.GetComponent<Footer_Manager>().Void = true; }
+              if (Element == 4) { NewEnemy.GetComponent<Footer_Manager>().Air = true; }
+             FootersToSpawn--;
+            NewEnemy.GetComponent<Footer_Manager>().TeleportBounds = EnemySpawnBounds;
         }
         if (NewEnemy.CompareTag("Tank"))
         {

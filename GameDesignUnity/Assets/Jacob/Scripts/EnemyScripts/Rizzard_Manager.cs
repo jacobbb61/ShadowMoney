@@ -95,17 +95,17 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     {
         GroundCheck();
 
-    
-       /* CS.boxesAvailable = GameObject.FindGameObjectsWithTag("BoxesAvailable");
 
-        if (CS.boxesAvailable.Length >= 2)
-        {
-         //   CS.boxSelector();
-        }
-       
-        if (Agent.enabled && Grounded) { CS.navigation();}
-*/
-        if (Health <= 0)
+        /* CS.boxesAvailable = GameObject.FindGameObjectsWithTag("BoxesAvailable");
+
+         if (CS.boxesAvailable.Length >= 2)
+         {
+          //   CS.boxSelector();
+         }
+
+         if (Agent.enabled && Grounded) { CS.navigation();}
+ */
+        if (Health <= 0 && Health < 1000)
         {
             Death();
         }
@@ -231,6 +231,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     }
     public void Death()
     {
+        Health = 100000;
         Agent.enabled = false;
         GameObject A1 = Instantiate(ProjectileDrop);
         A1.transform.position = transform.position;
