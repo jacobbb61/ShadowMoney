@@ -4995,3 +4995,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c5f9b5599dc9844b78c6f877319b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 1
+  currentHealth: 0
+  barrel: {fileID: 9219061098081262597}
+  waterPuddle: {fileID: 199979799567832090, guid: b949e3551bee2e44796e880f4931f268,
+    type: 3}
+  EM: {fileID: 8007665532117076630}
+  TimeToBreakFreeze: 3
+  FrozenParticles: {fileID: 252996276406189421}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7058605358447381322}
   - component: {fileID: 2240617552373566789}
   - component: {fileID: 3361745713117555183}
-  m_Layer: 2
+  m_Layer: 6
   m_Name: PS_Fire_ADD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4835,7 +4835,7 @@ GameObject:
   - component: {fileID: 5932277730160154496}
   - component: {fileID: 4466934272719356682}
   - component: {fileID: 3391574259401415844}
-  m_Layer: 2
+  m_Layer: 6
   m_Name: PS_Fire_ALPHA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9658,7 +9658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 599162021722323079}
   - component: {fileID: 3090458469947670268}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9785,7 +9785,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1607190486348502228}
-  m_Layer: 2
+  m_Layer: 6
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9826,7 +9826,7 @@ GameObject:
   - component: {fileID: 9145565524610126606}
   - component: {fileID: 751678948223209529}
   - component: {fileID: 9145565524610126593}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Burnable Wall
   m_TagString: Ground
   m_Icon: {fileID: 0}

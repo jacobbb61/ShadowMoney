@@ -293,16 +293,16 @@ public class Footer_Manager : MonoBehaviour
         Anim.Play("Headfoot-death");
         Agent.enabled = false;
         GameObject A1 = Instantiate(HealthDrop);
-        A1.transform.position = transform.position;
+        A1.transform.position = BulletPoint.transform.position;
 
         GameObject A2 = Instantiate(SuperEnergyDrop);
-        A2.transform.position = transform.position;
+        A2.transform.position = BulletPoint.transform.position;
 
         GameObject A3 = Instantiate(HealthDrop);
-        A3.transform.position = transform.position;
+        A3.transform.position = BulletPoint.transform.position;
 
         GameObject A4 = Instantiate(SuperEnergyDrop);
-        A4.transform.position = transform.position;
+        A4.transform.position = BulletPoint.transform.position;
 
         Destroy(this.gameObject,1f);
     }

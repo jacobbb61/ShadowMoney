@@ -134,7 +134,7 @@ MonoBehaviour:
   currentHealth: 1
   barrel: {fileID: 4608528984614108519}
   explosion: {fileID: 141070, guid: 805832771bf9f5f48bead8310975480e, type: 3}
-  EM: {fileID: 0}
+  EM: {fileID: 3397005944557153268}
   power: 500
   explosiveLift: 100
   explosionDamage: 20

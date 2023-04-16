@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3492677976743664098}
   - component: {fileID: 6680525414906202259}
   - component: {fileID: 2193298384059448501}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8124874833910652957}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor5
   m_TagString: Ground
   m_Icon: {fileID: 0}
