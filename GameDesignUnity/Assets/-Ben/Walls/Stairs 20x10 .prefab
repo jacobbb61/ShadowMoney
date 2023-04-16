@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8514411225000464526}
   - component: {fileID: 744672667096559834}
   - component: {fileID: 6355108847760084603}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7988,7 +7988,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1243241655826676030}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'Stairs 20x10 '
   m_TagString: Ground
   m_Icon: {fileID: 0}

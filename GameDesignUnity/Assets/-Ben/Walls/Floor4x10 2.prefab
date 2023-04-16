@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5868320735837920614}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor4x10 2
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1281643660333425817}
   - component: {fileID: 9008556582318437864}
   - component: {fileID: 4593958872768692686}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
