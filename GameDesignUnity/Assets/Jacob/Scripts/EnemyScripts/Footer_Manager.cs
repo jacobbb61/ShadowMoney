@@ -107,7 +107,7 @@ public class Footer_Manager : MonoBehaviour
             Death();
         }
 
-        if (Vector3.Distance(transform.position, Player.transform.position) <= CloseRange && CanAttack == true)
+        if (Vector3.Distance(transform.position, Player.transform.position) <= CloseRange && CanAttack == true && EM.IsFrozen == false)
         {
             StartCoroutine(Teleport());
             IsAttacking = true;

@@ -23,8 +23,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     [Header("Stats & other")]
     public int Health;
     public int MaxHealth;
-    public GameObject ProjectileDrop;
-    public GameObject ElementDrop;
+    public GameObject SuperEnergyDrop;
     public GameObject HealthDrop;
     public GameObject GroundChecker;
     public bool Grounded;
@@ -233,14 +232,17 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     {
         Health = 100000;
         Agent.enabled = false;
-        GameObject A1 = Instantiate(ProjectileDrop);
+        GameObject A1 = Instantiate(HealthDrop);
         A1.transform.position = transform.position;
 
-        GameObject A3 = Instantiate(ElementDrop);
+        GameObject A2 = Instantiate(SuperEnergyDrop);
+        A2.transform.position = transform.position;
+
+        GameObject A3 = Instantiate(HealthDrop);
         A3.transform.position = transform.position;
 
-        GameObject A5 = Instantiate(HealthDrop);
-        A5.transform.position = transform.position;
+        GameObject A4 = Instantiate(SuperEnergyDrop);
+        A4.transform.position = transform.position;
 
         Destroy(this.gameObject);
     }

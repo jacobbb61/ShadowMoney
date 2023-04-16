@@ -25,6 +25,9 @@ namespace UnityEngine.AI
         public BoxCollider NavCol1;
         public BoxCollider NavCol2;
 
+
+        public BoxCollider NavMesH;
+
         public bool IsSheild;
 
         private void Start()
@@ -53,14 +56,8 @@ namespace UnityEngine.AI
             wall.enabled = false;
             yield return new WaitForSeconds(.1f);
 
-            if (IsSheild == false)
-            {
-                foreach (GameObject item in Navmeshes)
-                {
-                    item.GetComponent<NavMeshSurface>().BuildNavMesh();
-                    Debug.Log("build");
-                }
-            }
+           GetComponentInParent<NavMeshSurface>().BuildNavMesh();
+                   
             yield return new WaitForSeconds(.1f);
             Destroy(gameObject);
         }

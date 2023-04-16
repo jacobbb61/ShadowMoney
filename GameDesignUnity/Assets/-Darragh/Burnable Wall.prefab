@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53768746121537965}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0015700017, y: -0.0048299534, z: -0.101}
+  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.0015700012, y: 0.5025903, z: -0.05074234}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1607190486348502228}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!198 &2240617552373566789
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4849,14 +4849,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802401454053315909}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0015700017, y: -0.0048299534, z: -0.10100053}
+  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.0015700012, y: 0.5025903, z: -0.05074234}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1607190486348502228}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!198 &4466934272719356682
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -9672,14 +9672,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3108994321794432246}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.5074161, z: -0.0502594}
   m_LocalScale: {x: 0.07852622, y: 0.073612764, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1607190486348502228}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!82 &3090458469947670268
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9828,7 +9828,7 @@ GameObject:
   - component: {fileID: 9145565524610126593}
   m_Layer: 0
   m_Name: Burnable Wall
-  m_TagString: Wall
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -9938,9 +9938,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EM: {fileID: 0}
-  Health: 4
-  MaxHealth: 4
-  TimeToStopBurning: 2
+  Health: 3
+  MaxHealth: 3
+  TimeToStopBurning: 4
   wall: {fileID: 9145565524610126604}
   Wood: {fileID: 2100000, guid: abfb6849d75fa894e80bb8b067e7a0f8, type: 2}
   BurntWood: {fileID: 2100000, guid: 8a7fade2af4ac8a42bbbe281965b404b, type: 2}
@@ -9948,6 +9948,8 @@ MonoBehaviour:
   Navmeshes: []
   NavCol1: {fileID: 9145565524610126605}
   NavCol2: {fileID: 7611229567872064265}
+  NavMesH: {fileID: 0}
+  IsSheild: 0
 --- !u!114 &751678948223209529
 MonoBehaviour:
   m_ObjectHideFlags: 0

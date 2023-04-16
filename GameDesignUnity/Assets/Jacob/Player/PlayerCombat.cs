@@ -285,17 +285,17 @@ public class PlayerCombat : MonoBehaviour
                 EnemyHit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
 
-
+                if (EnemyHit.transform.CompareTag("Nuts")) { EnemyHit.transform.GetComponent<Nuts_Manager>().Health -= BaseMeleeDamage;  }
+                if (EnemyHit.transform.CompareTag("Rizzard")) { EnemyHit.transform.GetComponent<Rizzard_Manager>().Health -= BaseMeleeDamage; }
+                if (EnemyHit.transform.CompareTag("Footer")) { EnemyHit.transform.GetComponent<Footer_Manager>().Health -= BaseMeleeDamage; }
+                if (EnemyHit.transform.CompareTag("Tank")) { EnemyHit.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
 
                 Anim.Play("PlayerBaseMelee");
                 yield return new WaitForSeconds(0.5f);
                
                 MeleePull = false;
 
-                if (EnemyHit.transform.CompareTag("Nuts")) { EnemyHit.transform.GetComponent<Nuts_Manager>().Health -= BaseMeleeDamage;  }
-                if (EnemyHit.transform.CompareTag("Rizzard")) { EnemyHit.transform.GetComponent<Rizzard_Manager>().Health -= BaseMeleeDamage; }
-                //if (EnemyHit.transform.CompareTag("Footer")) { EnemyHit.transform.GetComponent<Footer_Manager>().Health -= BaseMeleeDamage; }
-                 if (EnemyHit.transform.CompareTag("Tank")) { EnemyHit.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
+                
 
                 if (CurrentElement == 1) { MEM.IsBurning = true; }
                 else if (CurrentElement == 2) { MEM.IsFrozen = true; }

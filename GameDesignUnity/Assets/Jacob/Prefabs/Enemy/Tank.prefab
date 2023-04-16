@@ -24588,10 +24588,10 @@ MonoBehaviour:
     type: 3}
   GroundChecker: {fileID: 9169173807962954362}
   Grounded: 0
-  TimeToAttack: 2
+  TimeToAttack: 1.5
   AttackTime: 0
-  CloseRange: 8
-  FarRange: 12
+  CloseRange: 10
+  FarRange: 15
   CloseBulletType: {fileID: 5969615223017203397, guid: a2ad87cc4afb21841bc306f8b57762dd,
     type: 3}
   FarBulletType: {fileID: 5969615223017203397, guid: a2ad87cc4afb21841bc306f8b57762dd,
@@ -24641,7 +24641,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9169173806482206843}
   m_Enabled: 1
-  m_AgentTypeID: -334000983
+  m_AgentTypeID: -1372625422
   m_Radius: 0.5
   m_Speed: 1
   m_Acceleration: 10

@@ -14622,9 +14622,7 @@ MonoBehaviour:
   Air: 0
   Health: 0
   MaxHealth: 30
-  ProjectileDrop: {fileID: 5385439318775555737, guid: 8ecd2e0e7ceab4144853f96e118cfb03,
-    type: 3}
-  ElementDrop: {fileID: 8037703561013036194, guid: 6dd8b3506e13c9248aba096df22e167f,
+  SuperEnergyDrop: {fileID: 1660985183080485684, guid: 139cd6cdd9cd1f14a92cc703a75531ff,
     type: 3}
   HealthDrop: {fileID: 1660985183080485684, guid: 28dcb3537d4544749a7a5f7cefa4b96a,
     type: 3}
@@ -14635,8 +14633,6 @@ MonoBehaviour:
   CloseBulletType: {fileID: 5969615223017203397, guid: 4b15f20bf49feff40aa50f61460c1432,
     type: 3}
   FarBulletType: {fileID: 5969615223017203397, guid: fb7943934cdb53a47930a52e6d4e576b,
-    type: 3}
-  Far2BulletType: {fileID: 5969615223017203397, guid: e729f1c826d659b46bf61af4d4d236d4,
     type: 3}
   CloseRange: 10
   FarRange: 50

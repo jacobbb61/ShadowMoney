@@ -267,6 +267,17 @@ public class Tank_Manager : MonoBehaviour
         GameObject A4 = Instantiate(SuperEnergyDrop);
         A4.transform.position = transform.position;
 
+        GameObject A5 = Instantiate(HealthDrop);
+        A5.transform.position = transform.position;
+
+        GameObject A6 = Instantiate(SuperEnergyDrop);
+        A6.transform.position = transform.position;
+
+        GameObject A7 = Instantiate(HealthDrop);
+        A7.transform.position = transform.position;
+
+        GameObject A8 = Instantiate(SuperEnergyDrop);
+        A8.transform.position = transform.position;
         Destroy(this.gameObject);
     }
 

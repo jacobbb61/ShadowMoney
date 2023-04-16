@@ -4954,6 +4954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EM: {fileID: 0}
+  TeleportBounds: {fileID: 0}
   Fire: 0
   Ice: 0
   Void: 0
@@ -4968,6 +4969,7 @@ MonoBehaviour:
   GroundChecker: {fileID: 2244557426706142807}
   Assets: {fileID: 5055728528842855277}
   Grounded: 0
+  TelePos: {x: 0, y: 0, z: 0}
   TimeToAttack: 2
   AttackTime: 0
   CloseRange: 10
@@ -5014,7 +5016,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213883657453943424}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
