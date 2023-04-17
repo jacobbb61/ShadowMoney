@@ -1,3 +1,0 @@
-.fbx filter=lfs diff=lfs merge=lfs -text
-.unity filter=lfs diff=lfs merge=lfs -text
-D:/College[[:space:]]Work/GameDesign/Game_Design_Repo/GameDesignUnity/Assets/Scenes/LEVELS/Level2.unity filter=lfs diff=lfs merge=lfs -text
