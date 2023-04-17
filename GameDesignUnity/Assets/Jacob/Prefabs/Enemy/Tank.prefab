@@ -24266,7 +24266,7 @@ MonoBehaviour:
   Air: 0
   Health: 100
   MaxHealth: 100
-  WalkSpeed: 1.5
+  WalkSpeed: 3
   SuperEnergyDrop: {fileID: 1660985183080485684, guid: 139cd6cdd9cd1f14a92cc703a75531ff,
     type: 3}
   HealthDrop: {fileID: 1660985183080485684, guid: 28dcb3537d4544749a7a5f7cefa4b96a,
@@ -24276,7 +24276,7 @@ MonoBehaviour:
   TimeToAttack: 3
   AttackTime: 0
   CloseRange: 10
-  FarRange: 30
+  FarRange: 20
   FarBulletType: {fileID: 5969615223017203397, guid: a2ad87cc4afb21841bc306f8b57762dd,
     type: 3}
   BulletPoint: {fileID: 2374775825169558546}

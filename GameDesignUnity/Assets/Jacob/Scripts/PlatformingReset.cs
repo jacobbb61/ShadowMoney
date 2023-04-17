@@ -33,6 +33,7 @@ public class PlatformingReset : MonoBehaviour
     {
         Player.transform.position = GM.PlatformingResetPos.transform.position;
         Player.GetComponent<CharacterController>().enabled = true;
+        if (Player.GetComponent<PlayerManager>().Health >10) { Player.GetComponent<PlayerManager>().Health -= 10; }
         Debug.Log("A");
     }
 
