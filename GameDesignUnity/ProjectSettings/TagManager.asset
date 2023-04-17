@@ -21,6 +21,7 @@ TagManager:
   - BoxesAvailable
   - SuperDrop
   - NavMesh
+  - TankMelee
   layers:
   - Default
   - TransparentFX

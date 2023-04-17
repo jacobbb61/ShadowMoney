@@ -138,6 +138,10 @@ public class Nuts_Manager : MonoBehaviour
                 MovementAndAttack(NutsBaseSpeed, NutsBaseAttackRange, NutsBaseMovementRange);
             }
         }
+        else
+        {
+            Push();
+        }
         if (Health <= 5)
         {
             LowHealth.SetActive(true);
@@ -189,7 +193,7 @@ public class Nuts_Manager : MonoBehaviour
             
             if (hit.transform.tag == "Ground" || hit.transform.tag == "Wall") { Grounded = true; } 
            
-        } else { Grounded = false; }
+        } else { Grounded = false; Agent.enabled = false; }
 
        
     }
@@ -232,11 +236,13 @@ public class Nuts_Manager : MonoBehaviour
         FrozenParticles.SetActive(true);
         CanAttack = false;
         Agent.speed = 0;
+        Anim.speed = 0f;
         FrozenTime += Time.deltaTime;
         if (FrozenTime >= TimeToBreakFreeze)
         {
             FrozenParticles.SetActive(false);
             FrozenTime = 0;
+            Anim.speed = 1f;
             CanAttack = true;
             Agent.speed = BaseSpeed;
             EM.IsFrozen = false;

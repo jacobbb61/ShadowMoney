@@ -244,11 +244,13 @@ public class Footer_Manager : MonoBehaviour
         FrozenParticles.SetActive(true);
         CanAttack = false;
         Agent.speed = 0;
+        Anim.speed = 0f;
         FrozenTime += Time.deltaTime;
         if (FrozenTime >= TimeToBreakFreeze)
         {
             FrozenParticles.SetActive(false);
             FrozenTime = 0;
+            Anim.speed = 1f;
             CanAttack = true;
             Agent.speed = BaseSpeed;
             EM.IsFrozen = false;

@@ -60,8 +60,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
         GM.RespawnPlayer(this.gameObject);
         Health = 100;
         Time.timeScale = 1;
-       // transform.position = Vector3.zero;
-        
+        // transform.position = Vector3.zero;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Update()
@@ -304,11 +304,24 @@ public class PlayerManager : MonoBehaviour, IDamageable
         {
             if (PC.SuperEnergyCharges < 9) { PC.SuperEnergyCharges++; Destroy(other.gameObject); }
         }
+        else if (other.CompareTag("TankMelee"))
+        {
+            Health -= 20 - DamageReduction;
+
+            Effects_Manager BEM;
+            BEM = other.GetComponentInParent<Effects_Manager>();
+            if (BEM.FireEffect) { EM.IsBurning = true; }
+            else if (BEM.IceEffect) { EM.IsFrozen = true; }
+            else if (BEM.VoidEffect) { EnemyVoidEffect(other.gameObject); }
+            else if (BEM.AirEffect) { EnemyAirEffect(other.gameObject); }
+            else { return; }
+        }
     }
 
     public void TakeDamage(int amt)
     {
         Health -= amt;
+
     }
 
 }

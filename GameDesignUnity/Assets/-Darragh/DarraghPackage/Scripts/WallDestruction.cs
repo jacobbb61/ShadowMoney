@@ -35,7 +35,7 @@ namespace UnityEngine.AI
             Navmeshes = GameObject.FindGameObjectsWithTag("NavMesh");
 
             Health = MaxHealth;
-            GetComponent<Renderer>().material = Wood;
+            if (!IsSheild) { GetComponent<Renderer>().material = Wood; }
             EM = GetComponent<Effects_Manager>();
         }
 
@@ -51,12 +51,23 @@ namespace UnityEngine.AI
 
         public IEnumerator Death()
         {
-            NavCol1.enabled = false;
-            NavCol2.enabled = false;
-            wall.enabled = false;
+            if (!IsSheild)
+            {
+                NavCol1.enabled = false;
+                NavCol2.enabled = false;
+                wall.enabled = false;
+            }
+            else
+            {
+                NavCol1.enabled = false;
+            }
+
             yield return new WaitForSeconds(.1f);
 
-           GetComponentInParent<NavMeshSurface>().BuildNavMesh();
+            if (!IsSheild)
+            {
+                GetComponentInParent<NavMeshSurface>().BuildNavMesh();
+            }
                    
             yield return new WaitForSeconds(.1f);
             Destroy(gameObject);
@@ -70,7 +81,10 @@ namespace UnityEngine.AI
         }
         public void WallBurnt()
         {
-            GetComponent<Renderer>().material = BurntWood;
+            if (!IsSheild)
+            {
+                GetComponent<Renderer>().material = BurntWood;
+            }
             FireParticles.SetActive(true);
             _BurningTime += Time.deltaTime;
             if (_BurningTime >= TickTime) { TickTime++; Health--; }
@@ -143,6 +157,7 @@ namespace UnityEngine.AI
                 if (BEM.IceEffect) { EM.IsFrozen = true; }
                 if (BEM.VoidEffect) { }
                 if (BEM.AirEffect) { }
+                Destroy(other);
             }
             else { return; }
 

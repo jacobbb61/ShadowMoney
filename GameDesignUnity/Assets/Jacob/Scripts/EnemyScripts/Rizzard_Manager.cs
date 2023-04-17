@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Rizzard_Manager : MonoBehaviour,IDamageable
 {
     public NavMeshAgent Agent;
+    Animator Anim;
     public GameObject Player;
     Rigidbody myRB;
     RizzardCoverSeeking CS;
@@ -23,15 +24,14 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     [Header("Stats & other")]
     public int Health;
     public int MaxHealth;
+    public float WalkSpeed;
     public GameObject SuperEnergyDrop;
     public GameObject HealthDrop;
     public GameObject GroundChecker;
     public bool Grounded;
 
     [Header("Attack")]
-    private bool IsAttackingClose;
-    private bool IsAttackingFar;
-    private bool IsAttackingFar2;
+    private bool IsAttacking;
     public float TimeToAttack;
     private float AttackTime;
     public GameObject BulletPoint;
@@ -74,6 +74,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
 
     void Start()
     {
+        Anim = GetComponent<Animator>();
         Agent = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player");
         myRB = GetComponent<Rigidbody>();
@@ -108,31 +109,26 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
         {
             Death();
         }
-
+        if (Agent.enabled && Grounded) { Agent.SetDestination(Player.transform.position); }
+        else
+        {
+            Push();
+        }
 
         if (Vector3.Distance(transform.position, Player.transform.position) <= CloseRange && CanAttack==true)
         {
-            IsAttackingClose = true;
+            StartCoroutine(CloseAttack());
         }
         else if (Vector3.Distance(transform.position, Player.transform.position) > CloseRange && Vector3.Distance(transform.position, Player.transform.position) < FarRange && CanAttack == true)
         {
-            IsAttackingFar = true;
+            StartCoroutine(FarAttack());
         }
       
 
        
-        if (IsAttackingFar)
-        {
-            Attack(FarBulletType);
-            AttackTime += Time.deltaTime;      
-        }
-        if (IsAttackingClose) 
-        {
-            Attack(CloseBulletType); 
-            AttackTime += Time.deltaTime; 
-        }
+    
 
-        if (EM.IsFrozen) { Frozen(); }
+        if (EM.IsFrozen) { Frozen();  }
         if (EM.IsBurning) { Burning(); }
     }
 
@@ -148,24 +144,48 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
             if (hit.transform.tag == "Ground"||  hit.transform.tag == "Wall") { Grounded = true; }
 
         }
-        else { Grounded = false; }
+        else { Grounded = false; Agent.enabled = false; }
 
 
     }
 
-    public void Attack(GameObject Bullet)
+    public IEnumerator CloseAttack()
     {
         CanAttack = false;
-        BulletPoint.transform.LookAt(Player.transform.position);
-        if (AttackTime >= TimeToAttack)
-        {
-            Shoot(Bullet);
-            AttackTime = 0;
-            CanAttack = true;
-            IsAttackingFar = false;
-            IsAttackingFar2 = false;
-            IsAttackingClose = false;
-        }
+        Agent.speed = 0f;
+        Agent.angularSpeed = 0;
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
+        Anim.Play("RizzardCloseAttack");
+        yield return new WaitForSeconds(0.5f);
+
+        Shoot(CloseBulletType);
+
+        yield return new WaitForSeconds(1f);
+        IsAttacking = false;
+        Agent.speed = WalkSpeed;
+        Agent.angularSpeed = 3000;
+        yield return new WaitForSeconds(Random.Range(1f, 2f));
+        CanAttack = true;
+        myRB.constraints = RigidbodyConstraints.None;
+        myRB.constraints = RigidbodyConstraints.FreezeRotation;
+    }
+
+    public IEnumerator FarAttack()
+    {
+        CanAttack = false;
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
+        Anim.Play("RizzardFarAttack");
+
+        yield return new WaitForSeconds(1f);
+
+        Shoot(FarBulletType);
+
+        yield return new WaitForSeconds(0.5f);
+        IsAttacking = false;
+        yield return new WaitForSeconds(Random.Range(1, 4));
+        CanAttack = true;
+        myRB.constraints = RigidbodyConstraints.None;
+        myRB.constraints = RigidbodyConstraints.FreezeRotation;
     }
     public void Shoot(GameObject Bullet)
     {
@@ -187,11 +207,13 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
         FrozenParticles.SetActive(true);
         CanAttack = false;
         Agent.speed = 0;
+        Anim.speed = 0f;
         FrozenTime += Time.deltaTime;
         if (FrozenTime >= TimeToBreakFreeze)
         {
             FrozenParticles.SetActive(false);
             FrozenTime = 0;
+            Anim.speed = 1f;
             CanAttack = true;
             Agent.speed = BaseSpeed;
             EM.IsFrozen = false;
@@ -232,6 +254,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     {
         Health = 100000;
         Agent.enabled = false;
+        Anim.Play("RizzardDeath");
         GameObject A1 = Instantiate(HealthDrop);
         A1.transform.position = transform.position;
 

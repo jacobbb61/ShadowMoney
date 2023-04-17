@@ -21,7 +21,7 @@ public class Tank_Manager : MonoBehaviour
     [Header("Stats & other")]
     public int Health;
     public int MaxHealth;
-    public int WalkSpeed;
+    public float WalkSpeed;
     public GameObject SuperEnergyDrop;
     public GameObject HealthDrop;
     public GameObject GroundChecker;
@@ -35,12 +35,12 @@ public class Tank_Manager : MonoBehaviour
     public float AttackTime;
     public float CloseRange;
     public float FarRange;
-    public GameObject CloseBulletType;
     public GameObject FarBulletType;
     public GameObject BulletPoint;
 
     public bool CanAttack = true;
     public bool IsAttacking;
+    public bool SwapMelee;
 
     [Header("Freeze")]
     public float TimeToBreakFreeze;
@@ -90,6 +90,8 @@ public class Tank_Manager : MonoBehaviour
         if (Ice) { CurrentlyIceParticles.SetActive(true); }
         if (Void) { CurrentlyVoidParticles.SetActive(true); }
         if (Air) { CurrentlyAirParticles.SetActive(true); }
+        CanAttack = false;
+        StartCoroutine(Spawned());
     }
     void Update()
     {
@@ -98,18 +100,24 @@ public class Tank_Manager : MonoBehaviour
         {
             Agent.SetDestination(Player.transform.position);
         }
+        else
+        {
+            Push();
+        }
 
-        if (Health <= 0)
+        if (Health <= 0 && Health <1000)
         {
             Death();
         }
 
-        if (Vector3.Distance(transform.position, Player.transform.position) <= CloseRange && CanAttack == true)
+     
+       if (Vector3.Distance(transform.position, Player.transform.position) <= CloseRange && CanAttack == true)
         {
-            StartCoroutine(CloseAttack());
+            SwapMelee = !SwapMelee;
+            if (SwapMelee) { StartCoroutine(CloseAttack1()); } else { StartCoroutine(CloseAttack2()); }        
             IsAttacking = true;
             CanAttack = false;
-        }
+        } 
         else if (Vector3.Distance(transform.position, Player.transform.position) >= FarRange && CanAttack == true)
         {
             StartCoroutine(FarAttack());
@@ -123,10 +131,7 @@ public class Tank_Manager : MonoBehaviour
 
 
 
-        if (IsAttacking) { Agent.speed = 0; } else 
-        { 
-            Agent.speed = WalkSpeed;
-        }
+   
         if (EM.IsFrozen) { Frozen(); }
         if (EM.IsBurning) { Burning(); }
 
@@ -149,39 +154,78 @@ public class Tank_Manager : MonoBehaviour
             if (hit.transform.tag == "Ground" || hit.transform.tag == "Wall") { Grounded = true; }
 
         }
-        else { Grounded = false; }
+        else { Grounded = false; Agent.enabled = false; }
 
 
     }
-    public IEnumerator CloseAttack()
+    public IEnumerator Spawned()
     {
-
-        Anim.Play("TankCloseAttack");
-
-        yield return new WaitForSeconds(0.75f);
-       
-        Shoot(CloseBulletType);
-
-        yield return new WaitForSeconds(1f);
-        IsAttacking = false;
-        yield return new WaitForSeconds(Random.Range(1, 4));
-        CanAttack = true;
+        CanAttack = false;
+        Agent.speed = 0f;
+        Agent.angularSpeed = 0;
+        yield return new WaitForSeconds(1.5f);
         
+        Agent.speed = WalkSpeed;
+        Agent.angularSpeed = 90;
+        yield return new WaitForSeconds(1.5f);
+        CanAttack = true;
+    }
+
+    public IEnumerator CloseAttack1()
+    {
+        CanAttack = false;
+        Agent.speed = 0.1f;
+        Agent.angularSpeed = 200;
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
+        Anim.Play("TankCloseAttack1");
+        yield return new WaitForSeconds(0.5f);
+        Agent.speed = 0f;
+        Agent.angularSpeed = 0;
+        yield return new WaitForSeconds(1.5f);
+        IsAttacking = false;
+        Agent.speed = WalkSpeed;
+        Agent.angularSpeed = 90;
+        yield return new WaitForSeconds(Random.Range(1f, 3f));
+        CanAttack = true;
+        myRB.constraints = RigidbodyConstraints.None;
+        myRB.constraints = RigidbodyConstraints.FreezeRotation;
+    }
+    public IEnumerator CloseAttack2()
+    {
+        CanAttack = false;
+        Agent.speed = 0.1f;
+        Agent.angularSpeed = 200;
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
+        Anim.Play("TankCloseAttack2");
+        yield return new WaitForSeconds(0.5f);
+        Agent.speed = 0f;
+        Agent.angularSpeed = 0;
+        yield return new WaitForSeconds(2f);
+        IsAttacking = false;
+        Agent.speed = WalkSpeed;
+        Agent.angularSpeed = 90;
+        yield return new WaitForSeconds(Random.Range(1f, 3f));
+        CanAttack = true;
+        myRB.constraints = RigidbodyConstraints.None;
+        myRB.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     public IEnumerator FarAttack()
     {
-
+        CanAttack = false;
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
         Anim.Play("TankFarAttack");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
 
         Shoot(FarBulletType);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.2f);
         IsAttacking = false;
-        yield return new WaitForSeconds(Random.Range(2,6));
+        yield return new WaitForSeconds(Random.Range(2,4));
         CanAttack = true;
+        myRB.constraints = RigidbodyConstraints.None;
+        myRB.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
 
@@ -207,6 +251,7 @@ public class Tank_Manager : MonoBehaviour
     }
     public void Frozen()
     {
+        Anim.speed = 0f;
         FrozenParticles.SetActive(true);
         CanAttack = false;
         Agent.speed = 0;
@@ -215,6 +260,7 @@ public class Tank_Manager : MonoBehaviour
         {
             FrozenParticles.SetActive(false);
             FrozenTime = 0;
+            Anim.speed = 1f;
             CanAttack = true;
             Agent.speed = BaseSpeed;
             EM.IsFrozen = false;
@@ -254,7 +300,9 @@ public class Tank_Manager : MonoBehaviour
     }
     public void Death()
     {
+        Anim.Play("TankDeath");
         Agent.enabled = false;
+        Health = 10000;
         GameObject A1 = Instantiate(HealthDrop);
         A1.transform.position = transform.position;
 
@@ -278,7 +326,14 @@ public class Tank_Manager : MonoBehaviour
 
         GameObject A8 = Instantiate(SuperEnergyDrop);
         A8.transform.position = transform.position;
-        Destroy(this.gameObject);
+
+        GameObject A9 = Instantiate(HealthDrop);
+        A9.transform.position = transform.position;
+
+        GameObject A10 = Instantiate(SuperEnergyDrop);
+        A10.transform.position = transform.position;
+
+        Destroy(this.gameObject,1.5f);
     }
 
     public IEnumerator DamageNumbers(GameObject Num)
