@@ -15,7 +15,7 @@ public class Bullet_Manager : MonoBehaviour
 
     [Header("DO NOT EDIT")]
     public int Type1Damage=10;
-    public int Type2Damage=20;
+    public int Type2Damage = 15;
     public int Type3Damage=5;
     public int Type4Damage=40;
 

@@ -77,7 +77,7 @@ MonoBehaviour:
   Damage: 0
   TickTime: 0
   Type1Damage: 5
-  Type2Damage: 20
+  Type2Damage: 15
   Type3Damage: 5
   Type4Damage: 40
   Type1Tick: 5

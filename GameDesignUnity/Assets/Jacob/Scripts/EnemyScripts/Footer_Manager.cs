@@ -213,7 +213,7 @@ public class Footer_Manager : MonoBehaviour
 
         Shoot(BulletType);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         IsAttacking = false;
         CanAttack = true;
     }
@@ -283,9 +283,6 @@ public class Footer_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         IsPushed = true;
-        yield return new WaitForSeconds(1.5f);
-        myRB.velocity = Vector3.zero;
-        myRB.angularVelocity = Vector3.zero;
 
     }
     public void Death()
