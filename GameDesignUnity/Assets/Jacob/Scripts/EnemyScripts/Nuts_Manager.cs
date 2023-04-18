@@ -285,6 +285,7 @@ public class Nuts_Manager : MonoBehaviour
         Health = -100;
         Anim.SetTrigger("Death");
         Agent.enabled = false;
+        Anim.speed = 1;
         Destroy(this.gameObject,1f);
         GameObject A1 = Instantiate(HealthDrop);
         A1.transform.position = transform.position;

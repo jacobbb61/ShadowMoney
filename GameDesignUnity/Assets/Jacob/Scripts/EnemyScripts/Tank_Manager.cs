@@ -300,6 +300,7 @@ public class Tank_Manager : MonoBehaviour
     {
         Anim.Play("TankDeath");
         Agent.enabled = false;
+        Anim.speed = 1;
         Health = 10000;
         GameObject A1 = Instantiate(HealthDrop);
         A1.transform.position = transform.position;

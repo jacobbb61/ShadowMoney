@@ -288,7 +288,7 @@ public class Footer_Manager : MonoBehaviour
     public void Death()
     {
         Health = 100000;
-
+        Anim.speed = 1;
         Anim.Play("Headfoot-death");
         Agent.enabled = false;
         GameObject A1 = Instantiate(HealthDrop);

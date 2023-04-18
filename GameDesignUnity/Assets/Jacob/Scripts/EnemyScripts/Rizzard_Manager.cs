@@ -252,6 +252,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     {
         Health = 100000;
         Agent.enabled = false;
+        Anim.speed = 1;
         Anim.Play("RizzardDeath");
         GameObject A1 = Instantiate(HealthDrop);
         A1.transform.position = transform.position;
@@ -265,7 +266,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
         GameObject A4 = Instantiate(SuperEnergyDrop);
         A4.transform.position = transform.position;
 
-        Destroy(this.gameObject);
+        Destroy(this.gameObject,1.5f);
     }
 
     IEnumerator DamageNumbers(GameObject Num)
