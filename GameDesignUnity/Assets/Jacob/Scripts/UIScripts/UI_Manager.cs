@@ -111,11 +111,11 @@ public class UI_Manager : MonoBehaviour
             if (Paused)
             {
                 Pause();
-            }
+        }
             else
             {
                 UnPause();
-            }    
+        }    
     }
     public void Move(InputAction.CallbackContext context)
     {
@@ -161,7 +161,7 @@ public class UI_Manager : MonoBehaviour
         {
             if (MainOrder == 1) { UnPause(); }//resume
             else if (MainOrder == 2) { OpenOptions(); }//options
-            else if (MainOrder == 3) { LoadScene("MainMenu"); }//exit
+            else if (MainOrder == 3) { ExitGame(); }//exit
         }
             if (EndOfLevelOn) { SelectEndOfLevel(); }
             if (YouDiedOn) { SelectYouDied(); }
@@ -200,9 +200,14 @@ public class UI_Manager : MonoBehaviour
     }
     public void Right(InputAction.CallbackContext context)
     {
-        
+
     }
 
+    public void ExitGame()
+    {
+        Time.timeScale = 1;
+        LoadScene("MainMenu");
+    }
 
     public void Pause()
     {
@@ -215,9 +220,11 @@ public class UI_Manager : MonoBehaviour
         Paused = true;
         Time.timeScale = 0.01f;
         PauseMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void UnPause()
     {
+        Debug.Log("Unpaused");
         if (GM.Exit.activeInHierarchy) { GM.Base.volume = 0.4f; }
         else { GM.Base.volume = 0.5f; GM.Base1.volume = 0.5f; GM.Base2.volume = 0.5f; }
         Player.GetComponent<CharacterController>().enabled = true;
@@ -227,6 +234,7 @@ public class UI_Manager : MonoBehaviour
         Paused = false;
         Time.timeScale = 1f;
         PauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
@@ -249,21 +257,21 @@ public class UI_Manager : MonoBehaviour
     {
             if (OpOrder == 1)
             {
-            if (StickInput.x < -0.3 && reset == true) { GM.OptionsTutorial = true; OpTutorialON.SetActive(true); OpTutorialOFF.SetActive(false); reset = false; }
-            if (StickInput.x > 0.3 && reset == true) { GM.OptionsTutorial = false; OpTutorialON.SetActive(false); OpTutorialOFF.SetActive(true); reset = false; }
+            if (StickInput.x < -0.3 && reset == true) { OptionsTutotial(); reset = false; }
+            if (StickInput.x > 0.3 && reset == true) { OptionsTutotial(); reset = false; }
             if (StickInput.x == 0) { reset = true; }
             GM.UpdateTutorials();
         }
             if (OpOrder == 2)
             {
-            if (StickInput.x < -0.3 && reset == true) { GM.OptionsMusic = true; OpsMusicON.SetActive(true); OpMusicOFF.SetActive(false); reset = false; }
-            if (StickInput.x > 0.3 && reset == true) { GM.OptionsMusic = false; OpsMusicON.SetActive(false); OpMusicOFF.SetActive(true); reset = false; }
+            if (StickInput.x < -0.3 && reset == true) { OptionsMusic(); reset = false; }
+            if (StickInput.x > 0.3 && reset == true) { OptionsMusic(); reset = false; }
             if (StickInput.x == 0) { reset = true; }
             GM.MusicState();
             }
             if (OpOrder == 3)
             {
-            if (StickInput.x < -0.3 && reset == true && GM.SensX > 1) { GM.SensX--;  reset = false; }
+            if (StickInput.x < -0.3 && reset == true && GM.SensX > -20) { GM.SensX--;  reset = false; }
             if (StickInput.x > 0.3 && reset == true && GM.SensX < 20) { GM.SensX++;  reset = false; }
             if (StickInput.x == 0) { reset = true; }
             OpSensX.text = GM.SensX.ToString();
@@ -271,7 +279,7 @@ public class UI_Manager : MonoBehaviour
             }
             if (OpOrder == 4)
             {
-            if (StickInput.x < -0.3 && reset == true && GM.SensY > 1) { GM.SensY--; reset = false; }
+            if (StickInput.x < -0.3 && reset == true && GM.SensY > -20) { GM.SensY--; reset = false; }
             if (StickInput.x > 0.3 && reset == true && GM.SensY < 20) { GM.SensY++; reset = false; }
             if (StickInput.x == 0) { reset = true; }
             OpSensY.text = GM.SensY.ToString();
@@ -279,9 +287,48 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
+    public void OptionsTutotial()
+    {
+        GM.OptionsTutorial = !GM.OptionsTutorial; 
+        OpTutorialON.SetActive(!OpTutorialON.activeInHierarchy);        
+        OpTutorialOFF.SetActive(!OpTutorialOFF.activeInHierarchy);
+        GM.UpdateTutorials();
+    }
 
+    public void OptionsMusic()
+    {
+        GM.OptionsMusic = !GM.OptionsMusic;
+        OpsMusicON.SetActive(!OpsMusicON.activeInHierarchy);
+        OpMusicOFF.SetActive(!OpMusicOFF.activeInHierarchy);
+        GM.MusicState();
+    }
+    public void OptionsPlusSensX()
+    {
+        if (GM.SensX < 20) { GM.SensX++; }
+        OpSensX.text = GM.SensX.ToString();
+        GM.PCam.UpdateSensX(GM.SensX);
+    }
+    public void OptionsMinusSensX()
+    {
+        if (GM.SensX > -20) { GM.SensX--; }
+        OpSensX.text = GM.SensX.ToString();
+        GM.PCam.UpdateSensX(GM.SensX);
+    }
+        public void OptionsPlusSensY()
+    {
+        if (GM.SensY < 20) { GM.SensY++; }
+        OpSensY.text = GM.SensY.ToString();
+        GM.PCam.UpdateSensY(GM.SensY);
+    }
+    public void OptionsMinusSensY()
+    {
+        if (GM.SensY > -20) { GM.SensY--; }
+        OpSensY.text = GM.SensY.ToString();
+        GM.PCam.UpdateSensY(GM.SensY);
+    }
     public void OpenEndOfLevel()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         EndOfLevelOn = true;
         EndOrder = 1;
         EndOfLevelUI.SetActive(true);
@@ -292,20 +339,25 @@ public class UI_Manager : MonoBehaviour
     {
         if (EndOrder == 1) //next level
         {
-            if (SceneManager.GetActiveScene().name == "Level1") { LoadScene("Level2"); }
-            else if (SceneManager.GetActiveScene().name == "Level2") { LoadScene("Level3"); }
-            else if (SceneManager.GetActiveScene().name == "Level3") { LoadScene("MainMenu"); }
+            SelectNextLevel();
         }
         else //main menu
         {
             LoadScene("MainMenu");
         }
     }
+    public void SelectNextLevel()
+    { 
+
+if (SceneManager.GetActiveScene().name == "Level1") { LoadScene("Level2"); }
+            else if (SceneManager.GetActiveScene().name == "Level2") { LoadScene("Level3"); }
+            else if (SceneManager.GetActiveScene().name == "Level3") { LoadScene("MainMenu"); }
+    }
 
 
-
-    public void OpenYouDied()
-    {   
+        public void OpenYouDied()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
         YouDiedOn = true;       
         YouDiedUI.SetActive(true);
         GM.Base.volume = 0.1f; GM.Base1.volume = 0.1f; GM.Base2.volume = 0.1f; //audio muffle 
@@ -327,6 +379,11 @@ public class UI_Manager : MonoBehaviour
             Time.timeScale = 1;
             LoadScene("MainMenu");
         }
+    }
+    public void SelectRespawn()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 

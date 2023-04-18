@@ -12,4 +12,8 @@ public class StartScreenManager : MonoBehaviour
     {
         if (context.action.triggered) { SceneManager.LoadScene("MainMenu", LoadSceneMode.Single); }
     }
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered) { SceneManager.LoadScene("MainMenu", LoadSceneMode.Single); }
+    }
 }

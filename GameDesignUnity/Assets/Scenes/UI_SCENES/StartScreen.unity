@@ -737,7 +737,19 @@ MonoBehaviour:
     m_ActionId: ee0b1fcd-a27e-4439-b23e-2173f8038eaf
     m_ActionName: Player/Dash[/XInputControllerWindows/rightShoulder,/Keyboard/shift]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2013867538}
+        m_TargetAssemblyTypeName: StartScreenManager, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4287b1a1-cb9b-4a6e-9daf-21d42b0326ea
     m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/leftShoulder]
   - m_PersistentCalls:
@@ -750,20 +762,8 @@ MonoBehaviour:
     m_ActionName: Player/ShootR[/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 180a551c-99eb-41a6-93ac-662991ff25f7
-    m_ActionName: Player/Xbutton[/XInputControllerWindows/buttonWest,/Keyboard/2]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 32b0454b-6ed5-4aa7-aa90-08c6f682afa0
     m_ActionName: Player/Ybutton[/XInputControllerWindows/buttonNorth,/Keyboard/1]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ee194231-6593-4f02-b9ce-de3d4510309e
-    m_ActionName: Player/Bbutton[/XInputControllerWindows/buttonEast,/Keyboard/3]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c81930a1-7029-40a0-ae9d-c7fa0202eb5f
-    m_ActionName: Player/Abutton[/XInputControllerWindows/buttonSouth,/Keyboard/4]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2013867538}
@@ -780,6 +780,30 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 21474dff-ad0a-4721-9e52-1f1d234a3a23
     m_ActionName: Player/Pause[/Keyboard/p,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 70734761-5323-4dcc-8396-f942061889c4
+    m_ActionName: Player/Melee[/XInputControllerWindows/leftShoulder,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ee7a259b-59c1-4caf-a5e6-7c507d2a32ea
+    m_ActionName: Player/ApplyToSelf[/XInputControllerWindows/leftTrigger,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b5e08413-d949-4636-9610-f6af9ed0afe0
+    m_ActionName: Player/Up[/Keyboard/1,/XInputControllerWindows/dpad/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8fc1b66b-6160-4fdb-a08e-0f49162dba17
+    m_ActionName: Player/Right[/Keyboard/2,/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a93ebeb1-d7c5-4fac-9758-3cfa073746c9
+    m_ActionName: Player/Down[/Keyboard/3,/XInputControllerWindows/dpad/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bfbfa8b7-b11b-4155-89cc-9d988f20d0d6
+    m_ActionName: Player/Left[/Keyboard/4,/XInputControllerWindows/dpad/left]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

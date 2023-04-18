@@ -91,8 +91,8 @@ public class MainMenuManager : MonoBehaviour
     }
     public void Bbutton(InputAction.CallbackContext context)
     {
-        if (State == 2) { LevelSelectButtonB(2); }
-        if (State == 3) { LevelSelectButtonB(3); }
+        if (State == 2) { LevelSelectButtonB(); }
+        if (State == 3) { LevelSelectButtonB(); }
     }
 
     public void MoveHighlight(float X, float Y, GameObject Highlight)
@@ -108,14 +108,26 @@ public class MainMenuManager : MonoBehaviour
     {
         
         if (Order == 1) 
-        { 
+        {
+            MainSelectStart();
+        } 
+        if (Order == 2) { MainSelectLevels(); }
+        if (Order == 3) { MainSelectOptions(); }
+    }
+    public void MainSelectStart()
+    {
             GM.GameStarted = true;
             if (GM.LatestLevel == 1) { LoadScene("Level1"); }
             if (GM.LatestLevel == 2) { LoadScene("Level2"); }
-            if (GM.LatestLevel == 3) { LoadScene("Level3"); }       
-        } 
-        if (Order == 2) { MainState.SetActive(false); LevelSelect.SetActive(true); State = 2; Buttonreset = false; }
-        if (Order == 3) { MainState.SetActive(false); Options.SetActive(true); State = 3; }
+            if (GM.LatestLevel == 3) { LoadScene("Level3"); }    
+    }
+    public void MainSelectLevels()
+    {
+        MainState.SetActive(false); LevelSelect.SetActive(true); State = 2; Buttonreset = false;
+    }
+    public void MainSelectOptions()
+    {
+        MainState.SetActive(false); Options.SetActive(true); State = 3;
     }
 
     public void LevelSelectButtonA()
@@ -123,20 +135,29 @@ public class MainMenuManager : MonoBehaviour
          if (LevelOrder == 1) { LoadScene("Level1"); }
          if (LevelOrder == 2) { LoadScene("Level2"); }
          if (LevelOrder == 3) { LoadScene("Level3"); }
-        GM.L1_DoorA = false;
-        GM.L1_DoorB = false;
-        GM.L2_DoorA = false;
-        GM.L2_DoorB = false;
-        GM.L3_DoorA = false;
-        GM.L3_DoorB = false;
     }
-    public void LevelSelectButtonB(int num)
+
+    public void LevelSelect1()
+    {
+        LoadScene("Level1");
+    }
+    public void LevelSelect2()
+    {
+        LoadScene("Level2");
+    }
+    public void LevelSelect3()
+    {
+        LoadScene("Level3");
+    }
+
+
+    public void LevelSelectButtonB()
     {
         MainState.SetActive(true); 
         LevelSelect.SetActive(false);
         Options.SetActive(false);
         State = 1;
-        Order = num;
+        Order = 1;
     }
     public void MoveLevelHighlight(float X, float Y, GameObject Highlight)
     {
@@ -179,6 +200,46 @@ public class MainMenuManager : MonoBehaviour
             OpSensY.text = GM.SensY.ToString();
             GM.PCam.UpdateSensY(GM.SensY);
         }
+    }
+
+    public void OptionsTutotial()
+    {
+        GM.OptionsTutorial = !GM.OptionsTutorial;
+        OpTutorialON.SetActive(!OpTutorialON.activeInHierarchy);
+        OpTutorialOFF.SetActive(!OpTutorialOFF.activeInHierarchy);
+        GM.UpdateTutorials();
+    }
+
+    public void OptionsMusic()
+    {
+        GM.OptionsMusic = !GM.OptionsMusic;
+        OpsMusicON.SetActive(!OpsMusicON.activeInHierarchy);
+        OpMusicOFF.SetActive(!OpMusicOFF.activeInHierarchy);
+        GM.MusicState();
+    }
+    public void OptionsPlusSensX()
+    {
+        if (GM.SensX < 20) { GM.SensX++; }
+        OpSensX.text = GM.SensX.ToString();
+        GM.PCam.UpdateSensX(GM.SensX);
+    }
+    public void OptionsMinusSensX()
+    {
+        if (GM.SensX > -20) { GM.SensX--; }
+        OpSensX.text = GM.SensX.ToString();
+        GM.PCam.UpdateSensX(GM.SensX);
+    }
+    public void OptionsPlusSensY()
+    {
+        if (GM.SensY < 20) { GM.SensY++; }
+        OpSensY.text = GM.SensY.ToString();
+        GM.PCam.UpdateSensY(GM.SensY);
+    }
+    public void OptionsMinusSensY()
+    {
+        if (GM.SensY > -20) { GM.SensY--; }
+        OpSensY.text = GM.SensY.ToString();
+        GM.PCam.UpdateSensY(GM.SensY);
     }
     public void MoveOptionsHighlight(float X, float Y, GameObject Highlight)
     {

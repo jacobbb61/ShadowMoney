@@ -61,7 +61,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Health = 100;
         Time.timeScale = 1;
         // transform.position = Vector3.zero;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (SceneManager.GetActiveScene().name == "MainMenu") { Cursor.lockState = CursorLockMode.Confined; } else { Cursor.lockState = CursorLockMode.Locked; }
     }
 
     public void Update()
