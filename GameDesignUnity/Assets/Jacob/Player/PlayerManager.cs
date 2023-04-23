@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour, IDamageable
 {
 
-
+    private Animator Anim;
     public CharacterController controller;
     public PlayerCombat PC;
     public GameManager GM;
@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public float jumpHeight = 6.0f;
     public float dashSpeed;
     public bool groundedPlayer;
+    public bool SuperMeleeImmune;
     public float dashT;
     public int Health;
     private float BurnT;
@@ -52,6 +53,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     void Start()
     {
+        Anim = GetComponent<Animator>();
         controller = gameObject.GetComponent<CharacterController>();
         PC = GetComponent<PlayerCombat>();
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -101,6 +103,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public void Dash(InputAction.CallbackContext context)
     {
         dash = context.action.triggered;
+        
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -150,11 +153,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
         if (groundedPlayer){
             PC.LandAudio.gameObject.SetActive(true);
+            Anim.SetTrigger("Land"); Anim.ResetTrigger("Fall");
             if (playerVelocity.y < 0f) { playerVelocity.y = 0f; PC.JumpAudio.gameObject.SetActive(false); }
-        } 
+        } else if (playerVelocity.y <= -2f) { Anim.SetTrigger("Fall"); Anim.ResetTrigger("Jump"); }
 
         if (jumped && groundedPlayer)
         {
+            Anim.SetTrigger("Jump");
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             PC.JumpAudio.gameObject.SetActive(true);
             PC.LandAudio.gameObject.SetActive(false);
@@ -199,7 +204,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         if ((dash == true) && (dashT == 0f)) 
         { 
-            dashT = -2f; dashTS = true; PC.DashAudio.gameObject.SetActive(true); PC.DashAudio.pitch = Random.Range(0.9f, 1.1f);        
+            dashT = -2f; dashTS = true; PC.DashAudio.gameObject.SetActive(true); PC.DashAudio.pitch = Random.Range(0.9f, 1.1f); Anim.SetTrigger("Dash");
             if ( movementInput.x == 0 && movementInput.y == 0) { dashV = transform.forward * dashSpeed; }
             else { dashV = (transform.right * movementInput.x + transform.forward * movementInput.y) * dashSpeed; }
             Debug.Log(dashV);
@@ -280,7 +285,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("EnemyBullet"))
+        if (other.CompareTag("EnemyBullet")&& SuperMeleeImmune==false)
         {
             Bullet_Manager BM;
             BM = other.GetComponent<Bullet_Manager>();
@@ -304,7 +309,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         {
             if (PC.SuperEnergyCharges < 9) { PC.SuperEnergyCharges++; Destroy(other.gameObject); }
         }
-        else if (other.CompareTag("TankMelee"))
+        else if (other.CompareTag("TankMelee") && SuperMeleeImmune == false)
         {
             Health -= 20 - DamageReduction;
 

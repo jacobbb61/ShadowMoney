@@ -18,6 +18,7 @@ public class Checkpoint : MonoBehaviour
         if (other.transform.CompareTag("Player")) 
         { 
          Gm.LastCheckPoint = gameObject.transform.position;
+            other.GetComponent<PlayerManager>().Health = 100;
             FireCheck();
         }
     }

@@ -75,7 +75,11 @@ public class PlayerCombat : MonoBehaviour
     public GameObject SelfVoidParticles;
     public GameObject SelfAirParticles;
 
-
+    [Header("SuperMelee Particles")]
+    public GameObject SuperMeleeFireParticles;
+    public GameObject SuperMeleeIceParticles;
+    public GameObject SuperMeleeVoidParticles;
+    public GameObject SuperMeleeAirParticles;
 
     [Header("Audio")]
     public AudioSource BaseMeleeAudio;
@@ -164,7 +168,7 @@ public class PlayerCombat : MonoBehaviour
         bool shootR = context.action.triggered;
         if (shootR && CanInput==true)
         {
-            Anim.Play("PlayerShoot_2"); 
+            Anim.Play("playerHands_shootingShotgun"); 
             StartCoroutine(Shoot(BulletV2, Shoot2AnimTime));
         }
     }
@@ -173,7 +177,7 @@ public class PlayerCombat : MonoBehaviour
         bool shootR = context.action.triggered;
         if (shootR && CanInput == true)
         {
-            Anim.Play("PlayerShoot_1");
+            Anim.Play("playerHands_shootingSniper");
             StartCoroutine(Shoot(BulletV1, Shoot1AnimTime));
         }
     }
@@ -252,7 +256,7 @@ public class PlayerCombat : MonoBehaviour
     IEnumerator ApplySelf(int Effect, float WaitTime)
     {
         SuperEnergyCharges -= 3;
-        Anim.Play("PlayerApplyToSelf");
+        Anim.Play("playerHands_applyToSelf");
         CanInput = false;
         yield return new WaitForSeconds(WaitTime);
 
@@ -261,7 +265,7 @@ public class PlayerCombat : MonoBehaviour
         else if (CurrentElement == 2) { SelfIce = true; GameObject Prefab = Instantiate(SelfIcePrefab); Prefab.transform.position = transform.position; }
         else if (CurrentElement == 3) { SelfVoid = true; GameObject Prefab = Instantiate(SelfVoidPrefab); Prefab.transform.position = transform.position; }
         else if (CurrentElement == 4) { SelfAir = true; GameObject Prefab = Instantiate(SelfAirPrefab); Prefab.transform.position = transform.position; }
-        
+        yield return new WaitForSeconds(WaitTime);
         CanInput = true;
     }
 
@@ -272,6 +276,7 @@ public class PlayerCombat : MonoBehaviour
         BaseMeleeAudio.pitch = Random.Range(0.8f, 1.2f);
         Vector3 fwd = BulletHolder.transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
+        
         if (Physics.Raycast(BulletHolder.transform.position, fwd, out hit, 10)) // void effect increases this range?
         {
             if (hit.transform.CompareTag("Nuts") || hit.transform.CompareTag("Rizzard") || hit.transform.CompareTag("Footer") || hit.transform.CompareTag("Tank"))
@@ -282,42 +287,39 @@ public class PlayerCombat : MonoBehaviour
                 Effects_Manager MEM = hit.transform.GetComponent<Effects_Manager>();
                 GameObject EnemyHit = hit.transform.gameObject;
 
-                EnemyHit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-
-
-                if (EnemyHit.transform.CompareTag("Nuts")) { EnemyHit.transform.GetComponent<Nuts_Manager>().Health -= BaseMeleeDamage;  }
-                if (EnemyHit.transform.CompareTag("Rizzard")) { EnemyHit.transform.GetComponent<Rizzard_Manager>().Health -= BaseMeleeDamage; }
-                if (EnemyHit.transform.CompareTag("Footer")) { EnemyHit.transform.GetComponent<Footer_Manager>().Health -= BaseMeleeDamage; }
-                if (EnemyHit.transform.CompareTag("Tank")) { EnemyHit.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
-
-                Anim.Play("PlayerBaseMelee");
-                yield return new WaitForSeconds(0.5f);
-               
-                MeleePull = false;
-
-                
+                Anim.Play("playerHands_meleeDefault");
+                yield return new WaitForSeconds(0.33f);
 
                 if (CurrentElement == 1) { MEM.IsBurning = true; }
                 else if (CurrentElement == 2) { MEM.IsFrozen = true; }
                 // else if (CurrentElement == 3) { SelfVoid = true; }
                 // else if (CurrentElement == 4) { SelfAir = true; }
-                EnemyHit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                if (EnemyHit.transform.CompareTag("Nuts")) { EnemyHit.transform.GetComponent<Nuts_Manager>().Health -= BaseMeleeDamage;  }
+                if (EnemyHit.transform.CompareTag("Rizzard")) { EnemyHit.transform.GetComponent<Rizzard_Manager>().Health -= BaseMeleeDamage; }
+                if (EnemyHit.transform.CompareTag("Footer")) { EnemyHit.transform.GetComponent<Footer_Manager>().Health -= BaseMeleeDamage; }
+                if (EnemyHit.transform.CompareTag("Tank")) { EnemyHit.transform.GetComponent<Tank_Manager>().Health -= BaseMeleeDamage; }
+
+                
+                MeleePull = false;
+
+                
+
                 GetComponentInChildren<PlayerCam>().enabled = true;
                
                 CanInput = true;
             }
             else
             {
-                Anim.Play("PlayerBaseMelee");
-                yield return new WaitForSeconds(0.5f);
+                Anim.Play("playerHands_meleeDefault");
+                yield return new WaitForSeconds(0.33f);
                 CanInput = true;
             }
 
         }
         else 
             {
-                Anim.Play("PlayerBaseMelee");
-                yield return new WaitForSeconds(0.5f);
+                Anim.Play("playerHands_meleeDefault");
+                yield return new WaitForSeconds(0.33f);
                 CanInput = true;
             }
     }
@@ -325,40 +327,37 @@ public class PlayerCombat : MonoBehaviour
     IEnumerator SuperMeleeAttack()
     {
         GetComponentInChildren<PlayerCam>().enabled = false;
-        Anim.Play("PlayerSuperMelee");
-        yield return new WaitForSeconds(0.75f);
+        Anim.Play("playerHands_meleeSuper");
+       // PM.SuperMeleeImmune = true;
+        yield return new WaitForSeconds(1.1f);
         SuperEnergyCharges = 0;
 
-        
-        Vector3 fwd = BulletHolder.transform.TransformDirection(Vector3.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(BulletHolder.transform.position, fwd, out hit, 10)) // void effect increases this range?
+        Vector3 PartPos = Cam.transform.position;
+        if (CurrentElement == 1) { SelfFire = true; GameObject Prefab = Instantiate(SuperMeleeFireParticles); Prefab.transform.position = PartPos; }
+        else if (CurrentElement == 2) { SelfIce = true; GameObject Prefab = Instantiate(SuperMeleeIceParticles); Prefab.transform.position = PartPos; }
+        else if (CurrentElement == 3) { SelfVoid = true; GameObject Prefab = Instantiate(SuperMeleeVoidParticles); Prefab.transform.position = PartPos; }
+        else if (CurrentElement == 4) { SelfAir = true; GameObject Prefab = Instantiate(SuperMeleeAirParticles); Prefab.transform.position = PartPos; }
+
+
+        Collider[] colliders = Physics.OverlapSphere(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 5f), 15);//range
+
+        if (colliders != null)
         {
-            if (hit.transform.CompareTag("Nuts") || hit.transform.CompareTag("Rizzard") || hit.transform.CompareTag("Footer") || hit.transform.CompareTag("Tank"))
+            foreach (Collider _hit in colliders)
             {
-                GameObject Enemy = hit.transform.gameObject;
-                Effects_Manager MEM = Enemy.transform.GetComponent<Effects_Manager>();
-                MeleePullDestination = hit.transform.gameObject;
-                MeleePull = true;
+                if (_hit.transform.CompareTag("Nuts")) { _hit.gameObject.GetComponent<Nuts_Manager>().Health -= 40; Debug.Log("Hit nuts"); }
+                if (_hit.transform.CompareTag("Rizzard")) { _hit.gameObject.GetComponent<Rizzard_Manager>().Health -= 40; }
+                if (_hit.transform.CompareTag("Tank")) { _hit.gameObject.GetComponent<Tank_Manager>().Health -= 40; }
+                if (_hit.transform.CompareTag("Footer")) { _hit.gameObject.GetComponent<Footer_Manager>().Health -= 40; }
             }
         }
-
-
-        Collider[] colliders = Physics.OverlapSphere(new Vector3 (transform.localPosition.x, transform.localPosition.y, transform.localPosition.z+5f), 15);//range
-
-
-        foreach (Collider _hit in colliders)
-        {
-            if (_hit.transform.CompareTag("Nuts")) { _hit.gameObject.GetComponent<Nuts_Manager>().Health -= 40; Debug.Log("Hit nuts"); }
-            if (_hit.transform.CompareTag("Rizzard")) { _hit.gameObject.GetComponent<Rizzard_Manager>().Health -= 40; }
-            if (_hit.transform.CompareTag("Tank")) { _hit.gameObject.GetComponent<Tank_Manager>().Health -= 40; }
-        }
-
-
+        GetComponentInChildren<PlayerCam>().enabled = true;
+        yield return new WaitForSeconds(0.2f);
 
         GetComponentInChildren<PlayerCam>().enabled = true;                
         MeleePull = false;             
         CanInput = true;
+       // PM.SuperMeleeImmune = false;
     }
 
   
