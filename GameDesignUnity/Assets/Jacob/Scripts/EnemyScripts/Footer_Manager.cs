@@ -283,7 +283,12 @@ public class Footer_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         IsPushed = true;
-
+        yield return new WaitForSeconds(1f);
+        if (Grounded)
+        {
+            myRB.velocity = Vector3.zero;
+            myRB.angularVelocity = Vector3.zero;
+        }
     }
     public void Death()
     {

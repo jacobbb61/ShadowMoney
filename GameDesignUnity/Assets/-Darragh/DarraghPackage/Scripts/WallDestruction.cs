@@ -43,7 +43,7 @@ namespace UnityEngine.AI
         {
             if (EM.IsBurning) { WallBurnt(); }
             if (EM.IsFrozen) { Extinguished(); }
-            if (Health <= 0)
+            if (Health <= 0 && Health<1000)
             {
                 StartCoroutine(Death());
             }
@@ -51,6 +51,7 @@ namespace UnityEngine.AI
 
         public IEnumerator Death()
         {
+            Health = 1000;
             if (!IsSheild)
             {
                 NavCol1.enabled = false;
@@ -68,8 +69,7 @@ namespace UnityEngine.AI
             {
                 GetComponentInParent<NavMeshSurface>().BuildNavMesh();
             }
-                   
-            yield return new WaitForSeconds(.1f);
+
             Destroy(gameObject);
         }
 

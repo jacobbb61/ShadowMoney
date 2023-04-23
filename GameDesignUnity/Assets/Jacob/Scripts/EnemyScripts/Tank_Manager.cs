@@ -185,7 +185,7 @@ public class Tank_Manager : MonoBehaviour
         IsAttacking = false;
         Agent.speed = WalkSpeed;
         Agent.angularSpeed = 90;
-        yield return new WaitForSeconds(Random.Range(1f, 3f));
+        yield return new WaitForSeconds(Random.Range(.1f, 1f));
         CanAttack = true;
         myRB.constraints = RigidbodyConstraints.None;
         myRB.constraints = RigidbodyConstraints.FreezeRotation;
@@ -204,7 +204,7 @@ public class Tank_Manager : MonoBehaviour
         IsAttacking = false;
         Agent.speed = WalkSpeed;
         Agent.angularSpeed = 90;
-        yield return new WaitForSeconds(Random.Range(1f, 3f));
+        yield return new WaitForSeconds(Random.Range(.1f, 1f));
         CanAttack = true;
         myRB.constraints = RigidbodyConstraints.None;
         myRB.constraints = RigidbodyConstraints.FreezeRotation;
@@ -293,7 +293,12 @@ public class Tank_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         IsPushed = true;
-
+        yield return new WaitForSeconds(1f);
+        if (Grounded)
+        {
+            myRB.velocity = Vector3.zero;
+            myRB.angularVelocity = Vector3.zero;
+        }
 
     }
     public void Death()

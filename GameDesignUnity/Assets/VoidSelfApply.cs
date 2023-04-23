@@ -29,7 +29,7 @@ public class VoidSelfApply : MonoBehaviour
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb)
+            if (rb && !rb.transform.CompareTag("EnemyBullet"))
             {
                 Vector3 direction = hit.transform.position - transform.position;
                 Vector3 explosiveForce = new Vector3(direction.x, direction.y, direction.z);

@@ -245,7 +245,12 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     {
         yield return new WaitForSeconds(0.5f);
         IsPushed = true;
-
+        yield return new WaitForSeconds(1f);
+        if (Grounded)
+        {
+            myRB.velocity = Vector3.zero;
+            myRB.angularVelocity = Vector3.zero;
+        }
 
     }
     public void Death()
