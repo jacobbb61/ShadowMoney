@@ -191,9 +191,9 @@ public class Nuts_Manager : MonoBehaviour
         if (Physics.Raycast(GroundChecker.transform.position, -Vector3.up, out hit,0.5f))
         {
             
-            if (hit.transform.tag == "Ground" || hit.transform.tag == "Wall") { Grounded = true; } 
-           
-        } else { Grounded = false; Agent.enabled = false; }
+            if (hit.transform.tag == "Ground" || hit.transform.tag == "Wall") { Grounded = true; myRB.mass = 5; }
+            Debug.Log(hit.transform.tag);
+        } else { Grounded = false; Agent.enabled = false; myRB.mass = 80; myRB.AddForce(Vector3.down, ForceMode.Force); }
 
        
     }
@@ -264,6 +264,7 @@ public class Nuts_Manager : MonoBehaviour
 
     public void Push()
     {
+        myRB.mass = 80;
         myRB.constraints = RigidbodyConstraints.None;
         myRB.constraints = RigidbodyConstraints.FreezeRotation;
         Agent.enabled = false;
