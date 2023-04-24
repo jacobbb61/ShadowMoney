@@ -82,12 +82,12 @@ public class PlayerCam : MonoBehaviour
 
     public void UpdateSensX (float playerChangeSensX)
     {
-        sensX = playerChangeSensX*20; 
+        sensX = playerChangeSensX*5; 
     }
 
     public void UpdateSensY(float playerChangeSensY)
     {
-        sensY = playerChangeSensY * 20; 
+        sensY = playerChangeSensY * 5; 
     }
 
 }

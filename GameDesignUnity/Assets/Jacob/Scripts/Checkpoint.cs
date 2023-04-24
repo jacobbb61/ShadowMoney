@@ -6,11 +6,13 @@ public class Checkpoint : MonoBehaviour
 {
     GameManager Gm;
     public GameObject Fire;
+    public bool used = false;
 
     void Start()
     {
         Gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         FireCheck();
+        used = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,9 +20,13 @@ public class Checkpoint : MonoBehaviour
         if (other.transform.CompareTag("Player")) 
         { 
          Gm.LastCheckPoint = gameObject.transform.position;
-            other.GetComponent<PlayerManager>().Health = 100;
-            other.GetComponent<PlayerCombat>().SuperEnergyCharges++;
-            other.GetComponent<PlayerCombat>().SuperEnergyCharges++;
+            if (used == false)
+            {
+                other.GetComponent<PlayerManager>().Health = 100;
+                other.GetComponent<PlayerCombat>().SuperEnergyCharges++;
+                other.GetComponent<PlayerCombat>().SuperEnergyCharges++;
+                used = true;
+            }
             FireCheck();
         }
     }

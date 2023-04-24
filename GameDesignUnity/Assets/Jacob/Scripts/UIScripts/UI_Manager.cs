@@ -304,25 +304,25 @@ public class UI_Manager : MonoBehaviour
     }
     public void OptionsPlusSensX()
     {
-        if (GM.SensX < 20) { GM.SensX++; }
+        if (GM.SensX < 99) { GM.SensX++; }
         OpSensX.text = GM.SensX.ToString();
         GM.PCam.UpdateSensX(GM.SensX);
     }
     public void OptionsMinusSensX()
     {
-        if (GM.SensX > -20) { GM.SensX--; }
+        if (GM.SensX > -99) { GM.SensX--; }
         OpSensX.text = GM.SensX.ToString();
         GM.PCam.UpdateSensX(GM.SensX);
     }
         public void OptionsPlusSensY()
     {
-        if (GM.SensY < 20) { GM.SensY++; }
+        if (GM.SensY < 99) { GM.SensY++; }
         OpSensY.text = GM.SensY.ToString();
         GM.PCam.UpdateSensY(GM.SensY);
     }
     public void OptionsMinusSensY()
     {
-        if (GM.SensY > -20) { GM.SensY--; }
+        if (GM.SensY > -99) { GM.SensY--; }
         OpSensY.text = GM.SensY.ToString();
         GM.PCam.UpdateSensY(GM.SensY);
     }
