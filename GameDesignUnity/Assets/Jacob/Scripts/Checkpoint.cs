@@ -19,6 +19,9 @@ public class Checkpoint : MonoBehaviour
         { 
          Gm.LastCheckPoint = gameObject.transform.position;
             other.GetComponent<PlayerManager>().Health = 100;
+            other.GetComponent<PlayerCombat>().SuperEnergyCharges++;
+            other.GetComponent<PlayerCombat>().SuperEnergyCharges++;
+            other.GetComponent<PlayerCombat>().SuperEnergyCharges++;
             FireCheck();
         }
     }
