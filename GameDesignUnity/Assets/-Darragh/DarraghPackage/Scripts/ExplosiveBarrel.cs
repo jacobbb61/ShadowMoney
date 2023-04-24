@@ -8,7 +8,8 @@ public class ExplosiveBarrel : MonoBehaviour, IDamageable
 
     public int Health = 1;
     public int currentHealth;
-    public GameObject barrel, explosion;
+    public GameObject barrel, explosion,explosionRadius;
+    
     private AudioSource source;
     public Effects_Manager EM;
     public float power = 10f;
@@ -17,6 +18,7 @@ public class ExplosiveBarrel : MonoBehaviour, IDamageable
     public int explosionDamage = 20;
     public float force;
     public float verticality;
+    
 
 
 
@@ -41,6 +43,7 @@ public class ExplosiveBarrel : MonoBehaviour, IDamageable
         Destroy(gameObject);
         // explosion.SetActive(true);
         Instantiate(explosion, transform.position, quaternion.identity);
+        Instantiate(explosionRadius, transform.position, quaternion.identity);
        //source.Play();
         
         Vector3 explosive = transform.position;
