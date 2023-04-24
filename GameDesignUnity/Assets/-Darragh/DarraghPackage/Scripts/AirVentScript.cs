@@ -18,12 +18,8 @@ public class AirVentScript : MonoBehaviour
     {
         if (canVent)
         {   
-            Debug.Log("Triggered1");
-            Vector3 explosive = transform.position;
-            Debug.Log("Triggered2");
-
+            Vector3 explosive = transform.position;           
             Collider[] collider = Physics.OverlapBox(explosive, areaEffect);
-            Debug.Log("Triggered3");
 
             foreach (Collider hit in collider)
             {
@@ -34,7 +30,7 @@ public class AirVentScript : MonoBehaviour
                     //Applying Force
                     //rb.AddExplosionForce(power,explosive,areaEffect,explosiveLift);
                     rb.AddForce(Vector3.up * force, ForceMode.Impulse);
-                    Debug.Log("Triggered5");
+                    
 
                     if (rb.TryGetComponent(out PlayerManager player))
                     {
