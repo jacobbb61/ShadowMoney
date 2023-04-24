@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0b55862402cd54cac868d3f58024fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 6
+  force: 20
   areaEffect: {x: 4.61, y: 8.82, z: 5.06}

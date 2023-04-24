@@ -237,7 +237,7 @@ public class PlayerCombat : MonoBehaviour
     IEnumerator Shoot(GameObject Bullet, float WaitTime)
     {
         CanInput = false;
-         yield return new WaitForSeconds(WaitTime);
+         yield return new WaitForSeconds(WaitTime-0.2f);
         GameObject BulletShot = Instantiate(Bullet);
         if (SelfFire == true) { BulletShot.GetComponent<Bullet_Manager>().DamageBuff = FireDamageBuff; }
         BulletShot.transform.parent = null;
@@ -249,7 +249,7 @@ public class PlayerCombat : MonoBehaviour
         else if (CurrentElement == 2) { BulletShot.GetComponent<Effects_Manager>().IceEffect = true; }
         else if (CurrentElement == 3) { BulletShot.GetComponent<Effects_Manager>().VoidEffect = true; }
         else if (CurrentElement == 4) { BulletShot.GetComponent<Effects_Manager>().AirEffect = true; }
-
+        yield return new WaitForSeconds(0.2f);
         CanInput = true;
     }
 

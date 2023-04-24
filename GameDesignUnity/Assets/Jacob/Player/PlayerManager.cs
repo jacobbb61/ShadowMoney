@@ -183,6 +183,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public void AirVent(float force)
     {
+        playerVelocity.y = 0;
         playerVelocity.y += Mathf.Sqrt(force * -3.0f * gravityValue);
     }
     
