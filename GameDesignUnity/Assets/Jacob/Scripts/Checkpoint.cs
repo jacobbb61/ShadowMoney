@@ -25,6 +25,7 @@ public class Checkpoint : MonoBehaviour
                 other.GetComponent<PlayerManager>().Health = 100;
                 other.GetComponent<PlayerCombat>().SuperEnergyCharges++;
                 other.GetComponent<PlayerCombat>().SuperEnergyCharges++;
+                other.GetComponent<PlayerCombat>().SuperEnergyCharges++;
                 used = true;
             }
             FireCheck();
