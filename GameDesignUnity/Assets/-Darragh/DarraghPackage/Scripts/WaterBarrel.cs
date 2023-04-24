@@ -42,7 +42,8 @@ public class WaterBarrel : MonoBehaviour
         }
         targetLocation += new Vector3(0, transform.localScale.y / 2, 0);
 
-        Instantiate(waterPuddle, targetLocation, transform.rotation * Quaternion.Euler(0,0,0));
+        var puddle = Instantiate(waterPuddle, targetLocation, transform.rotation * Quaternion.Euler(0,0,0));
+        puddle.transform.rotation = Quaternion.Euler(Vector3.zero);
 
         Destroy(gameObject);
     }
