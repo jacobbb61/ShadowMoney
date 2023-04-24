@@ -134,13 +134,15 @@ MonoBehaviour:
   currentHealth: 1
   barrel: {fileID: 4608528984614108519}
   explosion: {fileID: 141070, guid: 805832771bf9f5f48bead8310975480e, type: 3}
+  explosionRadius: {fileID: 7849130355787846649, guid: f9f9e7c7d01bc8f49b90b145e48f6c4d,
+    type: 3}
   EM: {fileID: 3397005944557153268}
   power: 500
   explosiveLift: 100
   explosionDamage: 20
   force: 0
   verticality: 0
-  areaEffect: 5
+  areaEffect: 15
   TimeToBreakFreeze: 5
   FrozenParticles: {fileID: 4865775791623740431}
 --- !u!114 &3397005944557153268
