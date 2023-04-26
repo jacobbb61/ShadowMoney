@@ -4903,6 +4903,7 @@ MonoBehaviour:
     type: 3}
   GroundChecker: {fileID: 6271732063459412068}
   Grounded: 0
+  LowHealth: {fileID: 1222374959497924857}
   TimeToAttack: 1
   BulletPoint: {fileID: 7433982009589038576}
   CloseBulletType: {fileID: 5969615223017203397, guid: 4b15f20bf49feff40aa50f61460c1432,
@@ -25309,6 +25310,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 161f19c0ed1d9f34a832b149df0f2919, type: 3}
+--- !u!1 &1222374959497924857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6567067807684272374, guid: 161f19c0ed1d9f34a832b149df0f2919,
+    type: 3}
+  m_PrefabInstance: {fileID: 5464087819785367567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1295600451881573440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6498328482192616527, guid: 161f19c0ed1d9f34a832b149df0f2919,

@@ -12,6 +12,9 @@ public class PlatformingCheckpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GM.PlatformingResetPos = gameObject;
+        if (other.CompareTag("Player"))
+        {
+            GM.PlatformingResetPos = gameObject;
+        }
     }
 }

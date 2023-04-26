@@ -24738,6 +24738,7 @@ MonoBehaviour:
     type: 3}
   GroundChecker: {fileID: 9169173807962954362}
   Grounded: 0
+  LowHealth: {fileID: 6250117628721295758}
   TimeToAttack: 3
   AttackTime: 0
   CloseRange: 10
@@ -49338,6 +49339,12 @@ MonoBehaviour:
 --- !u!4 &6242826773198112277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 90747351962670007, guid: 044747f49ecbf40418692c13f57173de,
+    type: 3}
+  m_PrefabInstance: {fileID: 6332236875751708066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6250117628721295758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 98093195700315180, guid: 044747f49ecbf40418692c13f57173de,
     type: 3}
   m_PrefabInstance: {fileID: 6332236875751708066}
   m_PrefabAsset: {fileID: 0}

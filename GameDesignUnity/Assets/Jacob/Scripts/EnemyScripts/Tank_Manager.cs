@@ -26,7 +26,7 @@ public class Tank_Manager : MonoBehaviour
     public GameObject HealthDrop;
     public GameObject GroundChecker;
     public bool Grounded;
-
+    public GameObject LowHealth;
     private float BaseSpeed;
 
 
@@ -105,8 +105,14 @@ public class Tank_Manager : MonoBehaviour
             Push();
         }
 
+        if (Health <= 5)
+        {
+            LowHealth.SetActive(true);
+        }
         if (Health <= 0 && Health <1000)
         {
+            EM.IsFrozen = false;
+            Anim.speed = 1f;
             Death();
         }
 
@@ -131,9 +137,8 @@ public class Tank_Manager : MonoBehaviour
 
 
 
-   
-        if (EM.IsFrozen) { Frozen(); }
-        if (EM.IsBurning) { Burning(); }
+        if (EM.IsFrozen && Health > 0) { Frozen(); }
+        if (EM.IsBurning && Health > 0) { Burning(); }
 
 
     }

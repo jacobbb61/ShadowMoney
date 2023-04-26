@@ -4969,6 +4969,7 @@ MonoBehaviour:
   GroundChecker: {fileID: 2244557426706142807}
   Assets: {fileID: 5055728528842855277}
   Grounded: 0
+  LowHealth: {fileID: 1012369037866858947}
   TelePos: {x: 0, y: 0, z: 0}
   TimeToAttack: 2
   AttackTime: 0
@@ -49062,6 +49063,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1213883657453943428}
     m_Modifications:
+    - target: {fileID: 2010881668545843560, guid: 23a76f7f7dc34b4409e129134c613783,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6038535658137582531, guid: 23a76f7f7dc34b4409e129134c613783,
         type: 3}
       propertyPath: m_RootOrder
@@ -49139,6 +49145,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23a76f7f7dc34b4409e129134c613783, type: 3}
+--- !u!1 &1012369037866858947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2010881668545843560, guid: 23a76f7f7dc34b4409e129134c613783,
+    type: 3}
+  m_PrefabInstance: {fileID: 1577595224315488427}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1813166179703167703 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 922419299276616316, guid: 23a76f7f7dc34b4409e129134c613783,

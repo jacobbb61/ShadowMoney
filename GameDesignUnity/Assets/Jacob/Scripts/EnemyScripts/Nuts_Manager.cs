@@ -37,7 +37,8 @@ public class Nuts_Manager : MonoBehaviour
     public GameObject HealthDrop;
     public GameObject GroundChecker;
     public bool Grounded;
-    public GameObject LowHealth;
+    public GameObject LowHealth1;
+    public GameObject LowHealth2;
     
     private float BaseSpeed;
 
@@ -144,19 +145,27 @@ public class Nuts_Manager : MonoBehaviour
         }
         if (Health <= 5)
         {
-            LowHealth.SetActive(true);
+            if (IsProjectileNuts) {     LowHealth1.SetActive(true); }
+            else
+            {
+               LowHealth2.SetActive(true);
+            }
+        
+            
         }
 
         if (Health <= 0 && Health > -100)
         {
+            EM.IsFrozen = false;
+            Anim.speed = 1f;
             Death();
         }
 
-         
-        if (EM.IsFrozen) { Frozen(); }
-        if (EM.IsBurning) { Burning(); }
 
-       
+        if (EM.IsFrozen && Health > 0) { Frozen(); }
+        if (EM.IsBurning && Health > 0) { Burning(); }
+
+
     }
 
     void MovementAndAttack(int Speed, int AttackRange, int MovementRange)

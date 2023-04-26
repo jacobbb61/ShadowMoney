@@ -29,7 +29,7 @@ public class Footer_Manager : MonoBehaviour
     public GameObject GroundChecker;
     public GameObject Assets;
     public bool Grounded;
-
+    public GameObject LowHealth;
     private float BaseSpeed;
     public Vector3 TelePos;
 
@@ -102,8 +102,15 @@ public class Footer_Manager : MonoBehaviour
             Agent.SetDestination(Player.transform.position);
         }
 
+        if (Health <= 5)
+        {
+            LowHealth.SetActive(true);
+        }
+
         if (Health <= 0 && Health <10000)
         {
+            EM.IsFrozen = false;
+            Anim.speed = 1f;
             Death();
         }
 
@@ -132,8 +139,8 @@ public class Footer_Manager : MonoBehaviour
             
             Agent.speed = WalkSpeed;
         }
-        if (EM.IsFrozen) { Frozen(); } 
-        if (EM.IsBurning) { Burning(); }
+        if (EM.IsFrozen && Health > 0) { Frozen(); }
+        if (EM.IsBurning && Health > 0) { Burning(); }
 
 
     }

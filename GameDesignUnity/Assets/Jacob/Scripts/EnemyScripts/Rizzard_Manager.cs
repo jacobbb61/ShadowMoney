@@ -29,6 +29,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     public GameObject HealthDrop;
     public GameObject GroundChecker;
     public bool Grounded;
+    public GameObject LowHealth;
 
     [Header("Attack")]
     private bool IsAttacking;
@@ -94,19 +95,14 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     void Update()
     {
         GroundCheck();
-
-
-        /* CS.boxesAvailable = GameObject.FindGameObjectsWithTag("BoxesAvailable");
-
-         if (CS.boxesAvailable.Length >= 2)
-         {
-          //   CS.boxSelector();
-         }
-
-         if (Agent.enabled && Grounded) { CS.navigation();}
- */
+        if (Health <= 5)
+        {
+            LowHealth.SetActive(true);
+        }
         if (Health <= 0 && Health < 1000)
         {
+            EM.IsFrozen = false;
+            Anim.speed = 1f;
             Death();
         }
         if (Agent.enabled && Grounded) { Agent.SetDestination(Player.transform.position); }
@@ -128,8 +124,8 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
        
     
 
-        if (EM.IsFrozen) { Frozen();  }
-        if (EM.IsBurning) { Burning(); }
+        if (EM.IsFrozen && Health > 0) { Frozen();  }
+        if (EM.IsBurning && Health > 0) { Burning(); }
     }
 
     public void GroundCheck()
