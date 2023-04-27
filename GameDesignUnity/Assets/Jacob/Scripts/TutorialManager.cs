@@ -51,19 +51,15 @@ public class TutorialManager : MonoBehaviour
         MainUI.SetActive(true);
         MainTextUI.text = MainText;
         MainVideoUI.GetComponent<RawImage>().texture = Video;
-        Player.GetComponent<CharacterController>().enabled = false;
-        Player.GetComponent<PlayerInput>().enabled = false;
-        UIM.GetComponent<PlayerInput>().enabled = false;
-        PCam.enabled = false;
-        PC.enabled = false;
+
         StartCoroutine(WaitToExit());
-        Time.timeScale = 0.001f;
-        Player.GetComponent<PlayerManager>().playerVelocity = Vector3.zero;
+    
+ 
     }
 
     IEnumerator WaitToExit()
     {  
-        yield return new WaitForSeconds(0.001f);
+        yield return new WaitForSeconds(0.5f);
         MainExitPromptUI.SetActive(true);
         On = true;
     }
@@ -71,13 +67,7 @@ public class TutorialManager : MonoBehaviour
     public void CloseUI()
     {
         MainUI.SetActive(false);
-        Player.GetComponent<CharacterController>().enabled = true;
-        Player.GetComponent<PlayerInput>().enabled = true;
-        UIM.GetComponent<PlayerInput>().enabled = true;
-        PCam.enabled = true;
-        PC.enabled = true;
-        Time.timeScale = 1f;
-        PM.Paused = true;
+
         this.gameObject.SetActive(false);
     }
 

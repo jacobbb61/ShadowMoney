@@ -97,19 +97,7 @@ MonoBehaviour:
     m_ActionId: f1034317-2775-42a5-88cc-f7a9c66496f7
     m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 825667641501449482}
-        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
-        m_MethodName: Pause
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: ee0b1fcd-a27e-4439-b23e-2173f8038eaf
     m_ActionName: Player/Dash[/XInputControllerWindows/rightShoulder,/Keyboard/shift]
   - m_PersistentCalls:
@@ -125,7 +113,19 @@ MonoBehaviour:
     m_ActionId: a25b4044-86aa-4bee-be92-499e31f89e01
     m_ActionName: Player/ShootR[/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 825667641501449482}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: CloseUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 180a551c-99eb-41a6-93ac-662991ff25f7
     m_ActionName: Player/Xbutton[/XInputControllerWindows/buttonWest,/Keyboard/2]
   - m_PersistentCalls:

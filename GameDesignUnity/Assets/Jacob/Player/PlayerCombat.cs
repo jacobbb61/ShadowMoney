@@ -326,7 +326,7 @@ public class PlayerCombat : MonoBehaviour
 
     IEnumerator SuperMeleeAttack()
     {
-        GetComponentInChildren<PlayerCam>().enabled = false;
+        
         Anim.Play("playerHands_meleeSuper");
        // PM.SuperMeleeImmune = true;
         yield return new WaitForSeconds(1.1f);
@@ -345,16 +345,16 @@ public class PlayerCombat : MonoBehaviour
         {
             foreach (Collider _hit in colliders)
             {
-                if (_hit.transform.CompareTag("Nuts")) { _hit.gameObject.GetComponent<Nuts_Manager>().Health -= 40; Debug.Log("Hit nuts"); }
-                if (_hit.transform.CompareTag("Rizzard")) { _hit.gameObject.GetComponent<Rizzard_Manager>().Health -= 40; }
-                if (_hit.transform.CompareTag("Tank")) { _hit.gameObject.GetComponent<Tank_Manager>().Health -= 40; }
-                if (_hit.transform.CompareTag("Footer")) { _hit.gameObject.GetComponent<Footer_Manager>().Health -= 40; }
+                if (_hit.transform.CompareTag("Nuts")) { _hit.gameObject.GetComponent<Nuts_Manager>().Health -= 60; Debug.Log("Hit nuts"); }
+                if (_hit.transform.CompareTag("Rizzard")) { _hit.gameObject.GetComponent<Rizzard_Manager>().Health -= 60; }
+                if (_hit.transform.CompareTag("Tank")) { _hit.gameObject.GetComponent<Tank_Manager>().Health -= 60; }
+                if (_hit.transform.CompareTag("Footer")) { _hit.gameObject.GetComponent<Footer_Manager>().Health -= 60; }
             }
         }
-        GetComponentInChildren<PlayerCam>().enabled = true;
+        
         yield return new WaitForSeconds(0.2f);
 
-        GetComponentInChildren<PlayerCam>().enabled = true;                
+              
         MeleePull = false;             
         CanInput = true;
        // PM.SuperMeleeImmune = false;

@@ -27,6 +27,12 @@ public class UI_Manager : MonoBehaviour
     public GameObject ElementUI;
     public GameObject CurrentElementHightlight;
 
+    [Header("Hit Feedback")]
+    public GameObject FireHit;
+    public GameObject IceHit;
+    public GameObject VoidHit;
+    public GameObject AirHit;
+
     [Header("CrossHair")]
     public GameObject CrossHairOverEnemy;
     public GameObject CrossHairMeleeRange;

@@ -130,7 +130,14 @@ public class PlayerManager : MonoBehaviour, IDamageable
         {
             if (hit.transform.CompareTag("Nuts") || hit.transform.CompareTag("Rizzard") || hit.transform.CompareTag("Footer") || hit.transform.CompareTag("Tank")) 
             {
-                UM.CrossHairOverEnemy.SetActive(true);
+                if (Vector3.Distance(transform.position, hit.transform.position) <= 50)
+                {
+                    UM.CrossHairOverEnemy.SetActive(true);
+                }
+                else
+                {
+                    UM.CrossHairOverEnemy.SetActive(false);
+                }
                 if(Vector3.Distance(transform.position, hit.transform.position) <= 10) { UM.CrossHairMeleeRange.SetActive(true); } else { UM.CrossHairMeleeRange.SetActive(false); }
             }
             else
@@ -295,10 +302,10 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
             Effects_Manager BEM;
             BEM = other.GetComponent<Effects_Manager>();
-            if (BEM.FireEffect) { EM.IsBurning = true; }
-            else if (BEM.IceEffect) { EM.IsFrozen = true; }
-            else if (BEM.VoidEffect) { EnemyVoidEffect(other.gameObject); }
-            else if (BEM.AirEffect) { EnemyAirEffect(other.gameObject); }
+            if (BEM.FireEffect) { EM.IsBurning = true; StartCoroutine(HitFeedback(UM.FireHit)); }
+            else if (BEM.IceEffect) { EM.IsFrozen = true; StartCoroutine(HitFeedback(UM.IceHit)); }
+            else if (BEM.VoidEffect) { EnemyVoidEffect(other.gameObject); StartCoroutine(HitFeedback(UM.VoidHit)); }
+            else if (BEM.AirEffect) { EnemyAirEffect(other.gameObject); StartCoroutine(HitFeedback(UM.AirHit)); }
             else { return; }
         }
         else if (other.CompareTag("HealthDrop"))
@@ -323,6 +330,14 @@ public class PlayerManager : MonoBehaviour, IDamageable
             else { return; }
         }
     }
+
+    IEnumerator HitFeedback(GameObject Effect)
+    {
+        Effect.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Effect.SetActive(false);
+    }
+
 
     public void TakeDamage(int amt)
     {

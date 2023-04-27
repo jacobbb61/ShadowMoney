@@ -26,6 +26,8 @@ public class PlayerCam : MonoBehaviour
     private void Start()
     {
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().PCam = this;
+        UpdateSensX(GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().SensX);
+        UpdateSensY(GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().SensY);
     }
 
     public void Look(InputAction.CallbackContext context)
