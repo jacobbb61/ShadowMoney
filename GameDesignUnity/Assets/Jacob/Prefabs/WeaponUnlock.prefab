@@ -145,10 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbe89108fa2821459c6c95bd68da93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnlockedProjectileType1: 0
-  UnlockedProjectileType2: 1
-  UnlockedProjectileType3: 0
-  UnlockedProjectileType4: 0
+  UnlockedSuperPunch: 0
   UnlockedFire: 0
   UnlockedIce: 0
   UnlockedAir: 0
@@ -164,7 +161,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 8, z: 8}
+  m_Size: {x: 12, y: 12, z: 12}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &4697100366037266108
 Animator:

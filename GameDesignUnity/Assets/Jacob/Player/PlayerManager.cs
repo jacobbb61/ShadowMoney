@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private Vector3 dashV;
     private Vector2 movementInput = Vector2.zero;
 
-    private float gravityValue = -25f;
+    public float gravityValue = -40f;
     private int DamageReduction = 0;
     
 
@@ -219,7 +219,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         }
         if (dashTS == true) { dashT += Time.deltaTime; }
         if ((dashT < -1.5f) && (dashTS == true)) { controller.Move(dashV * Time.deltaTime); gravityValue = -20f; CanWalk = false; }
-        if (dashT < -1.5f) { dash = false; gravityValue = -25f; CanWalk = true; }
+        if (dashT < -1.5f) { dash = false; gravityValue = -40f; CanWalk = true; }
         if (dashT > 0f) { dashT = 0f; dashTS = false; PC.DashAudio.gameObject.SetActive(false); }
     }
     public void MeleePull()
@@ -251,7 +251,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         gravityValue = PC.AirFallBuff;
         PC.SelfEffectTime += Time.deltaTime;
-        if (PC.SelfEffectTime >= 5f) { PC.SelfAir = false; gravityValue = -25f;  PC.SelfEffectTime = 0f; }
+        if (PC.SelfEffectTime >= 5f) { PC.SelfAir = false; gravityValue = -40f;  PC.SelfEffectTime = 0f; }
     }
 
 

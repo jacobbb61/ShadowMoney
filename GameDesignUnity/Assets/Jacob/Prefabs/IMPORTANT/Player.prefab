@@ -11076,8 +11076,9 @@ MonoBehaviour:
   EM: {fileID: 5432166676462643460}
   UM: {fileID: 0}
   playerVelocity: {x: 0, y: 0, z: 0}
-  playerSpeed: 12
-  jumpHeight: 6
+  gravityValue: -40
+  playerSpeed: 15
+  jumpHeight: 10
   dashSpeed: 35
   groundedPlayer: 0
   SuperMeleeImmune: 0
