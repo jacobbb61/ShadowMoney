@@ -231,8 +231,8 @@ public class UI_Manager : MonoBehaviour
     public void UnPause()
     {
         Debug.Log("Unpaused");
-        if (GM.Exit.activeInHierarchy) { GM.Base.volume = 0.4f; }
-        else { GM.Base.volume = 0.5f; GM.Base1.volume = 0.5f; GM.Base2.volume = 0.5f; }
+        if (GM.Exit.activeInHierarchy) { GM.Base.volume = 0.2f; }
+        else { GM.Base.volume = 0.3f; GM.Base1.volume = 0.3f; GM.Base2.volume = 0.3f; }
         Player.GetComponent<CharacterController>().enabled = true;
         Player.GetComponent<PlayerInput>().enabled = true;
         Player.GetComponentInChildren<PlayerCam>().enabled = true;

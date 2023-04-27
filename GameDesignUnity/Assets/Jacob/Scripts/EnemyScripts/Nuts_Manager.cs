@@ -39,6 +39,7 @@ public class Nuts_Manager : MonoBehaviour
     public bool Grounded;
     public GameObject LowHealth1;
     public GameObject LowHealth2;
+    public GameObject HitSound;
     
     private float BaseSpeed;
 
@@ -314,8 +315,10 @@ public class Nuts_Manager : MonoBehaviour
     public IEnumerator DamageNumbers(GameObject Num)
     {
         Num.SetActive(true);
+        HitSound.SetActive(true);
         yield return new WaitForSeconds(0.75f);
-        Num.SetActive(false); 
+        Num.SetActive(false);
+        HitSound.SetActive(false);
     }
 
 

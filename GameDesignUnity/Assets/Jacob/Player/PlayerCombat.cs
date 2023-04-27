@@ -87,7 +87,14 @@ public class PlayerCombat : MonoBehaviour
     public AudioSource JumpAudio;
     public AudioSource LandAudio;
     public AudioSource WalkAudio;
-    public AudioSource ChangeElementAudio;
+    public AudioSource ChangeElementFireAudio;
+    public AudioSource ChangeElementIceAudio;
+    public AudioSource ChangeElementVoidAudio;
+    public AudioSource ChangeElementAirAudio;
+    public AudioSource ShootElementFireAudio;
+    public AudioSource ShootElementIceAudio;
+    public AudioSource ShootElementVoidAudio;
+    public AudioSource ShootElementAirAudio;
 
     [Header("Unlocked Elements")]
     private bool UnlockedIce;
@@ -224,12 +231,11 @@ public class PlayerCombat : MonoBehaviour
 
     public void UpdateHandParticle()
     {
-        ChangeElementAudio.Play();
-        ChangeElementAudio.pitch = Random.Range(0.8f, 1.2f);
-        if (CurrentElement == 1) { RightHandFire.SetActive(true); LeftHandFire.SetActive(true); } else { RightHandFire.SetActive(false); LeftHandFire.SetActive(false); }
-        if (CurrentElement == 2) { RightHandIce.SetActive(true); LeftHandIce.SetActive(true); } else { RightHandIce.SetActive(false); LeftHandIce.SetActive(false); }
-        if (CurrentElement == 3) { RightHandVoid.SetActive(true); LeftHandVoid.SetActive(true); } else { RightHandVoid.SetActive(false); LeftHandVoid.SetActive(false); }
-        if (CurrentElement == 4) { RightHandAir.SetActive(true); LeftHandAir.SetActive(true); } else { RightHandAir.SetActive(false); LeftHandAir.SetActive(false); }
+
+        if (CurrentElement == 1) { RightHandFire.SetActive(true); LeftHandFire.SetActive(true); ChangeElementFireAudio.Play(); } else { RightHandFire.SetActive(false); LeftHandFire.SetActive(false); }
+        if (CurrentElement == 2) { RightHandIce.SetActive(true); LeftHandIce.SetActive(true); ChangeElementIceAudio.Play(); } else { RightHandIce.SetActive(false); LeftHandIce.SetActive(false); }
+        if (CurrentElement == 3) { RightHandVoid.SetActive(true); LeftHandVoid.SetActive(true); ChangeElementVoidAudio.Play(); } else { RightHandVoid.SetActive(false); LeftHandVoid.SetActive(false); }
+        if (CurrentElement == 4) { RightHandAir.SetActive(true); LeftHandAir.SetActive(true); ChangeElementAirAudio.Play(); } else { RightHandAir.SetActive(false); LeftHandAir.SetActive(false); }
     }
 
 
@@ -245,15 +251,15 @@ public class PlayerCombat : MonoBehaviour
         BulletShot.transform.rotation = BulletHolder.transform.rotation;
         BulletShot.transform.tag = "PlayerBullet";
 
-        if (CurrentElement == 1) { BulletShot.GetComponent<Effects_Manager>().FireEffect = true; }
-        else if (CurrentElement == 2) { BulletShot.GetComponent<Effects_Manager>().IceEffect = true; }
-        else if (CurrentElement == 3) { BulletShot.GetComponent<Effects_Manager>().VoidEffect = true; }
-        else if (CurrentElement == 4) { BulletShot.GetComponent<Effects_Manager>().AirEffect = true; }
+        if (CurrentElement == 1) { BulletShot.GetComponent<Effects_Manager>().FireEffect = true; ShootElementFireAudio.Play(); }
+        else if (CurrentElement == 2) { BulletShot.GetComponent<Effects_Manager>().IceEffect = true; ShootElementIceAudio.Play(); }
+        else if (CurrentElement == 3) { BulletShot.GetComponent<Effects_Manager>().VoidEffect = true; ShootElementVoidAudio.Play(); }
+        else if (CurrentElement == 4) { BulletShot.GetComponent<Effects_Manager>().AirEffect = true; ShootElementAirAudio.Play(); }
         yield return new WaitForSeconds(0.2f);
         CanInput = true;
     }
 
-    IEnumerator ApplySelf(int Effect, float WaitTime)
+        IEnumerator ApplySelf(int Effect, float WaitTime)
     {
         SuperEnergyCharges -= 3;
         Anim.Play("playerHands_applyToSelf");

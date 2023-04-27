@@ -30,6 +30,7 @@ public class Footer_Manager : MonoBehaviour
     public GameObject Assets;
     public bool Grounded;
     public GameObject LowHealth;
+    public GameObject HitSound;
     private float BaseSpeed;
     public Vector3 TelePos;
 
@@ -321,8 +322,10 @@ public class Footer_Manager : MonoBehaviour
     public IEnumerator DamageNumbers(GameObject Num)
     {
         Num.SetActive(true);
+        HitSound.SetActive(true);
         yield return new WaitForSeconds(0.75f);
         Num.SetActive(false);
+        HitSound.SetActive(false);
     }
 
 

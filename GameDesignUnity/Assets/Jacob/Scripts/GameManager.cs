@@ -134,9 +134,9 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SoundFX());
         
        
-        Base.volume = 0.5f;
-        Base1.volume = 0.5f;
-        Base2.volume = 0.5f;      
+        Base.volume = 0.3f;
+        Base1.volume = 0.3f;
+        Base2.volume = 0.3f;      
         Exit.SetActive(false);
     }
 
@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
     }
     public void OutCombat()
     {
-        Base.volume = 0.4f;
+        Base.volume = 0.2f;
         Base1.volume = 0;
         Base2.volume = 0;
         Enter1.SetActive(false);

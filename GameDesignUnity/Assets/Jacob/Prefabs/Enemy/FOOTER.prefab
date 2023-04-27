@@ -4971,6 +4971,7 @@ MonoBehaviour:
   Assets: {fileID: 5055728528842855277}
   Grounded: 0
   LowHealth: {fileID: 1012369037866858947}
+  HitSound: {fileID: 1086635072071830159}
   TelePos: {x: 0, y: 0, z: 0}
   TimeToAttack: 2
   AttackTime: 0
@@ -49165,6 +49166,12 @@ PrefabInstance:
 --- !u!1 &1012369037866858947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2010881668545843560, guid: 23a76f7f7dc34b4409e129134c613783,
+    type: 3}
+  m_PrefabInstance: {fileID: 1577595224315488427}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1086635072071830159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1941120333893329444, guid: 23a76f7f7dc34b4409e129134c613783,
     type: 3}
   m_PrefabInstance: {fileID: 1577595224315488427}
   m_PrefabAsset: {fileID: 0}
