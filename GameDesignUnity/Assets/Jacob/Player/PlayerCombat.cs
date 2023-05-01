@@ -229,7 +229,7 @@ public class PlayerCombat : MonoBehaviour
         if (CurrentElement == 3) { NBEM.FireEffect = false; NBEM.IceEffect = false; NBEM.VoidEffect = true; NBEM.AirEffect = false; }
         if (CurrentElement == 4) { NBEM.FireEffect = false; NBEM.IceEffect = false; NBEM.VoidEffect = false; NBEM.AirEffect = true; }
 
-        CanInput = true;
+
     }
 
     public void UpdateHandParticle()
@@ -290,10 +290,11 @@ public class PlayerCombat : MonoBehaviour
 
     IEnumerator BaseMeleeAttack()
     {
+        CanInput = false;
         BaseMeleeAudio.pitch = Random.Range(0.8f, 1.2f);
         Vector3 fwd = BulletHolder.transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
-        
+        Anim.Play("playerHands_meleeDefault");
         if (Physics.Raycast(BulletHolder.transform.position, fwd, out hit, 10)) // void effect increases this range?
         {
             if (hit.transform.CompareTag("Nuts") || hit.transform.CompareTag("Rizzard") || hit.transform.CompareTag("Footer") || hit.transform.CompareTag("Tank"))
@@ -304,8 +305,8 @@ public class PlayerCombat : MonoBehaviour
                 Effects_Manager MEM = hit.transform.GetComponent<Effects_Manager>();
                 GameObject EnemyHit = hit.transform.gameObject;
 
-                Anim.Play("playerHands_meleeDefault");
-                yield return new WaitForSeconds(0.33f);
+                
+                
 
                 if (CurrentElement == 1) { MEM.IsBurning = true; }
                 else if (CurrentElement == 2) { MEM.IsFrozen = true; }
@@ -323,22 +324,13 @@ public class PlayerCombat : MonoBehaviour
 
                 GetComponentInChildren<PlayerCam>().enabled = true;
                
-                CanInput = true;
             }
-            else
-            {
-                Anim.Play("playerHands_meleeDefault");
+            
+                
+            }
+        Anim.Play("playerHands_meleeDefault");
                 yield return new WaitForSeconds(0.33f);
                 CanInput = true;
-            }
-
-        }
-        else 
-            {
-                Anim.Play("playerHands_meleeDefault");
-                yield return new WaitForSeconds(0.33f);
-                CanInput = true;
-            }
     }
 
     IEnumerator SuperMeleeAttack()
