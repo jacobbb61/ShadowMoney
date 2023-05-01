@@ -47,6 +47,6 @@ MonoBehaviour:
   emptyExplosion: {fileID: 1687189584412332668}
   Particles: {fileID: 8465455490605115820, guid: 28c8d20640cc9a344bf212bb8c90ee3a,
     type: 3}
-  force: 35
-  verticality: 10
-  areaEffect: 30
+  force: 15
+  verticality: 2
+  areaEffect: 20
