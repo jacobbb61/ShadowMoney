@@ -110,14 +110,17 @@ public class PlayerCombat : MonoBehaviour
         UM = GameObject.FindGameObjectWithTag("UI").GetComponent<UI_Manager>();
         UpdateHandParticle();
         UpdateUnlocked();
+
     }
 
 
     public void UpdateUnlocked()
     {
+        
         if (GM.UnlockedIce) { UnlockedIce = true; }
         if (GM.UnlockedAir) { UnlockedAir = true; }
         if (GM.UnlockedVoid) { UnlockedVoid = true; }
+        UpdateElementAnim();
     }
 
     public void Down(InputAction.CallbackContext context)
@@ -125,8 +128,8 @@ public class PlayerCombat : MonoBehaviour
         bool change = context.action.triggered;
         if (change&&CanInput==true)
         {     
-                CurrentElement = 1; UpdateHandParticle();
-            UM.CurrentElementHightlight.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-120);
+            CurrentElement = 1; UpdateHandParticle();
+            UpdateElementAnim();
         }
     }
     public void Right(InputAction.CallbackContext context)
@@ -137,7 +140,7 @@ public class PlayerCombat : MonoBehaviour
             if (UnlockedIce)
             {
                 CurrentElement = 2; UpdateHandParticle();
-                UM.CurrentElementHightlight.GetComponent<RectTransform>().anchoredPosition = new Vector2(120, 0);
+                UpdateElementAnim();
             }
 
         }
@@ -150,7 +153,7 @@ public class PlayerCombat : MonoBehaviour
             if (UnlockedVoid)
             {
                 CurrentElement = 3; UpdateHandParticle();
-                UM.CurrentElementHightlight.GetComponent<RectTransform>().anchoredPosition = new Vector2(-120, 0);
+                UpdateElementAnim();
             }
 
         }
@@ -163,7 +166,7 @@ public class PlayerCombat : MonoBehaviour
             if (UnlockedAir)
             {
                 CurrentElement = 4; UpdateHandParticle();
-                UM.CurrentElementHightlight.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 120);
+                UpdateElementAnim();
             }
 
         }
@@ -236,6 +239,14 @@ public class PlayerCombat : MonoBehaviour
         if (CurrentElement == 2) { RightHandIce.SetActive(true); LeftHandIce.SetActive(true); ChangeElementIceAudio.Play(); } else { RightHandIce.SetActive(false); LeftHandIce.SetActive(false); }
         if (CurrentElement == 3) { RightHandVoid.SetActive(true); LeftHandVoid.SetActive(true); ChangeElementVoidAudio.Play(); } else { RightHandVoid.SetActive(false); LeftHandVoid.SetActive(false); }
         if (CurrentElement == 4) { RightHandAir.SetActive(true); LeftHandAir.SetActive(true); ChangeElementAirAudio.Play(); } else { RightHandAir.SetActive(false); LeftHandAir.SetActive(false); }
+    }
+
+    public void UpdateElementAnim()
+    {
+        if (UM.FireElement.gameObject.activeInHierarchy) { if (CurrentElement == 1) { UM.FireElement.SetBool("ON", true); } else { UM.FireElement.SetBool("ON", false); } }
+        if (UM.IceElement.gameObject.activeInHierarchy) { if (CurrentElement == 2 && UnlockedIce) { UM.IceElement.SetBool("ON", true); } else { UM.IceElement.SetBool("ON", false); } }
+        if (UM.VoidElement.gameObject.activeInHierarchy) { if (CurrentElement == 3 && UnlockedVoid) { UM.VoidElement.SetBool("ON", true); } else { UM.VoidElement.SetBool("ON", false); } }
+        if (UM.AirElement.gameObject.activeInHierarchy) { if (CurrentElement == 4 && UnlockedAir) { UM.AirElement.SetBool("ON", true); } else { UM.AirElement.SetBool("ON", false); } }
     }
 
 

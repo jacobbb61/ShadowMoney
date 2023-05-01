@@ -16,16 +16,20 @@ public class UI_Manager : MonoBehaviour
     Vector2 StickInput;    
     bool reset;
 
-    [Header("TopBar")]
+    [Header("Bar")]
     public GameObject TopBarMain;
     public Slider PlayerHPSLider;
     public Slider PlayerDashSLider;
     public Slider PlayerSuperBar;
+    public Animator FireElement;
+    public Animator IceElement;
+    public Animator VoidElement;
+    public Animator AirElement;
+    public GameObject DashGold;
+    public GameObject SuperGold;
+    public GameObject HealthGold;
 
-    [Header("Orb")]
-    public GameObject OrbMain;
-    public GameObject ElementUI;
-    public GameObject CurrentElementHightlight;
+
 
     [Header("Hit Feedback")]
     public GameObject FireHit;
@@ -77,10 +81,6 @@ public class UI_Manager : MonoBehaviour
 
     [Header("Unlocks")]
     //public GameObject UnlockedSuperPunch;
-    public GameObject UnlockedFire;
-    public GameObject UnlockedIce;
-    public GameObject UnlockedAir;
-    public GameObject UnlockedVoid;
     public GameObject UnlockedUIPopUp;
     public TextMeshProUGUI UnlockedUIPopUpText;
 
@@ -103,11 +103,11 @@ public class UI_Manager : MonoBehaviour
 
     public void UpdateUnlocked()
     {
-        if (GM.UnlockedFire) { UnlockedFire.SetActive(false); }
-        if (GM.UnlockedIce) { UnlockedIce.SetActive(false); }
-        if (GM.UnlockedAir) { UnlockedAir.SetActive(false); }
-        if (GM.UnlockedVoid) { UnlockedVoid.SetActive(false); }
-      //  if (GM.UnlockedSuperPunch) { UnlockedSuperPunch.SetActive(false); }
+      FireElement.gameObject.SetActive(true); 
+        if (GM.UnlockedIce) { IceElement.gameObject.SetActive(true); } else { IceElement.gameObject.SetActive(false); }
+        if (GM.UnlockedAir) { VoidElement.gameObject.SetActive(true); } else { VoidElement.gameObject.SetActive(false); }
+        if (GM.UnlockedVoid) { AirElement.gameObject.SetActive(true); } else { AirElement.gameObject.SetActive(false); }
+        //  if (GM.UnlockedSuperPunch) { UnlockedSuperPunch.SetActive(false); }
     }
 
 
@@ -338,7 +338,6 @@ public class UI_Manager : MonoBehaviour
         EndOfLevelOn = true;
         EndOrder = 1;
         EndOfLevelUI.SetActive(true);
-        OrbMain.SetActive(false);
         TopBarMain.SetActive(false);
     }
     public void SelectEndOfLevel()

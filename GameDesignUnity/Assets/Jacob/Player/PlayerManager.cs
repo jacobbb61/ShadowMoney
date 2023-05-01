@@ -124,6 +124,12 @@ public class PlayerManager : MonoBehaviour, IDamageable
         UM.PlayerDashSLider.value = dashT;
         UM.PlayerSuperBar.value = PC.SuperEnergyCharges;
 
+        if (UM.PlayerDashSLider.value == 0) { UM.DashGold.SetActive(true); } else { UM.DashGold.SetActive(false); }
+        if (UM.PlayerSuperBar.value == 9) { UM.SuperGold.SetActive(true); } else { UM.SuperGold.SetActive(false); }
+
+
+
+
         Transform cameraTransform = Camera.main.transform;
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, 100.0f))
@@ -311,7 +317,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
         else if (other.CompareTag("HealthDrop"))
         {
             if (Health <= 80) { Health += 20; Destroy(other.gameObject);}
-            else if (Health > 80 && Health <100) { Health = 100; Destroy(other.gameObject); }           
+            else if (Health > 80 && Health <100) { Health = 100; Destroy(other.gameObject); }
+            StartCoroutine(HealthFeedback(UM.HealthGold));
         }
         else if (other.CompareTag("SuperDrop"))
         {
@@ -337,7 +344,12 @@ public class PlayerManager : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.5f);
         Effect.SetActive(false);
     }
-
+    IEnumerator HealthFeedback(GameObject Effect)
+    {
+        Effect.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Effect.SetActive(false);
+    }
 
     public void TakeDamage(int amt)
     {

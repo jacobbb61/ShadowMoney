@@ -32,7 +32,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     public GameObject LowHealth;
 
     [Header("Attack")]
-    private bool IsAttacking;
+
     public float TimeToAttack;
     private float AttackTime;
     public GameObject BulletPoint;
@@ -157,7 +157,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
         Shoot(CloseBulletType);
 
         yield return new WaitForSeconds(1f);
-        IsAttacking = false;
+     
         Agent.speed = WalkSpeed;
         Agent.angularSpeed = 3000;
         yield return new WaitForSeconds(Random.Range(1f, 2f));
@@ -177,7 +177,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
         Shoot(FarBulletType);
 
         yield return new WaitForSeconds(0.5f);
-        IsAttacking = false;
+ 
         yield return new WaitForSeconds(Random.Range(1, 4));
         CanAttack = true;
         myRB.constraints = RigidbodyConstraints.None;
