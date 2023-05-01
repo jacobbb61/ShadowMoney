@@ -105,8 +105,8 @@ public class UI_Manager : MonoBehaviour
     {
       FireElement.gameObject.SetActive(true); 
         if (GM.UnlockedIce) { IceElement.gameObject.SetActive(true); } else { IceElement.gameObject.SetActive(false); }
-        if (GM.UnlockedAir) { VoidElement.gameObject.SetActive(true); } else { VoidElement.gameObject.SetActive(false); }
-        if (GM.UnlockedVoid) { AirElement.gameObject.SetActive(true); } else { AirElement.gameObject.SetActive(false); }
+        if (GM.UnlockedVoid) { VoidElement.gameObject.SetActive(true); } else { VoidElement.gameObject.SetActive(false); }
+        if (GM.UnlockedAir) { AirElement.gameObject.SetActive(true); } else { AirElement.gameObject.SetActive(false); }
         //  if (GM.UnlockedSuperPunch) { UnlockedSuperPunch.SetActive(false); }
     }
 
