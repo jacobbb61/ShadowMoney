@@ -51,7 +51,7 @@ public class TutorialManager : MonoBehaviour
         MainUI.SetActive(true);
         MainTextUI.text = MainText;
         MainVideoUI.GetComponent<RawImage>().texture = Video;
-
+        Time.timeScale = 0.0001f;
         StartCoroutine(WaitToExit());
     
  
@@ -59,7 +59,7 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator WaitToExit()
     {  
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.0001f);
         MainExitPromptUI.SetActive(true);
         On = true;
     }
@@ -67,7 +67,7 @@ public class TutorialManager : MonoBehaviour
     public void CloseUI()
     {
         MainUI.SetActive(false);
-
+        Time.timeScale = 1f;
     }
 
 
