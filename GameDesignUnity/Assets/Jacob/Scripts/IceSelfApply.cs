@@ -38,7 +38,7 @@ public class IceSelfApply : MonoBehaviour
             {
                 if (hit.TryGetComponent(out Effects_Manager EM))
                 {
-                    EM.IsFrozen = true;
+                    if (!hit.transform.CompareTag("Player")) { EM.IsFrozen = true; }
                 }
             }
         }
