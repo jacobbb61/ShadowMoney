@@ -11770,8 +11770,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 20
-  m_StepOffset: 0.3
+  m_SlopeLimit: 45
+  m_StepOffset: 0.75
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -19413,6 +19413,21 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startSizeZ.minMaxState
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620608075595211102, guid: e603d317e7f9f694c90cd960919ca074,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620608075595211102, guid: e603d317e7f9f694c90cd960919ca074,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0411
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620608075595211102, guid: e603d317e7f9f694c90cd960919ca074,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0034
       objectReference: {fileID: 0}
     - target: {fileID: 5101174811299685793, guid: e603d317e7f9f694c90cd960919ca074,
         type: 3}
