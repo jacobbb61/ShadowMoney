@@ -68,7 +68,6 @@ public class TutorialManager : MonoBehaviour
     {
         MainUI.SetActive(false);
 
-        this.gameObject.SetActive(false);
     }
 
 
