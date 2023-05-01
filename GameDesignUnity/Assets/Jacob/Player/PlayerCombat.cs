@@ -184,8 +184,8 @@ public class PlayerCombat : MonoBehaviour
     }
     public void RightBumper(InputAction.CallbackContext context) //sniper
     {
-        bool shootR = context.action.triggered;
-        if (shootR && CanInput == true)
+        bool BumpR = context.action.triggered;
+        if (BumpR && CanInput == true)
         {
             Anim.Play("playerHands_shootingSniper");
             StartCoroutine(Shoot(BulletV1, Shoot1AnimTime));
@@ -203,8 +203,8 @@ public class PlayerCombat : MonoBehaviour
     }
     public void LeftBumper(InputAction.CallbackContext context)  //melee
     {
-        bool shootR = context.action.triggered;
-        if (shootR && CanInput == true)
+        bool BumpL = context.action.triggered;
+        if (BumpL && CanInput == true)
         { 
             if (SuperEnergyCharges >= 9 && GM.UnlockedSuperPunch)
             {              
@@ -254,7 +254,7 @@ public class PlayerCombat : MonoBehaviour
     IEnumerator Shoot(GameObject Bullet, float WaitTime)
     {
         CanInput = false;
-         yield return new WaitForSeconds(WaitTime-0.2f);
+         yield return new WaitForSeconds(0.3f);
         GameObject BulletShot = Instantiate(Bullet);
         if (SelfFire == true) { BulletShot.GetComponent<Bullet_Manager>().DamageBuff = FireDamageBuff; }
         BulletShot.transform.parent = null;
@@ -266,7 +266,7 @@ public class PlayerCombat : MonoBehaviour
         else if (CurrentElement == 2) { BulletShot.GetComponent<Effects_Manager>().IceEffect = true; ShootElementIceAudio.Play(); }
         else if (CurrentElement == 3) { BulletShot.GetComponent<Effects_Manager>().VoidEffect = true; ShootElementVoidAudio.Play(); }
         else if (CurrentElement == 4) { BulletShot.GetComponent<Effects_Manager>().AirEffect = true; ShootElementAirAudio.Play(); }
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.45f);
         CanInput = true;
     }
 
