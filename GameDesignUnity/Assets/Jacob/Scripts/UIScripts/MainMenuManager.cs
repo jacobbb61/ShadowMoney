@@ -117,9 +117,7 @@ public class MainMenuManager : MonoBehaviour
     public void MainSelectStart()
     {
             GM.GameStarted = true;
-            if (GM.LatestLevel == 1) { LoadScene("Level1"); }
-            if (GM.LatestLevel == 2) { LoadScene("Level2"); }
-            if (GM.LatestLevel == 3) { LoadScene("Level3"); }    
+        LoadScene("LevelNEW");
     }
     public void MainSelectLevels()
     {
@@ -132,9 +130,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void LevelSelectButtonA()
     {
-         if (LevelOrder == 1) { LoadScene("Level1"); }
-         if (LevelOrder == 2) { LoadScene("Level2"); }
-         if (LevelOrder == 3) { LoadScene("Level3"); }
+  
     }
 
     public void LevelSelect1()

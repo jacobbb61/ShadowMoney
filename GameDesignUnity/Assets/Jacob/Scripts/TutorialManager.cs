@@ -39,7 +39,7 @@ public class TutorialManager : MonoBehaviour
         MainExitPromptUI = UM.MainExitPromptUI;
     }
 
-    public void Pause(InputAction.CallbackContext context)
+    public void Interact(InputAction.CallbackContext context)
     {
         if (On&&context.action.triggered) { CloseUI(); }
     }
@@ -68,7 +68,7 @@ public class TutorialManager : MonoBehaviour
     {
         MainUI.SetActive(false);
         Time.timeScale = 1f;
-        
+        this.gameObject.SetActive(false);
     }
 
 
