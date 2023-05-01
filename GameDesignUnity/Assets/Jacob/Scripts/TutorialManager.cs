@@ -68,6 +68,7 @@ public class TutorialManager : MonoBehaviour
     {
         MainUI.SetActive(false);
         Time.timeScale = 1f;
+        
     }
 
 
