@@ -8586,7 +8586,7 @@ PrefabInstance:
     - target: {fileID: 5522084721793926459, guid: ce981da3910501144a3535beeef1b4ba,
         type: 3}
       propertyPath: areaEffect
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5522084721793926459, guid: ce981da3910501144a3535beeef1b4ba,
         type: 3}

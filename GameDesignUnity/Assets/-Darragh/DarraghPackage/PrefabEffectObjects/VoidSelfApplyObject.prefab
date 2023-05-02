@@ -47,5 +47,5 @@ MonoBehaviour:
   Particles: {fileID: 7804253481577728399, guid: b7e10592edc1c4e499a0399a89522e05,
     type: 3}
   emptyExplosion: {fileID: 2579884713790772678}
-  Force: 30
-  areaEffect: 50
+  Force: 2
+  areaEffect: 30
