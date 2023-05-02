@@ -19417,17 +19417,17 @@ PrefabInstance:
     - target: {fileID: 4620608075595211102, guid: e603d317e7f9f694c90cd960919ca074,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4620608075595211102, guid: e603d317e7f9f694c90cd960919ca074,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0411
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4620608075595211102, guid: e603d317e7f9f694c90cd960919ca074,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0034
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101174811299685793, guid: e603d317e7f9f694c90cd960919ca074,
         type: 3}
