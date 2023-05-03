@@ -14,7 +14,7 @@ public class EndOfLevel : MonoBehaviour
     PlayerCombat PC;
     UI_Manager UM;
     Animator Anim;
-
+    public GameObject[] Checkpoints;
     private void Start()
     {
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -24,6 +24,7 @@ public class EndOfLevel : MonoBehaviour
         PC = Player.GetComponent<PlayerCombat>();
         UM = UI.GetComponent<UI_Manager>();
         Anim = GetComponentInChildren<Animator>();
+        Checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +35,10 @@ public class EndOfLevel : MonoBehaviour
             other.gameObject.SetActive(false);
             GM.Music.SetActive(false);
             GM.LastCheckPoint = Vector3.zero;
+            foreach(GameObject Checkpoint in Checkpoints)
+            {
+                Checkpoint.GetComponent<Checkpoint>().used = false;
+            }
         }
     }
 

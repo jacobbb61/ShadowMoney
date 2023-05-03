@@ -87,27 +87,12 @@ public class GameManager : MonoBehaviour
         UM = UI.GetComponent<UI_Manager>();
         PCam = Player.GetComponentInChildren<PlayerCam>();
         Time.timeScale = 1f;
-       
-        
-        if (SceneManager.GetActiveScene().name == "Level1") { LatestLevel = 1; }
-        else if (SceneManager.GetActiveScene().name == "Level2") { LatestLevel = 2; }
-        else if (SceneManager.GetActiveScene().name == "Level3") { LatestLevel = 3; }
+
+
+        RespawnPlayer(Player);
     }
 
- /*   public void Update()
-    {
-        if (!Player)
-        {
-            Player = GameObject.FindGameObjectWithTag("Player");
-            
-            if (Player)
-            {
-                RespawnPlayer();
-            }
-            
-        } 
-    }
- */
+
 
     public void RespawnPlayer(GameObject P)
     {

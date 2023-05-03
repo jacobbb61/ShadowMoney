@@ -22,6 +22,7 @@ public class WeaponUnlock : MonoBehaviour
         UM = GameObject.FindGameObjectWithTag("UI").GetComponent<UI_Manager>();
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         PC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>();
+        DontDestroyOnLoad(gameObject);
     }
 
 
