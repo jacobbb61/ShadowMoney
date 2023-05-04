@@ -4911,7 +4911,7 @@ MonoBehaviour:
   FarBulletType: {fileID: 5969615223017203397, guid: fb7943934cdb53a47930a52e6d4e576b,
     type: 3}
   CloseRange: 15
-  FarRange: 30
+  FarRange: 45
   EffectType: 0
   TimeToBreakFreeze: 5
   FrozenParticles: {fileID: 164891184184383176}

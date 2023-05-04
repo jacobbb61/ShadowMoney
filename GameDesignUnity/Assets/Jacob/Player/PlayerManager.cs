@@ -27,13 +27,16 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private Vector3 dashV;
     private Vector2 movementInput = Vector2.zero;
 
-    public float gravityValue = -40f;
+    public float gravityValue;
+    private float gravityValueConsistant;
     private int DamageReduction = 0;
     
 
     [Header("Player stats")]
-    public float playerSpeed = 10f;
-    public float jumpHeight = 6.0f;
+    public float playerSpeed;
+    private float playerSpeedConsitent;
+    public float jumpHeight;
+    private float jumpHeightConsistent;
     public float dashSpeed;
     public bool groundedPlayer;
     public bool SuperMeleeImmune;
@@ -64,6 +67,9 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Time.timeScale = 1;
         // transform.position = Vector3.zero;
         if (SceneManager.GetActiveScene().name == "MainMenu") { Cursor.lockState = CursorLockMode.Confined; } else { Cursor.lockState = CursorLockMode.Locked; }
+        gravityValueConsistant = gravityValue;
+        playerSpeedConsitent = playerSpeed;
+        jumpHeightConsistent = jumpHeight;
     }
 
     public void Update()
@@ -221,12 +227,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
             dashT = -2f; dashTS = true; PC.DashAudio.gameObject.SetActive(true); PC.DashAudio.pitch = Random.Range(0.9f, 1.1f); Anim.SetTrigger("Dash");
             if ( movementInput.x == 0 && movementInput.y == 0) { dashV = transform.forward * dashSpeed; }
             else { dashV = (transform.right * movementInput.x + transform.forward * movementInput.y) * dashSpeed; }
+            PC.BaseMeleeDamage = 25;
             Debug.Log(dashV);
         }
         if (dashTS == true) { dashT += Time.deltaTime; }
         if ((dashT < -1.5f) && (dashTS == true)) { controller.Move(dashV * Time.deltaTime); gravityValue = -20f; CanWalk = false; }
-        if (dashT < -1.5f) { dash = false; gravityValue = -40f; CanWalk = true; }
-        if (dashT > 0f) { dashT = 0f; dashTS = false; PC.DashAudio.gameObject.SetActive(false); }
+        if (dashT < -1.5f) { dash = false; gravityValue = gravityValueConsistant; CanWalk = true; PC.BaseMeleeDamage = PC.BaseMeleeDamageConsistent;}
+        if (dashT > 0f) { dashT = 0f;   dashTS = false; PC.DashAudio.gameObject.SetActive(false); }
     }
     public void MeleePull()
     {
@@ -237,9 +244,9 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public void SelfFireEffect() 
     {
-        //damage buff
+        playerSpeed = PC.FireSpeedBuff;
         PC.SelfEffectTime += Time.deltaTime;
-        if (PC.SelfEffectTime >= 5f) { PC.SelfFire = false;  PC.SelfEffectTime = 0f; }
+        if (PC.SelfEffectTime >= 5f) { PC.SelfFire = false; playerSpeed = playerSpeedConsitent; PC.SelfEffectTime = 0f; }
     }
     public void SelfIceEffect()
     {
@@ -251,13 +258,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         jumpHeight = PC.VoidJumpBuff;
         PC.SelfEffectTime += Time.deltaTime;
-        if (PC.SelfEffectTime >= 5f) { PC.SelfVoid = false; jumpHeight = 6f; PC.SelfEffectTime = 0f; }
+        if (PC.SelfEffectTime >= 5f) { PC.SelfVoid = false; jumpHeight = jumpHeightConsistent; PC.SelfEffectTime = 0f; }
     }
     public void SelfAirEffect()
     {
         gravityValue = PC.AirFallBuff;
         PC.SelfEffectTime += Time.deltaTime;
-        if (PC.SelfEffectTime >= 5f) { PC.SelfAir = false; gravityValue = -40f;  PC.SelfEffectTime = 0f; }
+        if (PC.SelfEffectTime >= 5f) { PC.SelfAir = false; gravityValue = gravityValueConsistant;  PC.SelfEffectTime = 0f; }
     }
 
 

@@ -18,6 +18,7 @@ public class PlayerCombat : MonoBehaviour
     public GameObject BulletV2; //shotgun
     public GameObject BulletHolder;
     public int BaseMeleeDamage;
+    public int BaseMeleeDamageConsistent;
 
     [Header("Super Energy")]
     public int SuperEnergyCharges;
@@ -34,7 +35,7 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Player Applied Effects")]
     public bool SelfFire;
-    public int FireDamageBuff;
+    public int FireSpeedBuff;
     public bool SelfIce;
     public int IceArmourBuff;
     public bool SelfVoid;
@@ -110,7 +111,7 @@ public class PlayerCombat : MonoBehaviour
         UM = GameObject.FindGameObjectWithTag("UI").GetComponent<UI_Manager>();
         UpdateHandParticle();
         UpdateUnlocked();
-
+        BaseMeleeDamageConsistent = BaseMeleeDamage;
     }
 
 
@@ -201,20 +202,26 @@ public class PlayerCombat : MonoBehaviour
             StartCoroutine( ApplySelf(CurrentElement, ApplyToSelfAnimTime));     
         }
     }
-    public void LeftBumper(InputAction.CallbackContext context)  //melee
+    public void LeftBumperBase(InputAction.CallbackContext context)  //melee
     {
         bool BumpL = context.action.triggered;
         if (BumpL && CanInput == true)
         { 
-            if (SuperEnergyCharges >= 9 && GM.UnlockedSuperPunch)
-            {              
-            StartCoroutine(SuperMeleeAttack());
-            }
-            else  
-            { 
+            
             StartCoroutine(BaseMeleeAttack());
-            }
+            
            
+        }
+    }
+    public void LeftBumperSuper(InputAction.CallbackContext context)  //melee
+    {
+        bool BumpLs = context.action.triggered;
+        if (BumpLs && CanInput == true)
+        {
+            if (SuperEnergyCharges >= 9 && GM.UnlockedSuperPunch)
+            {
+                StartCoroutine(SuperMeleeAttack());
+            }
         }
     }
 
@@ -256,7 +263,6 @@ public class PlayerCombat : MonoBehaviour
         CanInput = false;
          yield return new WaitForSeconds(0.3f);
         GameObject BulletShot = Instantiate(Bullet);
-        if (SelfFire == true) { BulletShot.GetComponent<Bullet_Manager>().DamageBuff = FireDamageBuff; }
         BulletShot.transform.parent = null;
         BulletShot.transform.position = BulletHolder.transform.position;
         BulletShot.transform.rotation = BulletHolder.transform.rotation;

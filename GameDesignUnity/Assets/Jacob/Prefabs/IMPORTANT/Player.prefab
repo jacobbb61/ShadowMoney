@@ -11404,7 +11404,7 @@ MonoBehaviour:
   EM: {fileID: 5432166676462643460}
   UM: {fileID: 0}
   playerVelocity: {x: 0, y: 0, z: 0}
-  gravityValue: -40
+  gravityValue: -90
   playerSpeed: 15
   jumpHeight: 10
   dashSpeed: 35
@@ -11433,6 +11433,7 @@ MonoBehaviour:
     type: 3}
   BulletHolder: {fileID: 669387199697163958}
   BaseMeleeDamage: 15
+  BaseMeleeDamageConsistent: 0
   SuperEnergyCharges: 0
   SuperMeleeDamage: 100
   MeleePullDestination: {fileID: 0}
@@ -11441,7 +11442,7 @@ MonoBehaviour:
   CanInput: 0
   MeleePull: 0
   SelfFire: 0
-  FireDamageBuff: 5
+  FireSpeedBuff: 20
   SelfIce: 0
   IceArmourBuff: 3
   SelfVoid: 0
@@ -11660,7 +11661,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4043922790906704514}
         m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
-        m_MethodName: LeftBumper
+        m_MethodName: LeftBumperBase
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11752,6 +11753,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bfbfa8b7-b11b-4155-89cc-9d988f20d0d6
     m_ActionName: Player/Left[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4043922790906704514}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: LeftBumperSuper
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c5db4cca-34ef-4423-9ec5-38594fa3302a
+    m_ActionName: Player/SuperMelee[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

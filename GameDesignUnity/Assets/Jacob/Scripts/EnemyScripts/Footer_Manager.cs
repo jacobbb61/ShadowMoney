@@ -103,7 +103,7 @@ public class Footer_Manager : MonoBehaviour
             Agent.SetDestination(Player.transform.position);
         }
 
-        if (Health <= 5)
+        if (Health <= 10)
         {
             LowHealth.SetActive(true);
         }

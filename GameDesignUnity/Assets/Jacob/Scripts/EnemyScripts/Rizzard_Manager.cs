@@ -95,7 +95,7 @@ public class Rizzard_Manager : MonoBehaviour,IDamageable
     void Update()
     {
         GroundCheck();
-        if (Health <= 5)
+        if (Health <= 10)
         {
             LowHealth.SetActive(true);
         }

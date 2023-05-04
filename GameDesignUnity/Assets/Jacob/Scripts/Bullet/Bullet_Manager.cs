@@ -17,7 +17,7 @@ public class Bullet_Manager : MonoBehaviour
     public int Type1Damage=10;
     public int Type2Damage = 15;
     public int Type3Damage=5;
-    public int Type4Damage=40;
+    public int Type4Damage=30;
 
     public int Type1Tick = 5;
     public int Type2Tick = 8;

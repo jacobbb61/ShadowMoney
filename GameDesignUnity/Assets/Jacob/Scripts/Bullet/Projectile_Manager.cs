@@ -21,7 +21,7 @@ public class Projectile_Manager : MonoBehaviour
 
     // [Header("Projectile Type One")]
     private float Speed_T1=25f;
-    private float Range_T1=2;
+    private float Range_T1=5;
 
     // [Header("Projectile Type Two")]
     private float Speed_T2=40;
@@ -39,7 +39,9 @@ public class Projectile_Manager : MonoBehaviour
     {
         BM = GetComponent<Bullet_Manager>();
         EM = GetComponent<Effects_Manager>();
-    }
+        if (BM.BulletType1)
+        { StartCoroutine(Type1Hitbox()); }
+        }
 
     void Update()
     {
@@ -69,6 +71,13 @@ public class Projectile_Manager : MonoBehaviour
             }
             else { return; }
         
+    }
+
+    IEnumerator Type1Hitbox()
+    {
+        GetComponent<SphereCollider>().radius = 0.5f;
+        yield return new WaitForSeconds(0.3f);
+        GetComponent<SphereCollider>().radius = 2f;
     }
 
     public void ApplyElement()

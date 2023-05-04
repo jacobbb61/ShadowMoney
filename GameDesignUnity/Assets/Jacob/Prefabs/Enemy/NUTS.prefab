@@ -34083,8 +34083,8 @@ MonoBehaviour:
   Ice: 0
   Void: 0
   Air: 0
-  NutsBaseSpeed: 8
-  NutsBaseMovementRange: 30
+  NutsBaseSpeed: 6
+  NutsBaseMovementRange: 50
   NutsBaseAttackRange: 3
   NutsProjectileSpeed: 2
   NutsProjectileMovementRange: 30

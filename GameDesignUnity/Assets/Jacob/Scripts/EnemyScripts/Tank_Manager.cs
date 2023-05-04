@@ -105,7 +105,7 @@ public class Tank_Manager : MonoBehaviour
             Push();
         }
 
-        if (Health <= 5)
+        if (Health <= 20)
         {
             LowHealth.SetActive(true);
         }

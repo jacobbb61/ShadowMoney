@@ -171,6 +171,10 @@ MonoBehaviour:
   TanksToSpawn: 0
   MaxTanks: 0
   TankElement: 0
+  FireSpawn: {fileID: 2100000, guid: 915d8078172f0224492fbc57b75092e5, type: 2}
+  IceSpawn: {fileID: 2100000, guid: 193a91300a383e64e87f2b3ca0e09ba7, type: 2}
+  VoidSpawn: {fileID: 2100000, guid: 2dbb367172c175f42ad6bcb567bf1bb4, type: 2}
+  AirSpawn: {fileID: 2100000, guid: fe2b9ae997ac1aa4ea17c968bba853e4, type: 2}
   Doors: []
 --- !u!65 &3351616191501479554
 BoxCollider:

@@ -13,12 +13,17 @@ public class TutorialManager : MonoBehaviour
     GameObject Player;
     UI_Manager UM;
     GameObject UIM;
+    GameManager GM;
 
     [Header("Custom objects")]
     public bool On;
     public RenderTexture Video;
     public string MainText;
-   
+    public bool T1;
+    public bool T2;
+    public bool T3;
+    public bool T4;
+
     //got from ui manager
     private GameObject MainUI;
     private TextMeshProUGUI MainTextUI;
@@ -37,6 +42,8 @@ public class TutorialManager : MonoBehaviour
         MainTextUI = UM.MainTextUI;
         MainVideoUI = UM.MainVideoUI;
         MainExitPromptUI = UM.MainExitPromptUI;
+        GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        memory();
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -44,7 +51,13 @@ public class TutorialManager : MonoBehaviour
         if (On&&context.action.triggered) { CloseUI(); }
     }
 
-
+    public void memory()
+    {
+        if (T1) { if (GM.Tutorial1 == true) { Destroy(this.gameObject); } }
+        if (T2) { if (GM.Tutorial2 == true) { Destroy(this.gameObject); } }
+        if (T3) { if (GM.Tutorial3 == true) { Destroy(this.gameObject); } }
+        if (T4) { if (GM.Tutorial4 == true) { Destroy(this.gameObject); } }
+    }
     public void OpenUI()
     {
         MainExitPromptUI.SetActive(false);
@@ -53,7 +66,7 @@ public class TutorialManager : MonoBehaviour
         MainVideoUI.GetComponent<RawImage>().texture = Video;
         Time.timeScale = 0.0001f;
         StartCoroutine(WaitToExit());
-    
+        PM.SuperMeleeImmune = true;
  
     }
 
@@ -66,8 +79,13 @@ public class TutorialManager : MonoBehaviour
 
     public void CloseUI()
     {
+        PM.SuperMeleeImmune = false;
         MainUI.SetActive(false);
         Time.timeScale = 1f;
+        if (T1) { if (GM.Tutorial1 == false) { GM.Tutorial1 = true; } }
+        if (T2) { if (GM.Tutorial2 == false) { GM.Tutorial2 = true; } }
+        if (T3) { if (GM.Tutorial3 == false) { GM.Tutorial3 = true; } }
+        if (T4) { if (GM.Tutorial4 == false) { GM.Tutorial4 = true; } }
         this.gameObject.SetActive(false);
     }
 

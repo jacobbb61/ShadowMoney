@@ -240,7 +240,7 @@ public class UI_Manager : MonoBehaviour
         Paused = false;
         Time.timeScale = 1f;
         PauseMenu.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
+        if (EndOfLevelOn==false) { Cursor.lockState = CursorLockMode.Locked; } else { Cursor.lockState = CursorLockMode.Confined; }
     }
 
 

@@ -41,6 +41,12 @@ public class CombatRoom_Manager : MonoBehaviour
     public int MaxTanks;
     public int TankElement;
 
+    [Header("SpawnMat")]
+    public Material FireSpawn;
+    public Material IceSpawn;
+    public Material VoidSpawn;
+    public Material AirSpawn;
+
     [Header("Entrance and Exit Doors")]
     public GameObject[] Doors;
 
@@ -143,6 +149,10 @@ public class CombatRoom_Manager : MonoBehaviour
     {
         CanSpawn = false;
         GameObject NewSpawnAnim = Instantiate(EnemySpawnAnim, Location.position, Enemy.transform.rotation);
+        if (Element == 1) { NewSpawnAnim.GetComponentInChildren<MeshRenderer>().material = FireSpawn; }
+        if (Element == 2) { NewSpawnAnim.GetComponentInChildren<MeshRenderer>().material = IceSpawn; }
+        if (Element == 3) { NewSpawnAnim.GetComponentInChildren<MeshRenderer>().material = VoidSpawn; }
+        if (Element == 4) { NewSpawnAnim.GetComponentInChildren<MeshRenderer>().material = AirSpawn; }
         Destroy(NewSpawnAnim, 0.8f);
         yield return new WaitForSeconds(TimeBeforeSpawn);
         GameObject NewEnemy =  Instantiate(Enemy, new Vector3(Location.position.x, Location.position.y+4f,Location.position.z), Enemy.transform.rotation);

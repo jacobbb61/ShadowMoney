@@ -54,6 +54,10 @@ public class GameManager : MonoBehaviour
     [Header("Options Memory")]
     public bool OptionsMusic;
     public bool OptionsTutorial;
+    public bool Tutorial1;
+    public bool Tutorial2;
+    public bool Tutorial3;
+    public bool Tutorial4;
     public int SensX;
     public int SensY;
 

@@ -79,7 +79,7 @@ MonoBehaviour:
   Type1Damage: 5
   Type2Damage: 20
   Type3Damage: 5
-  Type4Damage: 40
+  Type4Damage: 30
   Type1Tick: 5
   Type2Tick: 8
   Type3Tick: 5
@@ -120,7 +120,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5969615223017203397}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
