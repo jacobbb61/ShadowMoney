@@ -80,7 +80,36 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6dc0d34d9f6531340a1f7ea1e14a4ba4,
         type: 3}
       propertyPath: m_Name
-      value: missingBooksShelf
+      value: CSmissingbooks
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6dc0d34d9f6531340a1f7ea1e14a4ba4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6dc0d34d9f6531340a1f7ea1e14a4ba4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dc0d34d9f6531340a1f7ea1e14a4ba4, type: 3}
+--- !u!1 &471959551145888491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dc0d34d9f6531340a1f7ea1e14a4ba4,
+    type: 3}
+  m_PrefabInstance: {fileID: 742484156078520250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8696002041776956022
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471959551145888491}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6827495, y: 11.776506, z: 6.941772}
+  m_Center: {x: -0.034714792, y: 4.6836786, z: -0.010392999}
