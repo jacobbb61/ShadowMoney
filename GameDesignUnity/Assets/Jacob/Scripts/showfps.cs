@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class showfps : MonoBehaviour
+public class showfpsty  : MonoBehaviour
 {
     public TextMeshProUGUI fpsText;
     public float deltaTime;
